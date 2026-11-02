@@ -1,0 +1,11 @@
+node_modules/
+.agents/skills/*
+!.agents/skills/new-extractor-guide/
+.shared/
+
+# Local credentials
+.env.*
+!.env.example
+
+# Optional local pnpm store
+.pnpm-store/

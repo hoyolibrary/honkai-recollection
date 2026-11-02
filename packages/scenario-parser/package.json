@@ -1,0 +1,22 @@
+{
+  "name": "scenario-parser",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "extract:dialogue": "node ./src/extract-dialogue-quick.mjs",
+    "extract:dialogue:v2": "node ./src/extract-dialogue-quickv2.mjs",
+    "test:act100010162": "node ./case-tests/act100010162/parse.mjs",
+    "test:rogue-dialogue": "node ./case-tests/rogue-dialogue/parse.mjs"
+  },
+  "dependencies": {
+    "json-bigint": "^1.0.0",
+    "unity-richtext": "workspace:*",
+    "jsdom": "^23.0.1",
+    "antlr4": "^4.13.2",
+    "lodash.template": "^4.5.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,22 @@
+/** 对齐 DummyDll 中的 RPG.GameCore.SkillEffect。 */
+export type SkillEffect =
+  | "Unknown"
+  | "SingleAttack"
+  | "AoEAttack"
+  | "ShieldBreak"
+  | "Bounce"
+  | "Blast"
+  | "Support"
+  | "Weaken"
+  | "Impair"
+  | "Restore"
+  | "Taunt"
+  | "Defence"
+  | "Damage"
+  | "Enhance"
+  | "Transform"
+  | "Passive"
+  | "MazeAttack"
+  | "Summon"
+  | "BattleCry"
+  | "DeathRattle";

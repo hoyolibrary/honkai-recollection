@@ -1,0 +1,9 @@
+[submodule "packages/gacha-game-types"]
+	path = packages/gacha-game-types
+	url = https://github.com/SwingCosmic/gacha-game-types.git
+[submodule "packages/unity-richtext"]
+	path = packages/unity-richtext
+	url = https://github.com/SwingCosmic/unity-richtext-parser
+[submodule "extern/TurnBasedGameData"]
+	path = extern/TurnBasedGameData
+	url = https://github.com/DimbreathBot/TurnBasedGameData.git

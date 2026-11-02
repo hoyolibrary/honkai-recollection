@@ -1,0 +1,4586 @@
+{
+  "snapshot": "4ce30f69b32dc259ab9a8da3ba57035485103221",
+  "cases": [
+    {
+      "name": "未来学大会•其三",
+      "entry": {
+        "table": "RogueMagicStory",
+        "key": "StoryID",
+        "id": 53023,
+        "row": {
+          "StoryID": 53023,
+          "StoryCategory": "MagicWar",
+          "StoryName": {
+            "Hash": "15670455330673927507"
+          },
+          "LevelGraphPath": "Config/Level/RogueDialogue/RogueNpcDialogEvent/Act/Act403058520.json",
+          "StoryImage": "SpriteOutput/Rogue/RandomEvent/Horizon/RoguePicEventDLC_13.png",
+          "UnLockDisplay": 809
+        }
+      },
+      "targetSentence": 403058523,
+      "graphPath": "Config/Level/RogueDialogue/RogueNpcDialogEvent/Act/Act403058520.json",
+      "optionPath": null,
+      "types": {
+        "RPG.GameCore.ShowRogueTalkUI": 1,
+        "RPG.GameCore.ShowRogueTalkBg": 1,
+        "RPG.GameCore.PlayAndWaitRogueSimpleTalk": 3,
+        "RPG.GameCore.PlayRogueOptionTalk": 2,
+        "RPG.GameCore.WaitCustomString": 2,
+        "RPG.GameCore.SetAsRogueDialogue": 1,
+        "RPG.GameCore.FinishLevelGraph": 1
+      },
+      "groups": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueOptionTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueOptionTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        }
+      ],
+      "events": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkUI",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkUI",
+            "Show": true
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkBg",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkBg",
+            "TalkBgID": 204
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403058521,
+            "text": "百分之一台「权杖」将媲美舰队，十分之一台「权杖」将湮灭星辰，一台「权杖」将超越认知，一千台「权杖」将统括寰宇。",
+            "speaker": "模拟宇宙",
+            "hash": "9841555462453928017"
+          },
+          "raw": {
+            "TalkSentenceID": 403058521
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403058522,
+            "text": "分解认知，逆转衰变，拉伸空间，创造行星，有关「权杖」的故事里混杂了太多戏说和妄想，但事实证明，绝大多数的看客的杜撰，甚至无法企及天才造物的皮毛。如此的技术，此前却一直被用于单纯的屠戮。",
+            "speaker": "模拟宇宙",
+            "hash": "4645516435817467203"
+          },
+          "raw": {
+            "TalkSentenceID": 403058522
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403058523,
+            "text": "帕提维娅成功通过了课题审核。申请「权杖」配额前，你希望从这位老同学身上得到些许参考。不过，她本人对学会的评价标准也毫无头绪。",
+            "speaker": "模拟宇宙",
+            "hash": "9989970012926828258"
+          },
+          "raw": {
+            "TalkSentenceID": 403058523
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.3",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403058524,
+            "text": "「如果能拿到所有的帝皇遗产，你会做什么？」",
+            "speaker": "模拟宇宙",
+            "hash": "2620905996321170184"
+          },
+          "raw": {
+            "TalkSentenceID": 403058524
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403058525,
+            "text": "成为宇宙之王。",
+            "speaker": null,
+            "hash": "9898451173205363348"
+          },
+          "rogueOptionId": null,
+          "label": "成为宇宙之王。",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403058525,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403058528"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403058526,
+            "text": "成为超级富豪。",
+            "speaker": null,
+            "hash": "12190484641475509387"
+          },
+          "rogueOptionId": null,
+          "label": "成为超级富豪。",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403058526,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403058528"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3.OptionList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403058527,
+            "text": "成为首席学士。",
+            "speaker": null,
+            "hash": "7956088692119450672"
+          },
+          "rogueOptionId": null,
+          "label": "成为首席学士。",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403058527,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403058528"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403058528"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403058528,
+            "text": "那你呢？你如是反问眼前的学者。",
+            "speaker": "模拟宇宙",
+            "hash": "6906172885586629723"
+          },
+          "raw": {
+            "TalkSentenceID": 403058528
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403058529,
+            "text": "「先把那奇怪的信号给弄清楚再说吧。」帕提维娅的回答中未掺杂犹豫。",
+            "speaker": "模拟宇宙",
+            "hash": "1327257630770567364"
+          },
+          "raw": {
+            "TalkSentenceID": 403058529
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1.SimpleTalkList.2",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403058530,
+            "text": "你登录进申请界面，课题与项目被衡量以价值。以它为基准，你将获得瓜分「权杖」算力残渣的资格。「请输入可查询的课题编号，根据权杖管理委员会第<unbreak>21</unbreak>条规定，将给定您所能支配的算力。」",
+            "speaker": "模拟宇宙",
+            "hash": "14793332381456183392"
+          },
+          "raw": {
+            "TalkSentenceID": 403058530
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2.OptionList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403058531,
+            "text": "<unbreak>0120</unbreak>-空间的置换机制。",
+            "speaker": null,
+            "hash": "13049440176417139354"
+          },
+          "rogueOptionId": null,
+          "label": "<unbreak>0120</unbreak>-空间的置换机制。",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403058531,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403058534"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2.OptionList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403058532,
+            "text": "<unbreak>3941</unbreak>-天体的功能改造。",
+            "speaker": null,
+            "hash": "1647044957616078739"
+          },
+          "rogueOptionId": null,
+          "label": "<unbreak>3941</unbreak>-天体的功能改造。",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403058532,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403058534"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2.OptionList.2",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403058533,
+            "text": "<unbreak>8674</unbreak>-边星的作物种植。",
+            "speaker": null,
+            "hash": "2701950782123699686"
+          },
+          "rogueOptionId": null,
+          "label": "<unbreak>8674</unbreak>-边星的作物种植。",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403058533,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403058534"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403058534"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403058534,
+            "text": "「查询已完成，课题价值核准中。」系统提示音的语调和缓，基于完美进化学派的理论，给予听者好感的最佳振幅，「核准已完成，您的配额为，万分之一的算力使用权，愿您在『智识』之路上寻得真理。」",
+            "speaker": "模拟宇宙",
+            "hash": "3586984255439825084"
+          },
+          "raw": {
+            "TalkSentenceID": 403058534
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403058535,
+            "text": "一台「权杖」万分之一的算力使用权，和她那神秘信号相同的价值。可行性，应用性，经济前景，以及黑箱拼凑的标准答案。",
+            "speaker": "模拟宇宙",
+            "hash": "12283502772285110646"
+          },
+          "raw": {
+            "TalkSentenceID": 403058535
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.2",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.SetAsRogueDialogue",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.SetAsRogueDialogue"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.3",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.FinishLevelGraph",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.FinishLevelGraph"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403058528",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403058528",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3.OptionList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403058528",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2.OptionList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403058534",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.2",
+              "pointer": "$.OnStartSequece.2.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2.OptionList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403058534",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.2",
+              "pointer": "$.OnStartSequece.2.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2.OptionList.2",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403058534",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.2",
+              "pointer": "$.OnStartSequece.2.TaskList.0"
+            }
+          ]
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "约束人德之法",
+      "entry": {
+        "table": "RogueTournTitanTalent",
+        "key": "ID",
+        "id": 13002,
+        "row": {
+          "ID": 13002,
+          "PreID": 12902,
+          "TitanType": "Talentum",
+          "Level": 2,
+          "Cost": [
+            {
+              "ItemID": 281020,
+              "ItemNum": 75
+            }
+          ],
+          "TalentTitle": {
+            "Hash": "9112583684916966725"
+          },
+          "TalentDesc": {
+            "Hash": "2836614287191796970"
+          },
+          "DescParamList": [
+            {
+              "Value": 0.02
+            }
+          ],
+          "TalentIconPath": "SpriteOutput/UI/Avatar/Icon/IconCriticalDamage.png",
+          "ActTitle": {
+            "Hash": "14234382676558472031"
+          },
+          "ActJson": "Config/Level/RogueDialogue/RogueNpcDialogEvent/Act/Act403818310.json"
+        }
+      },
+      "targetSentence": 403818312,
+      "graphPath": "Config/Level/RogueDialogue/RogueNpcDialogEvent/Act/Act403818310.json",
+      "optionPath": null,
+      "types": {
+        "RPG.GameCore.ShowRogueTalkUI": 1,
+        "RPG.GameCore.ShowRogueTalkBg": 1,
+        "RPG.GameCore.PlayAndWaitRogueSimpleTalk": 4,
+        "RPG.GameCore.PlayRogueOptionTalk": 3,
+        "RPG.GameCore.WaitCustomString": 3,
+        "RPG.GameCore.FinishLevelGraph": 1
+      },
+      "groups": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueOptionTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueOptionTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.2",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueOptionTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.1",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        }
+      ],
+      "events": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkUI",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkUI",
+            "Show": true
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkBg",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkBg",
+            "TalkBgID": 258
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403818311,
+            "text": "是谁于智慧觉醒之时，制定约束行为的道德，令伦理照耀人心。",
+            "speaker": "差分宇宙",
+            "hash": "11868666604003168218"
+          },
+          "raw": {
+            "TalkSentenceID": 403818311
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403818312,
+            "text": "人子对塔兰顿的感情十分复杂，它既不像美丽的墨涅塔和智慧的瑟希斯那样人人欢喜，也不像狡诈的扎格列斯那样人人唾弃。",
+            "speaker": "差分宇宙",
+            "hash": "13449156968593115721"
+          },
+          "raw": {
+            "TalkSentenceID": 403818312
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403818313,
+            "text": "因为公平只是一个中性词，它在大多数时候违背人的本能。",
+            "speaker": "差分宇宙",
+            "hash": "7490615284207533592"
+          },
+          "raw": {
+            "TalkSentenceID": 403818313
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.3",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403818314,
+            "text": "在人类狭隘的道德观念中，公平意味着付出有所得，行善有所赏，施恶有所惩。",
+            "speaker": "差分宇宙",
+            "hash": "16230234158559626781"
+          },
+          "raw": {
+            "TalkSentenceID": 403818314
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.4",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403818315,
+            "text": "但在塔兰顿来说，衡量公平的唯一准则，只是将比较的两者放于托盘两侧，看看孰重孰轻而已。",
+            "speaker": "差分宇宙",
+            "hash": "17987870851719508018"
+          },
+          "raw": {
+            "TalkSentenceID": 403818315
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403818316,
+            "text": "泰坦的思维非人能理解。",
+            "speaker": null,
+            "hash": "17552566630039579090"
+          },
+          "rogueOptionId": null,
+          "label": "泰坦的思维非人能理解。",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403818316,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403818319"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403818317,
+            "text": "这有点草率吧。",
+            "speaker": null,
+            "hash": "1287564702816204565"
+          },
+          "rogueOptionId": null,
+          "label": "这有点草率吧。",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403818317,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403818319"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3.OptionList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403818318,
+            "text": "这工作我也能干。",
+            "speaker": null,
+            "hash": "11091604515820847406"
+          },
+          "rogueOptionId": null,
+          "label": "这工作我也能干。",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403818318,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403818319"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403818319"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403818319,
+            "text": "自人子间的第一起冲突开始，无数年来不乏文明的城邦被蛮军摧毁，也有正直勇敢的英雄惨遭小人谋害，但这些都不足以成为撼动天平的砝码。",
+            "speaker": "差分宇宙",
+            "hash": "743242041070977689"
+          },
+          "raw": {
+            "TalkSentenceID": 403818319
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403818320,
+            "text": "因为在塔兰顿看来，这只是人间的游戏。可一旦人子的行为跨越界线，它的审判便如雷霆般降临。",
+            "speaker": "差分宇宙",
+            "hash": "4323992080233350640"
+          },
+          "raw": {
+            "TalkSentenceID": 403818320
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1.SimpleTalkList.2",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403818321,
+            "text": "例如那弑君者的故事，近卫将军于无月之夜刺杀残暴的君王，却也在事成之后突发暴毙身亡。",
+            "speaker": "差分宇宙",
+            "hash": "14893252384039596797"
+          },
+          "raw": {
+            "TalkSentenceID": 403818321
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1.SimpleTalkList.3",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403818322,
+            "text": "因为他违背了殿前忠心护主的誓言，即便结出大义的花，也要尝下赎罪的果。",
+            "speaker": "差分宇宙",
+            "hash": "2650164631825348438"
+          },
+          "raw": {
+            "TalkSentenceID": 403818322
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2.OptionList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403818323,
+            "text": "我不理解这种公平。",
+            "speaker": null,
+            "hash": "5914162798393611374"
+          },
+          "rogueOptionId": null,
+          "label": "我不理解这种公平。",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403818323,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403818325"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2.OptionList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403818324,
+            "text": "我能理解这种公平。",
+            "speaker": null,
+            "hash": "17399806902503399849"
+          },
+          "rogueOptionId": null,
+          "label": "我能理解这种公平。",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403818324,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403818325"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403818325"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403818325,
+            "text": "如此不通人情的裁决，招来了反对的声浪。民众涌进塔兰顿的神殿，为弑君者奔走呐喊。",
+            "speaker": "差分宇宙",
+            "hash": "17196549290233177327"
+          },
+          "raw": {
+            "TalkSentenceID": 403818325
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403818326,
+            "text": "塔兰顿会理会他们么？在这位铁面无私的泰坦看来，弑君者只是一颗扰动了天平的砝码，而反对者的声音，也不会对平衡造成丝毫波澜。",
+            "speaker": "差分宇宙",
+            "hash": "5711442362805549125"
+          },
+          "raw": {
+            "TalkSentenceID": 403818326
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1.SimpleTalkList.2",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403818327,
+            "text": "或许这些抗议声，本身也是维持天平配重的一枚砝码呢？",
+            "speaker": "差分宇宙",
+            "hash": "7130017218108984530"
+          },
+          "raw": {
+            "TalkSentenceID": 403818327
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.2.OptionList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403818328,
+            "text": "一切都在塔兰顿的计算中。",
+            "speaker": null,
+            "hash": "16056994038890065510"
+          },
+          "rogueOptionId": null,
+          "label": "一切都在塔兰顿的计算中。",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403818328,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403818330"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.2.OptionList.1",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403818329,
+            "text": "它就像一台精密的机器。",
+            "speaker": null,
+            "hash": "17957719644465470265"
+          },
+          "rogueOptionId": null,
+          "label": "它就像一台精密的机器。",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403818329,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403818330"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.0",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403818330"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403818330,
+            "text": "人子们卑微的智慧，岂能理解塔兰顿的所思所想，要相信公正之秤的判断，绝不会向任何一方偏袒。",
+            "speaker": "差分宇宙",
+            "hash": "17366409402738505987"
+          },
+          "raw": {
+            "TalkSentenceID": 403818330
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.1.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403818331,
+            "text": "愿人子铭记神罚，克制内心的欲望和反叛，自觉行于道德和律法的坦途上。",
+            "speaker": "差分宇宙",
+            "hash": "6511319518460771463"
+          },
+          "raw": {
+            "TalkSentenceID": 403818331
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.2",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.FinishLevelGraph",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.FinishLevelGraph"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403818319",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403818319",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3.OptionList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403818319",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2.OptionList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403818325",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.2",
+              "pointer": "$.OnStartSequece.2.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2.OptionList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403818325",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.2",
+              "pointer": "$.OnStartSequece.2.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.2.OptionList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403818330",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.3",
+              "pointer": "$.OnStartSequece.3.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.2.OptionList.1",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403818330",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.3",
+              "pointer": "$.OnStartSequece.3.TaskList.0"
+            }
+          ]
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "游牧矿工",
+      "entry": {
+        "table": "RogueNPC",
+        "key": "RogueNPCID",
+        "id": 10101,
+        "row": {
+          "RogueNPCID": 10101,
+          "NPCJsonPath": "Config/Level/Rogue/RogueNPC/RogueNPC10101.json"
+        }
+      },
+      "handbooks": [
+        {
+          "table": "RogueHandBookEvent",
+          "id": 2,
+          "name": "游牧矿工",
+          "pointer": "UnlockNPCProgressIDList[].FDOELDMEBPE",
+          "row": {
+            "EventHandbookID": 2,
+            "UnlockNPCProgressIDList": [
+              {
+                "FDOELDMEBPE": 10101
+              },
+              {
+                "FDOELDMEBPE": 110101
+              },
+              {
+                "FDOELDMEBPE": 310101
+              }
+            ],
+            "EventTitle": {
+              "Hash": "9491447041103164707"
+            },
+            "EventType": {
+              "Hash": "13123781375044678462"
+            },
+            "EventReward": 106021,
+            "Order": 58,
+            "EventTypeList": [
+              100,
+              130,
+              160
+            ],
+            "UnlockHintDesc": {
+              "Hash": "5076086785075294278"
+            },
+            "ImageID": 101
+          }
+        }
+      ],
+      "npcConfig": {
+        "path": "Config/Level/Rogue/RogueNPC/RogueNPC10101.json",
+        "raw": {
+          "DialogueType": "Event",
+          "DialogueList": [
+            {
+              "UnlockID": 22,
+              "TalkNameID": 10101,
+              "DialoguePath": "Config/Level/Rogue/RogueDialogue/Event0010101/Act0010101.json",
+              "OptionPath": "Config/Level/Rogue/RogueDialogue/Event0010101/Opt0010101.json"
+            }
+          ]
+        }
+      },
+      "graphPath": "Config/Level/Rogue/RogueDialogue/Event0010101/Act0010101.json",
+      "optionPath": "Config/Level/Rogue/RogueDialogue/Event0010101/Opt0010101.json",
+      "types": {
+        "RPG.GameCore.ShowRogueTalkUI": 1,
+        "RPG.GameCore.ShowRogueTalkBg": 1,
+        "RPG.GameCore.PlayRogueSimpleTalk": 1,
+        "RPG.GameCore.WaitRogueSimpleTalkFinish": 1,
+        "RPG.GameCore.PlayRogueOptionTalk": 1,
+        "RPG.GameCore.WaitCustomString": 1,
+        "RPG.GameCore.FinishLevelGraph": 2,
+        "RPG.GameCore.WaitPerformanceEnd": 1
+      },
+      "groups": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueOptionTalk"
+          }
+        }
+      ],
+      "events": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkUI",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkUI",
+            "Show": true
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkBg",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkBg",
+            "TalkBgID": 10101
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810101,
+            "text": "现在是黄昏时分，你站在热浪里。矿地令你一阵晕眩，矿脉烧得像融化的黄油。",
+            "speaker": "模拟宇宙",
+            "hash": "1467369889819009703"
+          },
+          "raw": {
+            "TalkSentenceID": 403810101
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810102,
+            "text": "「伟大的存护星神克里珀…祂能听到我们的声音。」矿工们举起铁锹又落下，他们像狂热动物，又像信徒。",
+            "speaker": "模拟宇宙",
+            "hash": "2918451673552035478"
+          },
+          "raw": {
+            "TalkSentenceID": 403810102
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810103,
+            "text": "有人看到了你——戴着探测灯的*头号矿工*。他的臂膀黝黑健壮，嘴唇同样乌黑。他豪迈的笑容令人难忘。他镶了一颗金牙，在你脑海中不停放大、扭曲，最后你只看得到他的*笑容*——嘴唇和眼睛搅在一起，像调色盘里颜料融化。",
+            "speaker": "模拟宇宙",
+            "hash": "13436520689649547379"
+          },
+          "raw": {
+            "TalkSentenceID": 403810103
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.3",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810104,
+            "text": "「琥珀王的恩赐，『克里珀』存护这片地脉。你可以挑一个带走。」",
+            "speaker": "模拟宇宙",
+            "hash": "9273757547209802424"
+          },
+          "raw": {
+            "TalkSentenceID": 403810104
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.WaitRogueSimpleTalkFinish",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitRogueSimpleTalkFinish"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 10101,
+          "label": "克里珀的恩赐。",
+          "resolution": "local-opt",
+          "displayId": 10101,
+          "display": {
+            "OptionDisplayID": 10101,
+            "OptionTitle": {
+              "Hash": "1838324248690805109"
+            },
+            "OptionDesc": {
+              "Hash": "14908890443191926827"
+            }
+          },
+          "descriptionTemplate": "强化2个随机祝福。",
+          "inlineText": null,
+          "configSource": "Config/Level/Rogue/RogueDialogue/Event0010101/Opt0010101.json",
+          "config": {
+            "OptionID": 10101,
+            "DisplayID": 10101
+          },
+          "raw": {
+            "RogueOptionID": 10101,
+            "OptionTextmapID": {
+              "Hash": "6992032283754802904"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "ALL_TALK_END"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 10102,
+          "label": "克里珀的祝福。",
+          "resolution": "local-opt",
+          "displayId": 10102,
+          "display": {
+            "OptionDisplayID": 10102,
+            "OptionTitle": {
+              "Hash": "3303085497400791443"
+            },
+            "OptionDesc": {
+              "Hash": "4537004981039454590"
+            }
+          },
+          "descriptionTemplate": "获得1个2星「存护」的祝福。",
+          "inlineText": null,
+          "configSource": "Config/Level/Rogue/RogueDialogue/Event0010101/Opt0010101.json",
+          "config": {
+            "OptionID": 10102,
+            "DisplayID": 10102
+          },
+          "raw": {
+            "RogueOptionID": 10102,
+            "OptionTextmapID": {
+              "Hash": "10290197192583572130"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "ALL_TALK_END"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "ALL_TALK_END"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.FinishLevelGraph",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.FinishLevelGraph"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.WaitPerformanceEnd",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitPerformanceEnd"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.FinishLevelGraph",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.FinishLevelGraph"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.0",
+          "hash": "6992032283754802904"
+        },
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.1",
+          "hash": "10290197192583572130"
+        }
+      ]
+    },
+    {
+      "name": "杰姆·哈克与杰姆·哈尔",
+      "entry": {
+        "table": "RogueTournNPC",
+        "key": "RogueNPCID",
+        "id": 410301,
+        "row": {
+          "RogueNPCID": 410301,
+          "NPCJsonPath": "Config/Level/Rogue/RogueNPC/RogueNPC_230/RogueNPC410301.json"
+        }
+      },
+      "handbooks": [
+        {
+          "table": "RogueTournHandBookEvent",
+          "id": 5,
+          "name": "杰姆·哈克与杰姆·哈尔",
+          "pointer": "UnlockNPCProgressIDList[].FDOELDMEBPE",
+          "row": {
+            "EventHandbookID": 5,
+            "UnlockNPCProgressIDList": [
+              {
+                "FDOELDMEBPE": 410301
+              },
+              {
+                "FDOELDMEBPE": 610301
+              },
+              {
+                "FDOELDMEBPE": 710301
+              }
+            ],
+            "EventTitle": {
+              "Hash": "7000029817862836798"
+            },
+            "TypeDisplayID": 801,
+            "UnlockDisplayID": 804,
+            "Priority": 5,
+            "IsUsed": true,
+            "ImageID": 101
+          }
+        }
+      ],
+      "npcConfig": {
+        "path": "Config/Level/Rogue/RogueNPC/RogueNPC_230/RogueNPC410301.json",
+        "raw": {
+          "DialogueType": "Event",
+          "DialogueList": [
+            {
+              "TalkNameID": 410301,
+              "DialoguePath": "Config/Level/Rogue/RogueDialogue/RogueEventTourn1/Event0410301/Act0410301.json",
+              "OptionPath": "Config/Level/Rogue/RogueDialogue/RogueEventTourn1/Event0410301/Opt0410301.json"
+            }
+          ]
+        }
+      },
+      "graphPath": "Config/Level/Rogue/RogueDialogue/RogueEventTourn1/Event0410301/Act0410301.json",
+      "optionPath": "Config/Level/Rogue/RogueDialogue/RogueEventTourn1/Event0410301/Opt0410301.json",
+      "types": {
+        "RPG.GameCore.ShowRogueTalkUI": 1,
+        "RPG.GameCore.ShowRogueTalkBg": 1,
+        "RPG.GameCore.PlayRogueSimpleTalk": 1,
+        "RPG.GameCore.WaitRogueSimpleTalkFinish": 1,
+        "RPG.GameCore.PlayRogueOptionTalk": 1,
+        "RPG.GameCore.WaitCustomString": 1,
+        "RPG.GameCore.FinishLevelGraph": 2,
+        "RPG.GameCore.WaitPerformanceEnd": 1
+      },
+      "groups": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueOptionTalk"
+          }
+        }
+      ],
+      "events": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkUI",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkUI",
+            "Show": true
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkBg",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkBg",
+            "TalkBgID": 10301
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810301,
+            "text": "你身处一片无垠的废墟，视野被废弃集装箱遮蔽。这里弥漫着浓烟，报废的机器人被拆成零碎的部件。它们的躯干上印着「星际和平公司」字样，脑袋挨着脚底，不再拥有智能。",
+            "speaker": "模拟宇宙",
+            "hash": "4441504416323269426"
+          },
+          "raw": {
+            "TalkSentenceID": 403810301
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810302,
+            "text": "此时，你身后的垃圾堆传来窸窣的声音。你察觉有东西正盯着你——你回头，发现一个机器人躲在箱子后面。",
+            "speaker": "模拟宇宙",
+            "hash": "2242814999796717985"
+          },
+          "raw": {
+            "TalkSentenceID": 403810302
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810303,
+            "text": "你走近它身旁——你发现机器人的线缆已经断裂，失去了行动能力。",
+            "speaker": "模拟宇宙",
+            "hash": "8516238052439318044"
+          },
+          "raw": {
+            "TalkSentenceID": 403810303
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.3",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810304,
+            "text": "「我们被誉为『琥珀王后援队』，*塔拉梵•基恩*制造我们、使用我们，并最终放弃了我们。」机器人向你展示它用尽力气保存的物品。",
+            "speaker": "模拟宇宙",
+            "hash": "14998082075620876780"
+          },
+          "raw": {
+            "TalkSentenceID": 403810304
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.4",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810305,
+            "text": "「杰姆·哈克在<unbreak>371029</unbreak>秒前已经停止运转，杰姆·哈尔即将在<unbreak>74158</unbreak>秒后停止运转，无法再保存哥哥的物品。不情之请，请您带一个离开这里。」",
+            "speaker": "模拟宇宙",
+            "hash": "926843672842764746"
+          },
+          "raw": {
+            "TalkSentenceID": 403810305
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.WaitRogueSimpleTalkFinish",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitRogueSimpleTalkFinish"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 410301,
+          "label": "杰姆·哈克的藏品。",
+          "resolution": "local-opt",
+          "displayId": 10305,
+          "display": {
+            "OptionDisplayID": 10305,
+            "OptionTitle": {
+              "Hash": "9191771063277754373"
+            },
+            "OptionDesc": {
+              "Hash": "16373058269423998680"
+            }
+          },
+          "descriptionTemplate": "获得#2-#5个随机2星祝福。",
+          "inlineText": null,
+          "configSource": "Config/Level/Rogue/RogueDialogue/RogueEventTourn1/Event0410301/Opt0410301.json",
+          "config": {
+            "OptionID": 410301,
+            "DisplayID": 10305,
+            "DynamicMap": {},
+            "DescValue": 1,
+            "DescValue2": 3
+          },
+          "raw": {
+            "RogueOptionID": 410301,
+            "OptionTextmapID": {
+              "Hash": "5389853690583537157"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "ALL_TALK_END"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 410302,
+          "label": "转身走开。",
+          "resolution": "local-opt",
+          "displayId": 10302,
+          "display": {
+            "OptionDisplayID": 10302,
+            "OptionTitle": {
+              "Hash": "12400972868469416590"
+            },
+            "OptionDesc": {
+              "Hash": "2941160649194653160"
+            }
+          },
+          "descriptionTemplate": "获得#2宇宙碎片。",
+          "inlineText": null,
+          "configSource": "Config/Level/Rogue/RogueDialogue/RogueEventTourn1/Event0410301/Opt0410301.json",
+          "config": {
+            "OptionID": 410302,
+            "DisplayID": 10302,
+            "DynamicMap": {},
+            "DescValue": 150
+          },
+          "raw": {
+            "RogueOptionID": 410302,
+            "OptionTextmapID": {
+              "Hash": "6920137512628219586"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "ALL_TALK_END"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "ALL_TALK_END"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.FinishLevelGraph",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.FinishLevelGraph"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.WaitPerformanceEnd",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitPerformanceEnd"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.FinishLevelGraph",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.FinishLevelGraph"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.0",
+          "hash": "5389853690583537157"
+        },
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.1",
+          "hash": "6920137512628219586"
+        }
+      ]
+    },
+    {
+      "name": "杰姆·哈克与杰姆·哈尔",
+      "entry": {
+        "table": "RogueTournNPC",
+        "key": "RogueNPCID",
+        "id": 710301,
+        "row": {
+          "RogueNPCID": 710301,
+          "NPCJsonPath": "Config/Level/Rogue/RogueNPC/RogueNPC_410/RogueNPC710301.json"
+        }
+      },
+      "handbooks": [
+        {
+          "table": "RogueTournHandBookEvent",
+          "id": 5,
+          "name": "杰姆·哈克与杰姆·哈尔",
+          "pointer": "UnlockNPCProgressIDList[].FDOELDMEBPE",
+          "row": {
+            "EventHandbookID": 5,
+            "UnlockNPCProgressIDList": [
+              {
+                "FDOELDMEBPE": 410301
+              },
+              {
+                "FDOELDMEBPE": 610301
+              },
+              {
+                "FDOELDMEBPE": 710301
+              }
+            ],
+            "EventTitle": {
+              "Hash": "7000029817862836798"
+            },
+            "TypeDisplayID": 801,
+            "UnlockDisplayID": 804,
+            "Priority": 5,
+            "IsUsed": true,
+            "ImageID": 101
+          }
+        }
+      ],
+      "npcConfig": {
+        "path": "Config/Level/Rogue/RogueNPC/RogueNPC_410/RogueNPC710301.json",
+        "raw": {
+          "DialogueType": "Event",
+          "DialogueList": [
+            {
+              "TalkNameID": 410301,
+              "DialoguePath": "Config/Level/Rogue/RogueDialogue/RogueEventTourn3/Event0710301/Act0710301.json",
+              "OptionPath": "Config/Level/Rogue/RogueDialogue/RogueEventTourn3/Event0710301/Opt0710301.json"
+            }
+          ]
+        }
+      },
+      "graphPath": "Config/Level/Rogue/RogueDialogue/RogueEventTourn3/Event0710301/Act0710301.json",
+      "optionPath": "Config/Level/Rogue/RogueDialogue/RogueEventTourn3/Event0710301/Opt0710301.json",
+      "types": {
+        "RPG.GameCore.ShowRogueTalkUI": 1,
+        "RPG.GameCore.ShowRogueTalkBg": 1,
+        "RPG.GameCore.PlayRogueSimpleTalk": 1,
+        "RPG.GameCore.WaitRogueSimpleTalkFinish": 1,
+        "RPG.GameCore.PlayRogueOptionTalk": 1,
+        "RPG.GameCore.WaitCustomString": 1,
+        "RPG.GameCore.FinishLevelGraph": 2,
+        "RPG.GameCore.WaitPerformanceEnd": 1
+      },
+      "groups": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueOptionTalk"
+          }
+        }
+      ],
+      "events": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkUI",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkUI",
+            "Show": true
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkBg",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkBg",
+            "TalkBgID": 10301
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810301,
+            "text": "你身处一片无垠的废墟，视野被废弃集装箱遮蔽。这里弥漫着浓烟，报废的机器人被拆成零碎的部件。它们的躯干上印着「星际和平公司」字样，脑袋挨着脚底，不再拥有智能。",
+            "speaker": "模拟宇宙",
+            "hash": "4441504416323269426"
+          },
+          "raw": {
+            "TalkSentenceID": 403810301
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810302,
+            "text": "此时，你身后的垃圾堆传来窸窣的声音。你察觉有东西正盯着你——你回头，发现一个机器人躲在箱子后面。",
+            "speaker": "模拟宇宙",
+            "hash": "2242814999796717985"
+          },
+          "raw": {
+            "TalkSentenceID": 403810302
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810303,
+            "text": "你走近它身旁——你发现机器人的线缆已经断裂，失去了行动能力。",
+            "speaker": "模拟宇宙",
+            "hash": "8516238052439318044"
+          },
+          "raw": {
+            "TalkSentenceID": 403810303
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.3",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810304,
+            "text": "「我们被誉为『琥珀王后援队』，*塔拉梵•基恩*制造我们、使用我们，并最终放弃了我们。」机器人向你展示它用尽力气保存的物品。",
+            "speaker": "模拟宇宙",
+            "hash": "14998082075620876780"
+          },
+          "raw": {
+            "TalkSentenceID": 403810304
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.4",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810305,
+            "text": "「杰姆·哈克在<unbreak>371029</unbreak>秒前已经停止运转，杰姆·哈尔即将在<unbreak>74158</unbreak>秒后停止运转，无法再保存哥哥的物品。不情之请，请您带一个离开这里。」",
+            "speaker": "模拟宇宙",
+            "hash": "926843672842764746"
+          },
+          "raw": {
+            "TalkSentenceID": 403810305
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.WaitRogueSimpleTalkFinish",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitRogueSimpleTalkFinish"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 1030501,
+          "label": "杰姆·哈克的藏品。",
+          "resolution": "excel-option",
+          "displayId": 210305,
+          "display": {
+            "OptionDisplayID": 210305,
+            "OptionTitle": {
+              "Hash": "13075294620441906105"
+            },
+            "OptionDesc": {
+              "Hash": "15652973740353163171"
+            }
+          },
+          "descriptionTemplate": "获得#1-#2个随机2星祝福。",
+          "inlineText": null,
+          "configSource": "ExcelOutput/RogueDialogueOption.json",
+          "config": {
+            "OptionID": 1030501,
+            "OptionDisplayID": 210305,
+            "ParamList": [
+              {
+                "Value": 1
+              },
+              {
+                "Value": 2
+              }
+            ]
+          },
+          "raw": {
+            "RogueOptionID": 1030501,
+            "OptionTextmapID": {
+              "Hash": "5389853690583537157"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "ALL_TALK_END"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 1030201,
+          "label": "转身走开。",
+          "resolution": "excel-option",
+          "displayId": 210302,
+          "display": {
+            "OptionDisplayID": 210302,
+            "OptionTitle": {
+              "Hash": "1659180221228636155"
+            },
+            "OptionDesc": {
+              "Hash": "17138896511099441639"
+            }
+          },
+          "descriptionTemplate": "获得#1宇宙碎片。",
+          "inlineText": null,
+          "configSource": "ExcelOutput/RogueDialogueOption.json",
+          "config": {
+            "OptionID": 1030201,
+            "OptionDisplayID": 210302,
+            "ParamList": [
+              {
+                "Value": 150
+              }
+            ]
+          },
+          "raw": {
+            "RogueOptionID": 1030201,
+            "OptionTextmapID": {
+              "Hash": "6920137512628219586"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "ALL_TALK_END"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 1030701,
+          "label": "付出代价…延续它的运转。",
+          "resolution": "excel-option",
+          "displayId": 210307,
+          "display": {
+            "OptionDisplayID": 210307,
+            "OptionTitle": {
+              "Hash": "12926430097860573616"
+            },
+            "OptionDesc": {
+              "Hash": "9381458764935615282"
+            }
+          },
+          "descriptionTemplate": "全部角色各自损失<unbreak>#1[i]%</unbreak>当前生命值，并获得#2个随机1-3星祝福。",
+          "inlineText": null,
+          "configSource": "ExcelOutput/RogueDialogueOption.json",
+          "config": {
+            "OptionID": 1030701,
+            "OptionDisplayID": 210307,
+            "ParamList": [
+              {
+                "Value": 0.5
+              },
+              {
+                "Value": 3
+              }
+            ]
+          },
+          "raw": {
+            "RogueOptionID": 1030701,
+            "OptionTextmapID": {
+              "Hash": "6920137512628219586"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "ALL_TALK_END"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "ALL_TALK_END"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.FinishLevelGraph",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.FinishLevelGraph"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.WaitPerformanceEnd",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitPerformanceEnd"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.FinishLevelGraph",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.FinishLevelGraph"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "missing-option-file",
+          "source": "Config/Level/Rogue/RogueDialogue/RogueEventTourn3/Event0710301/Opt0710301.json"
+        },
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.0",
+          "hash": "5389853690583537157"
+        },
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.1",
+          "hash": "6920137512628219586"
+        },
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.2",
+          "hash": "6920137512628219586"
+        }
+      ]
+    },
+    {
+      "name": "其一",
+      "entry": {
+        "table": "RogueDLCSubStory",
+        "key": "RogueDLCSubStoryID",
+        "id": 101,
+        "row": {
+          "RogueDLCSubStoryID": 101,
+          "Layer": 1,
+          "LevelGraphPath": "Config/Level/RogueDialogue/RogueDialogueEvent/Act/Act0114601.json",
+          "OptionPath": "Config/Level/RogueDialogue/RogueDialogueEvent/Opt/Opt0114601.json",
+          "SubStoryName": {
+            "Hash": "2231265055562231027"
+          },
+          "ImgPath": "SpriteOutput/Rogue/RandomEvent/Horizon/RoguePicEventDLC_01.png"
+        }
+      },
+      "targetSentence": null,
+      "graphPath": "Config/Level/RogueDialogue/RogueDialogueEvent/Act/Act0114601.json",
+      "optionPath": "Config/Level/RogueDialogue/RogueDialogueEvent/Opt/Opt0114601.json",
+      "types": {
+        "RPG.GameCore.ShowRogueTalkUI": 1,
+        "RPG.GameCore.ShowRogueTalkBg": 1,
+        "RPG.GameCore.PlayAndWaitRogueSimpleTalk": 4,
+        "RPG.GameCore.TriggerSound": 1,
+        "RPG.GameCore.PlayRogueOptionTalk": 1,
+        "RPG.GameCore.WaitCustomString": 3,
+        "RPG.GameCore.TriggerCustomString": 2,
+        "RPG.GameCore.FinishLevelGraph": 2,
+        "RPG.GameCore.WaitPerformanceEnd": 1
+      },
+      "groups": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.5",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueOptionTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.1",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        }
+      ],
+      "events": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkUI",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkUI",
+            "Show": true
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkBg",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkBg",
+            "TalkBgID": 114601
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050301,
+            "text": "别忘了你正扮演阿基维利，化作凡人藏在人群里是你最擅长的事情；不用担心，只需闭上眼睛——将四肢变得柔软、放松，你会惊觉自己的感官身处一片无限绚丽的画廊中央…接着，你迅速翻阅着变幻的画面……",
+            "speaker": "起源宇宙",
+            "hash": "15875416923915735995"
+          },
+          "raw": {
+            "TalkSentenceID": 403050301
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.TriggerSound",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.TriggerSound",
+            "SoundName": {
+              "Value": "Ev_sfx_ui_feedback_rogue_nomadicMiner_text"
+            },
+            "EmitterType": "DefaultEmitter"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050302,
+            "text": "你睁开眼睛：你身处蠹星，这里没有人，只有虫群在你脚下匍匐爬行——你的直觉尖叫着，这必然是一切的开端！但你发现，古怪的、不合时宜的东西总是在模拟宇宙的漏洞里被推演出来——比如一份天才俱乐部#？会员关于<color=#dbc291ff>「终末」</color>的手稿研究，它自动在你面前展开。",
+            "speaker": "起源宇宙",
+            "hash": "11725236689433853163"
+          },
+          "raw": {
+            "TalkSentenceID": 403050302
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050303,
+            "text": "你平心静气地观摩，知道其上有万物的结局。潦草痕迹记载：「…塔伊兹育罗斯，于仇恨与孤独中飞升的星神；自<color=#dbc291ff>『终末』</color>的呓语中得知，祂的死亡将注定祂的诞生。其一生都被囚禁于「繁育」的命途。如有兴趣，可在接下来的故事中观察其怪异、断带、被命运操弄之处…」",
+            "speaker": "起源宇宙",
+            "hash": "13562966509969458120"
+          },
+          "raw": {
+            "TalkSentenceID": 403050303
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.SimpleTalkList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050304,
+            "text": "这一页手稿在你看完后自动燃烬，它进行了严格的自我销毁——下面还有一页更为潦草的手稿；你相信看完后它也会阅后即焚……",
+            "speaker": "起源宇宙",
+            "hash": "2097042171347561007"
+          },
+          "raw": {
+            "TalkSentenceID": 403050304
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.5.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 114601,
+          "label": "翻阅那些天才手稿。",
+          "resolution": "local-opt",
+          "displayId": 14601,
+          "display": {
+            "OptionDisplayID": 14601,
+            "OptionTitle": {
+              "Hash": "10894840734400783647"
+            },
+            "OptionDesc": {
+              "Hash": "3397668366627209850"
+            }
+          },
+          "descriptionTemplate": "研究报告又不会跳起来揍你；除非你对此期待不已？",
+          "inlineText": null,
+          "configSource": "Config/Level/RogueDialogue/RogueDialogueEvent/Opt/Opt0114601.json",
+          "config": {
+            "OptionID": 114601,
+            "DisplayID": 14601,
+            "SpecialOptionID": 2
+          },
+          "raw": {
+            "RogueOptionID": 114601,
+            "OptionTextmapID": {
+              "Hash": "14839033950843041621"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403050306"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.5.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 114602,
+          "label": "干脆抢先烧了它！",
+          "resolution": "local-opt",
+          "displayId": 14602,
+          "display": {
+            "OptionDisplayID": 14602,
+            "OptionTitle": {
+              "Hash": "1096589272852178970"
+            },
+            "OptionDesc": {
+              "Hash": "13866153017758142169"
+            }
+          },
+          "descriptionTemplate": "阅前即焚！",
+          "inlineText": null,
+          "configSource": "Config/Level/RogueDialogue/RogueDialogueEvent/Opt/Opt0114601.json",
+          "config": {
+            "OptionID": 114602,
+            "DisplayID": 14602,
+            "SpecialOptionID": 6
+          },
+          "raw": {
+            "RogueOptionID": 114602,
+            "OptionTextmapID": {
+              "Hash": "8210374111509527681"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403050309"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403050306"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050306,
+            "text": "某位天才，他在被波尔卡·卡卡目杀死前曾留下个人手稿，他的文风正如其谈吐般含糊：「一、一位厄兆先锋、听懂『终末』如倒放谜团般的呓语？…尔后他游走四方、只为四处告知…厄兆先锋的举动是否产生效果、无从知晓…」",
+            "speaker": "起源宇宙",
+            "hash": "13030596266746406634"
+          },
+          "raw": {
+            "TalkSentenceID": 403050306
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050307,
+            "text": "「该…该死的虚构口服药…说能治疗…因缺乏自信而引起的…口吃症…结果…连写作也…变成了…这样…」",
+            "speaker": "起源宇宙",
+            "hash": "9957346368577005653"
+          },
+          "raw": {
+            "TalkSentenceID": 403050307
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.TriggerCustomString",
+            "CustomString": {
+              "Value": "ALL_TALK_END"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403050309"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.TriggerCustomString",
+            "CustomString": {
+              "Value": "ALL_TALK_END"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.0",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "ALL_TALK_END"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050309,
+            "text": "你转着眼珠；突然间这份报告跳起来，对着你的脑袋来了一「拳」！你被打懵了！你还没反应过来时——它又躺在那里了。",
+            "speaker": "起源宇宙",
+            "hash": "7663622980298992263"
+          },
+          "raw": {
+            "TalkSentenceID": 403050309
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.1.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050310,
+            "text": "你怀疑刚刚是不是自己产生了幻觉。",
+            "speaker": "起源宇宙",
+            "hash": "15182189069175247039"
+          },
+          "raw": {
+            "TalkSentenceID": 403050310
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.2",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.FinishLevelGraph",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.FinishLevelGraph"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.4.TaskList.0",
+          "sequence": "$.OnStartSequece.4",
+          "type": "RPG.GameCore.WaitPerformanceEnd",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitPerformanceEnd"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.4.TaskList.1",
+          "sequence": "$.OnStartSequece.4",
+          "type": "RPG.GameCore.FinishLevelGraph",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.FinishLevelGraph"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.5.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403050306",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.5.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403050309",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.2",
+              "pointer": "$.OnStartSequece.2.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.3",
+              "pointer": "$.OnStartSequece.3.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.3",
+              "pointer": "$.OnStartSequece.3.TaskList.0"
+            }
+          ]
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.0.TaskList.5.OptionList.0",
+          "hash": "14839033950843041621"
+        },
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.0.TaskList.5.OptionList.1",
+          "hash": "8210374111509527681"
+        }
+      ]
+    },
+    {
+      "name": "星神对白（RogueNPC 103）",
+      "entry": {
+        "table": "RogueNPC",
+        "key": "RogueNPCID",
+        "id": 103,
+        "row": {
+          "RogueNPCID": 103,
+          "NPCJsonPath": "Config/Level/Rogue/RogueNPC/RogueNPC103.json"
+        }
+      },
+      "handbooks": [],
+      "npcConfig": {
+        "path": "Config/Level/Rogue/RogueNPC/RogueNPC103.json",
+        "raw": {
+          "DialogueType": "Story",
+          "DialogueList": [
+            {
+              "DialoguePath": "Config/Level/RogueDialogue/RogueNpcDialogEvent/Act/Act403050060.json"
+            }
+          ]
+        }
+      },
+      "graphPath": "Config/Level/RogueDialogue/RogueNpcDialogEvent/Act/Act403050060.json",
+      "optionPath": null,
+      "types": {
+        "RPG.GameCore.ShowRogueTalkUI": 1,
+        "RPG.GameCore.PlayAndWaitRogueSimpleTalk": 5,
+        "RPG.GameCore.PlayRogueOptionTalk": 1,
+        "RPG.GameCore.WaitCustomString": 3,
+        "RPG.GameCore.TriggerCustomString": 2,
+        "RPG.GameCore.TriggerSound": 1,
+        "RPG.GameCore.PlayAeonTalk": 1,
+        "RPG.GameCore.WaitRogueSimpleTalkFinish": 1,
+        "RPG.GameCore.TriggerDialogueEvent": 1,
+        "RPG.GameCore.FinishLevelGraph": 2,
+        "RPG.GameCore.WaitPerformanceEnd": 1
+      },
+      "groups": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueOptionTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.1",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.3",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAeonTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAeonTalk",
+            "AeonTalkId": 1,
+            "AeonTalkCount": 5
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.5",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk"
+          }
+        }
+      ],
+      "events": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkUI",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkUI",
+            "Show": true
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050061,
+            "text": "████你在原地等待着██ █████不仅很困████████████████并且什么也没有发生████████████████。",
+            "speaker": "模拟宇宙",
+            "hash": "10774527535188452987"
+          },
+          "raw": {
+            "TalkSentenceID": 403050061
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.1.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050062,
+            "text": "「起床。」阮•梅言简意赅，她示意黑塔该让你起床。",
+            "speaker": "阮•梅",
+            "hash": "16563146225944225513"
+          },
+          "raw": {
+            "TalkSentenceID": 403050062,
+            "TalkBgID": 9
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.1.SimpleTalkList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050063,
+            "text": "「我就一会儿没看着…你的脑电波已经画成zzZ的形状了。」黑塔不耐烦地把自己接入进来，「模拟宇宙有这么无聊？确实有点。不过恭喜你，由于你太懒，反而在虚无命途上突飞猛进。就在这儿等祂，不过你得小心，万一祂把系统某个按键吞没，你就没法玩了。」",
+            "speaker": "黑塔",
+            "hash": "15209795993649853387"
+          },
+          "raw": {
+            "TalkSentenceID": 403050063,
+            "TalkBgID": 8
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403050064,
+            "text": "模拟宇宙确实很无聊！",
+            "speaker": null,
+            "hash": "17789904884822870967"
+          },
+          "rogueOptionId": null,
+          "label": "模拟宇宙确实很无聊！",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403050064,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403050065"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": {
+            "id": 403050066,
+            "text": "我还想再睡一会。",
+            "speaker": null,
+            "hash": "13543101226515684873"
+          },
+          "rogueOptionId": null,
+          "label": "我还想再睡一会。",
+          "resolution": "sentence",
+          "displayId": null,
+          "display": null,
+          "descriptionTemplate": null,
+          "inlineText": null,
+          "configSource": null,
+          "config": null,
+          "raw": {
+            "TalkSentenceID": 403050066,
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            },
+            "TriggerCustomString": "TalkSentence_403050067"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403050065"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050065,
+            "text": "「你可以自己上。等你加入天才俱乐部，我就把斯蒂芬踢了。」黑塔摊手。",
+            "speaker": "黑塔",
+            "hash": "11644747805482098522"
+          },
+          "raw": {
+            "TalkSentenceID": 403050065,
+            "TalkBgID": 8
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.TriggerCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403050068"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403050067"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050067,
+            "text": "你感受到阮•梅的目光落在你身上；但她一言不发。",
+            "speaker": "阮•梅",
+            "hash": "692079773588986695"
+          },
+          "raw": {
+            "TalkSentenceID": 403050067,
+            "TalkBgID": 9
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.2",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.TriggerCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403050068"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.0",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403050068"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050068,
+            "text": "一种强烈的困意席卷了你…这种空虚像失恋后的第一个清晨。",
+            "speaker": "模拟宇宙",
+            "hash": "10324227713476873474"
+          },
+          "raw": {
+            "TalkSentenceID": 403050068
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.2",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.TriggerSound",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.TriggerSound",
+            "SoundName": {
+              "Value": "Ev_sfx_ui_feedback_rogue_randomAeon_text"
+            },
+            "EmitterType": "DefaultEmitter"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.3.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAeonTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050069,
+            "text": "应当是第一个清晨？还是第二个？你的脑海有些混沌不清。你已经分不清过往的一切是想象，还是切实发生过的——那些杏仁香的苦涩味道无处不在，游戏的快乐也无法盖过它。接着，████████……连你的手指也█████……███渐渐变得沉重……",
+            "speaker": "【欢愉•严谨的讽刺艺术】",
+            "hash": "8963869445009928996"
+          },
+          "raw": {
+            "TalkSentenceID": 403050069
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.3.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAeonTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403051200,
+            "text": "应当是第一个清晨？还是第二个？你的脑海有些混沌不清。你已经分不清过往的一切是想象，还是切实发生过的——那些杏仁香的苦涩味道无处不在，游戏的快乐也无法盖过它。接着，████████……连你的手指也█████……███渐渐变得沉重……",
+            "speaker": "【欢愉•奸笑专家】",
+            "hash": "3065513186146202137"
+          },
+          "raw": {
+            "TalkSentenceID": 403051200
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.3.SimpleTalkList.2",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAeonTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403051201,
+            "text": "应当是第一个清晨？还是第二个？你的脑海有些混沌不清。你已经分不清过往的一切是想象，还是切实发生过的——那些杏仁香的苦涩味道无处不在，游戏的快乐也无法盖过它。接着，████████……连你的手指也█████……███渐渐变得沉重……",
+            "speaker": "【欢愉•惊奇永不失望】",
+            "hash": "2746924802580756253"
+          },
+          "raw": {
+            "TalkSentenceID": 403051201
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.3.SimpleTalkList.3",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAeonTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403051202,
+            "text": "应当是第一个清晨？还是第二个？你的脑海有些混沌不清。你已经分不清过往的一切是想象，还是切实发生过的——那些杏仁香的苦涩味道无处不在，游戏的快乐也无法盖过它。接着，████████……连你的手指也█████……███渐渐变得沉重……",
+            "speaker": "【欢愉•首席猖獗分子】",
+            "hash": "9723702071759595312"
+          },
+          "raw": {
+            "TalkSentenceID": 403051202
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.3.SimpleTalkList.4",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAeonTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403051203,
+            "text": "应当是第一个清晨？还是第二个？你的脑海有些混沌不清。你已经分不清过往的一切是想象，还是切实发生过的——那些杏仁香的苦涩味道无处不在，游戏的快乐也无法盖过它。接着，████████……连你的手指也█████……███渐渐变得沉重……",
+            "speaker": "【欢愉•胡作非为】",
+            "hash": "124812369700795569"
+          },
+          "raw": {
+            "TalkSentenceID": 403051203
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.4",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.WaitRogueSimpleTalkFinish",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitRogueSimpleTalkFinish"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.5.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050070,
+            "text": "……████████……███████████……",
+            "speaker": "Ⅸ",
+            "hash": "14354358488703201230"
+          },
+          "raw": {
+            "TalkSentenceID": 403050070,
+            "TalkBgID": 3
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.5.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050071,
+            "text": "█████████哪怕感受到███、祂████████████的出现██████████你也无力再█████████。",
+            "speaker": "Ⅸ",
+            "hash": "13287279034574259365"
+          },
+          "raw": {
+            "TalkSentenceID": 403050071,
+            "TalkBgID": 3
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.5.SimpleTalkList.2",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050072,
+            "text": "「出什么事了？」黑塔说，「你怎么像睡着了一样？噢，难道Ⅸ又来了？快离远点！」",
+            "speaker": "黑塔",
+            "hash": "1684375842056280911"
+          },
+          "raw": {
+            "TalkSentenceID": 403050072,
+            "TalkBgID": 8
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.5.SimpleTalkList.3",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050073,
+            "text": "你还没有反应过来，黑塔的声音开始变得渐渐扭曲……",
+            "speaker": "模拟宇宙",
+            "hash": "2271139282428978859"
+          },
+          "raw": {
+            "TalkSentenceID": 403050073
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.5.SimpleTalkList.4",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.PlayAndWaitRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403050074,
+            "text": "「我敢断定，这家伙完全、彻底在状况外。Ⅸ能有什么理由在乎塔伊兹育罗斯？」黑塔说，「但是{NICKNAME}，你得赶快脱身。你以为在模拟宇宙里摸鱼没有代价？祂刚刚肯定出现过，让你的一部分神经失去了知觉，你别被Ⅸ吞没了——」",
+            "speaker": "黑塔",
+            "hash": "15043758367347799596"
+          },
+          "raw": {
+            "TalkSentenceID": 403050074,
+            "TalkBgID": 8
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.6",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.TriggerDialogueEvent",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.TriggerDialogueEvent",
+            "DialogueEventID": 101
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.7",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.FinishLevelGraph",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.FinishLevelGraph"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.4.TaskList.0",
+          "sequence": "$.OnStartSequece.4",
+          "type": "RPG.GameCore.WaitPerformanceEnd",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitPerformanceEnd"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.4.TaskList.1",
+          "sequence": "$.OnStartSequece.4",
+          "type": "RPG.GameCore.FinishLevelGraph",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.FinishLevelGraph"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403050065",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.1",
+              "pointer": "$.OnStartSequece.1.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option-trigger",
+          "signal": "TalkSentence_403050067",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.2",
+              "pointer": "$.OnStartSequece.2.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.2",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "trigger",
+          "signal": "TalkSentence_403050068",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.3",
+              "pointer": "$.OnStartSequece.3.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.2",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "trigger",
+          "signal": "TalkSentence_403050068",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.3",
+              "pointer": "$.OnStartSequece.3.TaskList.0"
+            }
+          ]
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "不可知域事件：酒馆",
+      "entry": {
+        "table": "RogueMagicNPC",
+        "key": "RogueNPCID",
+        "id": 510801,
+        "row": {
+          "RogueNPCID": 510801,
+          "NPCJsonPath": "Config/Level/Rogue/RogueNPC/RogueNPC_260/RogueNPC510801.json"
+        }
+      },
+      "handbooks": [
+        {
+          "table": "RogueHandBookEvent",
+          "id": 10,
+          "name": "阿哈玩偶",
+          "pointer": "UnlockNPCProgressIDList[].FDOELDMEBPE",
+          "row": {
+            "EventHandbookID": 10,
+            "UnlockNPCProgressIDList": [
+              {
+                "FDOELDMEBPE": 10801
+              },
+              {
+                "FDOELDMEBPE": 110801
+              },
+              {
+                "FDOELDMEBPE": 310801
+              },
+              {
+                "FDOELDMEBPE": 510801
+              }
+            ],
+            "EventTitle": {
+              "Hash": "413405412994626039"
+            },
+            "EventType": {
+              "Hash": "10711140159157889240"
+            },
+            "EventReward": 106021,
+            "Order": 67,
+            "EventTypeList": [
+              100,
+              130,
+              160,
+              260
+            ],
+            "UnlockHintDesc": {
+              "Hash": "726552974205439936"
+            },
+            "ImageID": 104
+          }
+        }
+      ],
+      "npcConfig": {
+        "path": "Config/Level/Rogue/RogueNPC/RogueNPC_260/RogueNPC510801.json",
+        "raw": {
+          "DialogueType": "Event",
+          "DialogueList": [
+            {
+              "TalkNameID": 10801,
+              "DialoguePath": "Config/Level/Rogue/RogueDialogue/RogueEventMagic/Event0510801/Act0510801.json",
+              "OptionPath": "Config/Level/Rogue/RogueDialogue/RogueEventMagic/Event0510801/Opt0510801.json"
+            }
+          ]
+        }
+      },
+      "graphPath": "Config/Level/Rogue/RogueDialogue/RogueEventMagic/Event0510801/Act0510801.json",
+      "optionPath": "Config/Level/Rogue/RogueDialogue/RogueEventMagic/Event0510801/Opt0510801.json",
+      "types": {
+        "RPG.GameCore.ShowRogueTalkUI": 1,
+        "RPG.GameCore.ShowRogueTalkBg": 1,
+        "RPG.GameCore.PlayRogueSimpleTalk": 9,
+        "RPG.GameCore.WaitRogueSimpleTalkFinish": 9,
+        "RPG.GameCore.PlayRogueOptionTalk": 3,
+        "RPG.GameCore.WaitDialogueEvent": 2,
+        "RPG.GameCore.WaitCustomString": 9,
+        "RPG.GameCore.TriggerCustomString": 6,
+        "RPG.GameCore.FinishLevelGraph": 2,
+        "RPG.GameCore.WaitPerformanceEnd": 1
+      },
+      "groups": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueOptionTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.3",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueOptionTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.4.TaskList.1",
+          "sequence": "$.OnStartSequece.4",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.5.TaskList.1",
+          "sequence": "$.OnStartSequece.5",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.6.TaskList.1",
+          "sequence": "$.OnStartSequece.6",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.6.TaskList.3",
+          "sequence": "$.OnStartSequece.6",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueOptionTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.7.TaskList.1",
+          "sequence": "$.OnStartSequece.7",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.8.TaskList.1",
+          "sequence": "$.OnStartSequece.8",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.9.TaskList.1",
+          "sequence": "$.OnStartSequece.9",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueSimpleTalk"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.10.TaskList.1",
+          "sequence": "$.OnStartSequece.10",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "raw": {
+            "$type": "RPG.GameCore.PlayRogueSimpleTalk"
+          }
+        }
+      ],
+      "events": [
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkUI",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkUI",
+            "Show": true
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.ShowRogueTalkBg",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.ShowRogueTalkBg",
+            "TalkBgID": 10801
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810801,
+            "text": "你遇见了一只三等身人形玩偶，它有稻草般的麻绳头发，肚子上有一个计数器。",
+            "speaker": "模拟宇宙",
+            "hash": "15451335896180448856"
+          },
+          "raw": {
+            "TalkSentenceID": 403810801
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.2.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810802,
+            "text": "你打开它的说明书「阿哈按照祂的样子制成的发泄玩偶——祂希望看到自己被暴揍的样子。揍得越凶他越开心，就会给您越多金币奖励！注：质量品控与阿哈本人无关。」",
+            "speaker": "模拟宇宙",
+            "hash": "17721058950073330554"
+          },
+          "raw": {
+            "TalkSentenceID": 403810802
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.3",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.WaitRogueSimpleTalkFinish",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitRogueSimpleTalkFinish"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.0",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 110801,
+          "label": "轻轻拍它一下。",
+          "resolution": "local-opt",
+          "displayId": 10801,
+          "display": {
+            "OptionDisplayID": 10801,
+            "OptionTitle": {
+              "Hash": "6456541862619694473"
+            },
+            "OptionDesc": {
+              "Hash": "17057711955456576623"
+            }
+          },
+          "descriptionTemplate": "至少不会弄坏它。",
+          "inlineText": null,
+          "configSource": "Config/Level/Rogue/RogueDialogue/RogueEventMagic/Event0510801/Opt0510801.json",
+          "config": {
+            "OptionID": 110801,
+            "DisplayID": 10801,
+            "DynamicMap": {}
+          },
+          "raw": {
+            "RogueOptionID": 110801,
+            "OptionTextmapID": {
+              "Hash": "12788078309040959403"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.1",
+          "sequence": "$.OnStartSequece.0",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 110802,
+          "label": "狠狠重击！",
+          "resolution": "local-opt",
+          "displayId": 10802,
+          "display": {
+            "OptionDisplayID": 10802,
+            "OptionTitle": {
+              "Hash": "15540148107785201654"
+            },
+            "OptionDesc": {
+              "Hash": "14560442048245957147"
+            }
+          },
+          "descriptionTemplate": "不能被阿哈看扁了！",
+          "inlineText": null,
+          "configSource": "Config/Level/Rogue/RogueDialogue/RogueEventMagic/Event0510801/Opt0510801.json",
+          "config": {
+            "OptionID": 110802,
+            "DisplayID": 10802,
+            "DynamicMap": {}
+          },
+          "raw": {
+            "RogueOptionID": 110802,
+            "OptionTextmapID": {
+              "Hash": "11082975829274754205"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.WaitDialogueEvent",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitDialogueEvent",
+            "DialogueEventList": [
+              {
+                "DialogueEventID": 110803,
+                "SuccessCustomString": "TalkSentence_403810804"
+              },
+              {
+                "DialogueEventID": 110804,
+                "SuccessCustomString": "TalkSentence_403810812"
+              },
+              {
+                "DialogueEventID": 110815,
+                "SuccessCustomString": "TalkSentence_403810819"
+              },
+              {
+                "DialogueEventID": 110816,
+                "SuccessCustomString": "TalkSentence_403810820"
+              }
+            ]
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403810804"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810804,
+            "text": "阿哈玩偶毫无反应，计数器上的数字没有跳转。你太逊了！",
+            "speaker": "模拟宇宙",
+            "hash": "8567025713014134276"
+          },
+          "raw": {
+            "TalkSentenceID": 403810804
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.2",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.WaitRogueSimpleTalkFinish",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitRogueSimpleTalkFinish"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.3.OptionList.0",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 110805,
+          "label": "轻轻拍它一下。",
+          "resolution": "local-opt",
+          "displayId": 10805,
+          "display": {
+            "OptionDisplayID": 10805,
+            "OptionTitle": {
+              "Hash": "17301567882530224696"
+            },
+            "OptionDesc": {
+              "Hash": "7854152314409936894"
+            }
+          },
+          "descriptionTemplate": "至少不会弄坏它。",
+          "inlineText": null,
+          "configSource": "Config/Level/Rogue/RogueDialogue/RogueEventMagic/Event0510801/Opt0510801.json",
+          "config": {
+            "OptionID": 110805,
+            "DisplayID": 10805,
+            "DynamicMap": {}
+          },
+          "raw": {
+            "RogueOptionID": 110805,
+            "OptionTextmapID": {
+              "Hash": "529998361715454672"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.2.TaskList.3.OptionList.1",
+          "sequence": "$.OnStartSequece.2",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 110806,
+          "label": "狠狠重击！",
+          "resolution": "local-opt",
+          "displayId": 10806,
+          "display": {
+            "OptionDisplayID": 10806,
+            "OptionTitle": {
+              "Hash": "393052414725265774"
+            },
+            "OptionDesc": {
+              "Hash": "5460545653475409013"
+            }
+          },
+          "descriptionTemplate": "不能被阿哈看扁了！",
+          "inlineText": null,
+          "configSource": "Config/Level/Rogue/RogueDialogue/RogueEventMagic/Event0510801/Opt0510801.json",
+          "config": {
+            "OptionID": 110806,
+            "DisplayID": 10806,
+            "DynamicMap": {}
+          },
+          "raw": {
+            "RogueOptionID": 110806,
+            "OptionTextmapID": {
+              "Hash": "12264417468635759125"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.0",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.WaitDialogueEvent",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitDialogueEvent",
+            "DialogueEventList": [
+              {
+                "DialogueEventID": 110809,
+                "SuccessCustomString": "TalkSentence_403810806"
+              },
+              {
+                "DialogueEventID": 110810,
+                "SuccessCustomString": "TalkSentence_403810809"
+              },
+              {
+                "DialogueEventID": 110811,
+                "SuccessCustomString": "TalkSentence_403810814"
+              },
+              {
+                "DialogueEventID": 110812,
+                "SuccessCustomString": "TalkSentence_403810817"
+              }
+            ]
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.4.TaskList.0",
+          "sequence": "$.OnStartSequece.4",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403810806"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.4.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.4",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810806,
+            "text": "计数器缓慢跳转到「<unbreak>150</unbreak>」。玩偶内嵌芯片启动，传来一首颂歌「毁灭像个疯子，存护是个呆子；星神都一根筋，阿哈真没面子！阿哈真没面子！阿哈真没面子！……」",
+            "speaker": "模拟宇宙",
+            "hash": "5017989856153759550"
+          },
+          "raw": {
+            "TalkSentenceID": 403810806
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.4.TaskList.1.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.4",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810807,
+            "text": "你获得了一些宇宙碎片。",
+            "speaker": "模拟宇宙",
+            "hash": "5190422929856365012"
+          },
+          "raw": {
+            "TalkSentenceID": 403810807
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.4.TaskList.2",
+          "sequence": "$.OnStartSequece.4",
+          "type": "RPG.GameCore.WaitRogueSimpleTalkFinish",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitRogueSimpleTalkFinish"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.4.TaskList.3",
+          "sequence": "$.OnStartSequece.4",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.TriggerCustomString",
+            "CustomString": {
+              "Value": "ALL_TALK_END"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.5.TaskList.0",
+          "sequence": "$.OnStartSequece.5",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403810809"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.5.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.5",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810809,
+            "text": "阿哈玩偶被你打爆了——它碎成几块躺在地上。内嵌芯片启动，传来一首颂歌「智识是坨废铁，存护是个呆子；星神都一根筋，阿哈真没面子！阿哈真没面子！阿哈真没面子！……」",
+            "speaker": "模拟宇宙",
+            "hash": "5066959831182257477"
+          },
+          "raw": {
+            "TalkSentenceID": 403810809
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.5.TaskList.1.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.5",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810810,
+            "text": "你一无所获。",
+            "speaker": "模拟宇宙",
+            "hash": "17046065545138089815"
+          },
+          "raw": {
+            "TalkSentenceID": 403810810
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.5.TaskList.2",
+          "sequence": "$.OnStartSequece.5",
+          "type": "RPG.GameCore.WaitRogueSimpleTalkFinish",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitRogueSimpleTalkFinish"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.5.TaskList.3",
+          "sequence": "$.OnStartSequece.5",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.TriggerCustomString",
+            "CustomString": {
+              "Value": "ALL_TALK_END"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.6.TaskList.0",
+          "sequence": "$.OnStartSequece.6",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403810812"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.6.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.6",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810812,
+            "text": "阿哈玩偶的计数器数字跳转，它达到了<unbreak>299</unbreak>。再来一下？你生活里需要发泄的地方太多了。",
+            "speaker": "模拟宇宙",
+            "hash": "17951674355544116571"
+          },
+          "raw": {
+            "TalkSentenceID": 403810812
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.6.TaskList.2",
+          "sequence": "$.OnStartSequece.6",
+          "type": "RPG.GameCore.WaitRogueSimpleTalkFinish",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitRogueSimpleTalkFinish"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.6.TaskList.3.OptionList.0",
+          "sequence": "$.OnStartSequece.6",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 110807,
+          "label": "轻轻拍它一下。",
+          "resolution": "local-opt",
+          "displayId": 10807,
+          "display": {
+            "OptionDisplayID": 10807,
+            "OptionTitle": {
+              "Hash": "735231346543767860"
+            },
+            "OptionDesc": {
+              "Hash": "9574603823433831694"
+            }
+          },
+          "descriptionTemplate": "至少不会弄坏它。",
+          "inlineText": null,
+          "configSource": "Config/Level/Rogue/RogueDialogue/RogueEventMagic/Event0510801/Opt0510801.json",
+          "config": {
+            "OptionID": 110807,
+            "DisplayID": 10807,
+            "DynamicMap": {}
+          },
+          "raw": {
+            "RogueOptionID": 110807,
+            "OptionTextmapID": {
+              "Hash": "15814314458770050663"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.6.TaskList.3.OptionList.1",
+          "sequence": "$.OnStartSequece.6",
+          "type": "RPG.GameCore.PlayRogueOptionTalk",
+          "kind": "option",
+          "sentence": null,
+          "rogueOptionId": 110808,
+          "label": "狠狠重击！",
+          "resolution": "local-opt",
+          "displayId": 10808,
+          "display": {
+            "OptionDisplayID": 10808,
+            "OptionTitle": {
+              "Hash": "7542740201417775722"
+            },
+            "OptionDesc": {
+              "Hash": "9777307414421590842"
+            }
+          },
+          "descriptionTemplate": "不能被阿哈看扁了！",
+          "inlineText": null,
+          "configSource": "Config/Level/Rogue/RogueDialogue/RogueEventMagic/Event0510801/Opt0510801.json",
+          "config": {
+            "OptionID": 110808,
+            "DisplayID": 10808,
+            "DynamicMap": {}
+          },
+          "raw": {
+            "RogueOptionID": 110808,
+            "OptionTextmapID": {
+              "Hash": "16889243389025548328"
+            },
+            "OptionIconType": {
+              "EnumIndex": 20,
+              "Value": 2
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.7.TaskList.0",
+          "sequence": "$.OnStartSequece.7",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403810814"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.7.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.7",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810814,
+            "text": "计数器继续跳转，最后停留在了「<unbreak>400</unbreak>」上。玩偶内嵌芯片启动，传来一首颂歌「智识是坨废铁，存护是个呆子；毁灭像个疯子，阿哈真没面子！阿哈真没面子！阿哈真没面子！……」",
+            "speaker": "模拟宇宙",
+            "hash": "11049012592099579475"
+          },
+          "raw": {
+            "TalkSentenceID": 403810814
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.7.TaskList.1.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.7",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810815,
+            "text": "你获得大量宇宙碎片。",
+            "speaker": "模拟宇宙",
+            "hash": "7544243970111841228"
+          },
+          "raw": {
+            "TalkSentenceID": 403810815
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.7.TaskList.2",
+          "sequence": "$.OnStartSequece.7",
+          "type": "RPG.GameCore.WaitRogueSimpleTalkFinish",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitRogueSimpleTalkFinish"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.7.TaskList.3",
+          "sequence": "$.OnStartSequece.7",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.TriggerCustomString",
+            "CustomString": {
+              "Value": "ALL_TALK_END"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.8.TaskList.0",
+          "sequence": "$.OnStartSequece.8",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403810817"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.8.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.8",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810817,
+            "text": "阿哈玩偶的计数器疯狂跳转，它的数值膨胀至<unbreak>2147483647</unbreak>时突然跳转至了0，数据溢出了。你鄙视在如今使用<unbreak>32</unbreak>位int类型储存数据的制造商。",
+            "speaker": "模拟宇宙",
+            "hash": "16157971883529343758"
+          },
+          "raw": {
+            "TalkSentenceID": 403810817
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.8.TaskList.1.SimpleTalkList.1",
+          "sequence": "$.OnStartSequece.8",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810818,
+            "text": "你一无所获。",
+            "speaker": "模拟宇宙",
+            "hash": "8694117975998157222"
+          },
+          "raw": {
+            "TalkSentenceID": 403810818
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.8.TaskList.2",
+          "sequence": "$.OnStartSequece.8",
+          "type": "RPG.GameCore.WaitRogueSimpleTalkFinish",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitRogueSimpleTalkFinish"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.8.TaskList.3",
+          "sequence": "$.OnStartSequece.8",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.TriggerCustomString",
+            "CustomString": {
+              "Value": "ALL_TALK_END"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.9.TaskList.0",
+          "sequence": "$.OnStartSequece.9",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403810819"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.9.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.9",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810819,
+            "text": "玩偶的脑袋炸开了花！<unbreak>500</unbreak>宇宙碎片掉落了出来。",
+            "speaker": "模拟宇宙",
+            "hash": "6893378577197668326"
+          },
+          "raw": {
+            "TalkSentenceID": 403810819
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.9.TaskList.2",
+          "sequence": "$.OnStartSequece.9",
+          "type": "RPG.GameCore.WaitRogueSimpleTalkFinish",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitRogueSimpleTalkFinish"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.9.TaskList.3",
+          "sequence": "$.OnStartSequece.9",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.TriggerCustomString",
+            "CustomString": {
+              "Value": "ALL_TALK_END"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.10.TaskList.0",
+          "sequence": "$.OnStartSequece.10",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "TalkSentence_403810820"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.10.TaskList.1.SimpleTalkList.0",
+          "sequence": "$.OnStartSequece.10",
+          "type": "RPG.GameCore.PlayRogueSimpleTalk",
+          "kind": "talk",
+          "sentence": {
+            "id": 403810820,
+            "text": "玩偶突然转过头看你——它伸手从你口袋里抢走了一半宇宙碎片。",
+            "speaker": "模拟宇宙",
+            "hash": "4746275980910476270"
+          },
+          "raw": {
+            "TalkSentenceID": 403810820
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.10.TaskList.2",
+          "sequence": "$.OnStartSequece.10",
+          "type": "RPG.GameCore.WaitRogueSimpleTalkFinish",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitRogueSimpleTalkFinish"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.10.TaskList.3",
+          "sequence": "$.OnStartSequece.10",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.TriggerCustomString",
+            "CustomString": {
+              "Value": "ALL_TALK_END"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.11.TaskList.0",
+          "sequence": "$.OnStartSequece.11",
+          "type": "RPG.GameCore.WaitCustomString",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitCustomString",
+            "CustomString": {
+              "Value": "ALL_TALK_END"
+            }
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.11.TaskList.1",
+          "sequence": "$.OnStartSequece.11",
+          "type": "RPG.GameCore.FinishLevelGraph",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.FinishLevelGraph"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.12.TaskList.0",
+          "sequence": "$.OnStartSequece.12",
+          "type": "RPG.GameCore.WaitPerformanceEnd",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.WaitPerformanceEnd"
+          }
+        },
+        {
+          "pointer": "$.OnStartSequece.12.TaskList.1",
+          "sequence": "$.OnStartSequece.12",
+          "type": "RPG.GameCore.FinishLevelGraph",
+          "kind": "control",
+          "raw": {
+            "$type": "RPG.GameCore.FinishLevelGraph"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.0.DialogueEventList.0",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.WaitDialogueEvent",
+          "kind": "dialogue-event",
+          "dialogueEventId": 110803,
+          "signal": "TalkSentence_403810804",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.2",
+              "pointer": "$.OnStartSequece.2.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.0.DialogueEventList.1",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.WaitDialogueEvent",
+          "kind": "dialogue-event",
+          "dialogueEventId": 110804,
+          "signal": "TalkSentence_403810812",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.6",
+              "pointer": "$.OnStartSequece.6.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.0.DialogueEventList.2",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.WaitDialogueEvent",
+          "kind": "dialogue-event",
+          "dialogueEventId": 110815,
+          "signal": "TalkSentence_403810819",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.9",
+              "pointer": "$.OnStartSequece.9.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.1.TaskList.0.DialogueEventList.3",
+          "sequence": "$.OnStartSequece.1",
+          "type": "RPG.GameCore.WaitDialogueEvent",
+          "kind": "dialogue-event",
+          "dialogueEventId": 110816,
+          "signal": "TalkSentence_403810820",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.10",
+              "pointer": "$.OnStartSequece.10.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.0.DialogueEventList.0",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.WaitDialogueEvent",
+          "kind": "dialogue-event",
+          "dialogueEventId": 110809,
+          "signal": "TalkSentence_403810806",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.4",
+              "pointer": "$.OnStartSequece.4.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.0.DialogueEventList.1",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.WaitDialogueEvent",
+          "kind": "dialogue-event",
+          "dialogueEventId": 110810,
+          "signal": "TalkSentence_403810809",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.5",
+              "pointer": "$.OnStartSequece.5.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.0.DialogueEventList.2",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.WaitDialogueEvent",
+          "kind": "dialogue-event",
+          "dialogueEventId": 110811,
+          "signal": "TalkSentence_403810814",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.7",
+              "pointer": "$.OnStartSequece.7.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.3.TaskList.0.DialogueEventList.3",
+          "sequence": "$.OnStartSequece.3",
+          "type": "RPG.GameCore.WaitDialogueEvent",
+          "kind": "dialogue-event",
+          "dialogueEventId": 110812,
+          "signal": "TalkSentence_403810817",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.8",
+              "pointer": "$.OnStartSequece.8.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.4.TaskList.3",
+          "sequence": "$.OnStartSequece.4",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.11",
+              "pointer": "$.OnStartSequece.11.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.5.TaskList.3",
+          "sequence": "$.OnStartSequece.5",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.11",
+              "pointer": "$.OnStartSequece.11.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.7.TaskList.3",
+          "sequence": "$.OnStartSequece.7",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.11",
+              "pointer": "$.OnStartSequece.11.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.8.TaskList.3",
+          "sequence": "$.OnStartSequece.8",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.11",
+              "pointer": "$.OnStartSequece.11.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.9.TaskList.3",
+          "sequence": "$.OnStartSequece.9",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.11",
+              "pointer": "$.OnStartSequece.11.TaskList.0"
+            }
+          ]
+        },
+        {
+          "pointer": "$.OnStartSequece.10.TaskList.3",
+          "sequence": "$.OnStartSequece.10",
+          "type": "RPG.GameCore.TriggerCustomString",
+          "kind": "trigger",
+          "signal": "ALL_TALK_END",
+          "targets": [
+            {
+              "sequence": "$.OnStartSequece.11",
+              "pointer": "$.OnStartSequece.11.TaskList.0"
+            }
+          ]
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.0",
+          "hash": "12788078309040959403"
+        },
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.0.TaskList.4.OptionList.1",
+          "hash": "11082975829274754205"
+        },
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.2.TaskList.3.OptionList.0",
+          "hash": "529998361715454672"
+        },
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.2.TaskList.3.OptionList.1",
+          "hash": "12264417468635759125"
+        },
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.6.TaskList.3.OptionList.0",
+          "hash": "15814314458770050663"
+        },
+        {
+          "kind": "missing-inline-hash",
+          "pointer": "$.OnStartSequece.6.TaskList.3.OptionList.1",
+          "hash": "16889243389025548328"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "stripInternal": true,
+    "lib": ["esnext"],
+    "moduleResolution": "bundler",
+    "outDir": "dist",
+    "paths": {
+      "@game/*": ["../gacha-game-types/src/*"]
+    }
+  },
+  "include": ["./**/*.ts", "./**/*.tsx"],
+  "extends": "../../tsconfig.json"
+}

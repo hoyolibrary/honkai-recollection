@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "stripInternal": true,
+    "lib": ["esnext"],
+    "moduleResolution": "bundler",
+    "outDir": "dist"
+  },
+  "include": ["./**/*.ts"],
+  "extends": "../../tsconfig.json"
+}

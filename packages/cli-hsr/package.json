@@ -1,0 +1,30 @@
+{
+  "name": "cli-hsr",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "tsx ./extract/index.ts",
+    "start:simple": "tsx ./extract/index.ts --simple",
+    "upload": "tsx ./upload.ts",
+    "test:upload": "tsx --test ./test/upload.test.ts",
+    "test:rogue-tourn-events": "tsx ./test/rogue-tourn-events.ts"
+  },
+  "author": "",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "hoyo-cli-common": "workspace:*",
+    "json-bigint": "^1.0.0",
+    "xxhash-wasm": "^1.1.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/json-bigint": "^1.0.4",
+    "tsx": "^4.21.0",
+    "gacha-game-types": "workspace:*",
+    "@types/node": "^22.14.0",
+    "@types/lodash": "^4.17.0"
+  }
+}

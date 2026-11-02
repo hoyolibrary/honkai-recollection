@@ -1,0 +1,13 @@
+node_modules
+
+/output
+/textmap_out
+
+/dist
+
+*.log
+
+/test/*
+!/test/xxhash.ts
+!/test/rogue-tourn-events.ts
+!/test/upload.test.ts

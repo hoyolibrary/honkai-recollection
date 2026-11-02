@@ -1,0 +1,22 @@
+{
+  "name": "cli-gi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "tsx ./extract/index.ts",
+    "download": "tsx ./download.ts"
+  },
+  "author": "",
+  "description": "Genshin Impact game data extractors",
+  "dependencies": {
+    "hoyo-cli-common": "workspace:*",
+    "xxhash-wasm": "^1.1.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "gacha-game-types": "workspace:*",
+    "@types/node": "^22.14.0"
+  }
+}

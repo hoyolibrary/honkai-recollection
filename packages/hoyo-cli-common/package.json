@@ -1,0 +1,22 @@
+{
+  "name": "hoyo-cli-common",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "giget": "^3.1.1",
+    "lodash": "^4.17.21",
+    "p-map": "^4.0.0",
+    "json-bigint": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.0",
+    "@types/json-bigint": "^1.0.4",
+    "@types/node": "^22.14.0"
+  }
+}

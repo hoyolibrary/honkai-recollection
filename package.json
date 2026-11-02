@@ -1,0 +1,14 @@
+{
+  "name": "dicloud-game-public",
+  "private": true,
+  "scripts": {
+    "build": "pnpm --filter gacha-game-types build && pnpm --filter unity-richtext build",
+    "typecheck": "pnpm --filter cli-hsr exec tsc --noEmit && pnpm --filter cli-gi exec tsc --noEmit",
+    "test": "pnpm --filter unity-richtext test --runInBand",
+    "test:scenario": "pnpm --filter scenario-parser test:act100010162 && pnpm --filter scenario-parser test:rogue-dialogue"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "pnpm@12.15.0"
+}

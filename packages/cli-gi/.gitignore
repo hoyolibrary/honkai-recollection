@@ -1,0 +1,11 @@
+node_modules
+
+/data
+/output
+/textmap_out
+
+/dist
+
+*.log
+
+probe/
