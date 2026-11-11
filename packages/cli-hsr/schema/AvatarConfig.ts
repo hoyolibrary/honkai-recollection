@@ -29,6 +29,7 @@ export interface AvatarConfig extends AvatarConfigEnhanceableInfo {
   MaxPromotion: number;
   MaxRank: number;
   AvatarBaseType: AvatarBaseType;
+  SubAvatarTypeList: AvatarBaseType[];
   DefaultAvatarModelPath: string;
   DefaultAvatarHeadIconPath: string;
   AvatarSideIconPath: string;

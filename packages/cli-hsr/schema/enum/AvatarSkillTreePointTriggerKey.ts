@@ -22,4 +22,5 @@ export type AvatarSkillTreePointTriggerKey =
   | "PointServant1"
   | "PointServant2"
   | "PointSpecial1"
-  | "PointElation";
+  | "PointElation"
+  | "PointAeonPower";

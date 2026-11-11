@@ -23,4 +23,5 @@ export type ItemUseMethod =
   | "PetSummonRecall"
   | "ClientGoto"
   | "FightFestMemorialPaper"
-  | "Anniv3rdLiveItem";
+  | "Anniv3rdLiveItem"
+  | "AsatPramadDiceItem";

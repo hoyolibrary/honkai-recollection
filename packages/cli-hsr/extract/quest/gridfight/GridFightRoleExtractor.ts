@@ -67,8 +67,10 @@ export class GridFightRoleExtractor {
     this.recommendEquips = await readExcel("GridFightRoleRecommendEquip");
 
     const identity = await loadAvatarIdentity(true);
-    this.avatarConfigs = identity.avatars;
-    this.avatarItems = identity.items;
+    const activityAvatars = await readExcel<AvatarConfig>("ActivityAvatarConfig");
+    const activityItems = await readExcel<ItemConfigAvatar>("ActivityItemConfigAvatar");
+    this.avatarConfigs = [...activityAvatars, ...identity.avatars];
+    this.avatarItems = [...activityItems, ...identity.items];
     this.collabIds = identity.collabIds;
 
     this.avatarById = Object.fromEntries(this.avatarConfigs.map(a => [a.AvatarID, a]));
@@ -85,9 +87,18 @@ export class GridFightRoleExtractor {
   }
 
   getRoleList(): HsrGridFightRole[] {
-    const data = this.roleBasics.map(d => this.mapRole(d));
-    this.roleMap = Object.fromEntries(data.map(r => [r.id, r]));
-    return data;
+    const data = this.roleBasics.map(row => this.mapRole(row));
+    const roles = _.sortBy(data, ["id", "seasonId"]);
+    this.roleMap = {};
+    for (const role of roles) {
+      if (this.roleMap[role.id]) {
+        role.detailPath = `roles/${role.seasonId ?? "unassigned"}/${role.id}.json`;
+      } else {
+        // 原有 /roles/<id>.json 链接继续打开该 ID 最早的赛季版本。
+        this.roleMap[role.id] = role;
+      }
+    }
+    return roles;
   }
 
   private mapRole(d: GridFightRoleBasicInfo): HsrGridFightRole {
@@ -101,8 +112,8 @@ export class GridFightRoleExtractor {
         id: d.ID,
         isCollaboration: this.collabIds.has(d.AvatarID),
         categoryKey: "gridfight_role",
-        nameType: "GridFightRoleBasicInfo",
-        descType: "ItemConfigAvatar",
+        nameType: d.IsFakeAvatar ? "ActivityAvatarConfig" : "GridFightRoleBasicInfo",
+        descType: d.IsFakeAvatar ? "ActivityItemConfigAvatar" : "ItemConfigAvatar",
         tags: ["gridfight_role", "avatar"],
       }),
       avatarId: d.AvatarID,

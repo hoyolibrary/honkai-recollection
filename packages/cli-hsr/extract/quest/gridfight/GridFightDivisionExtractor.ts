@@ -2,6 +2,7 @@ import _ from "lodash";
 import type { GridFightAffixConfig } from "schema/GridFightAffixConfig";
 import type { GridFightBinaryDiffAddRule } from "schema/GridFightBinaryDiffAddRule";
 import type { GridFightCamp } from "schema/GridFightCamp";
+import type { GridFightCampSeason } from "schema/GridFightCampSeason";
 import type { GridFightConstCommon } from "schema/GridFightConstCommon";
 import type { GridFightDivisionInfo } from "schema/GridFightDivisionInfo";
 import type { GridFightDivisionLevelShow } from "schema/GridFightDivisionLevelShow";
@@ -36,6 +37,7 @@ export class GridFightDivisionExtractor {
   difficulties: GridFightEnemyDifficultyLv[] = [];
   affixes: GridFightAffixConfig[] = [];
   camps: GridFightCamp[] = [];
+  campSeasons: GridFightCampSeason[] = [];
   binaryRules: GridFightBinaryDiffAddRule[] = [];
   consts: GridFightConstCommon[] = [];
 
@@ -49,6 +51,7 @@ export class GridFightDivisionExtractor {
     this.difficulties = await readExcel("GridFightEnemyDifficultyLv");
     this.affixes = await readExcel("GridFightAffixConfig");
     this.camps = await readExcel("GridFightCamp");
+    this.campSeasons = await readExcel("GridFightCampSeason");
     this.binaryRules = await readExcel("GridFightBinaryDiffAddRule");
     this.consts = await readExcel("GridFightConstCommon");
 
@@ -109,6 +112,8 @@ export class GridFightDivisionExtractor {
         uniqueEnvironmentDescs: uniqueEnvironmentDescs.length ? uniqueEnvironmentDescs : undefined,
         hpMulti: stage?.LevelBaseHPMultiRatio?.Value,
         attackMulti: stage?.LevelBaseAttackMultiRatio?.Value,
+        counterMulti: stage?.LevelBaseCounterMultiRatio?.Value,
+        params: stage?.EffectParamList?.length ? values(stage.EffectParamList) : undefined,
         weeklyScoreModify: stage?.WeeklyScoreModify,
         expModify: stage?.ExpModify,
         binaryNodeDiffAddRule: stage?.BinaryNodeDiffAddRule,
@@ -126,6 +131,7 @@ export class GridFightDivisionExtractor {
               hpRatio: d.HPRatio?.Value,
               speedRatio: d.SpeedRatio?.Value,
               stanceRatio: d.StanceRatio?.Value,
+              allDamageReduce: d.AllDamageReduce?.Value,
             }))
           : undefined,
       } as HsrGridFightDivision;
@@ -155,21 +161,25 @@ export class GridFightDivisionExtractor {
   }
 
   getCampList(): HsrGridFightCamp[] {
+    const seasonsByCamp = _.groupBy(this.campSeasons, s => s.CampID);
     return _.sortBy(
-      this.camps.map(d => {
+      this.camps.flatMap(d => {
         tag(this.lang, d.CampName?.Hash, "GridFightCamp", "gridfight_camp", d.ID);
-        return {
+        const camp = {
           id: d.ID,
           code: d.ID + "",
           name: TextMap.getText(this.lang, d.CampName?.Hash),
           icon: gridFightUrl(d.IconPath),
-          seasonId: d.SeasonID,
           monsterIds: d.MonsterList,
           battleAreaIds: d.BattleAreaList,
           bossBattleArea: d.BossBattleArea,
         } as HsrGridFightCamp;
+        const seasons = seasonsByCamp[d.ID];
+        return seasons?.length
+          ? seasons.map(season => ({ ...camp, seasonId: season.SeasonID, monsterIds: season.MonsterList }))
+          : [camp];
       }),
-      "id",
+      ["id", "seasonId"],
     );
   }
 }

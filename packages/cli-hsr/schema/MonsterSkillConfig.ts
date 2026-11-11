@@ -4,7 +4,7 @@ import type { AttackType } from "./enum/AttackType";
 /** 对齐 DummyDll 中的 RPG.GameCore.MonsterSkillRow。 */
 export interface MonsterSkillConfig {
   SkillID: number;
-  SkillName: {
+  SkillName?: {
     Hash: bigint;
   };
   SkillTriggerKey: string;
@@ -25,7 +25,7 @@ export interface MonsterSkillConfig {
   AI_CD: number;
   AI_ICD: number;
   IconPath: string;
-  SkillDesc: {
+  SkillDesc?: {
     Hash: bigint;
   };
   PhaseList: number[];

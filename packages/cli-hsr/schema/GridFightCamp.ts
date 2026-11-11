@@ -10,6 +10,5 @@ export interface GridFightCamp {
   };
   MonsterList: number[];
   BattleAreaList: number[];
-  SeasonID: number;
   BossBattleArea?: number;
 }

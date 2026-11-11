@@ -1,7 +1,7 @@
 import type { AttackDamageType } from "./enum/AttackDamageType";
 
 /**
- * 对齐 DummyDll 中的 RPG.GameCore.ChallengeMazeTierceRow（字段名混淆，DummyDll 未收录该行类型，
+ * 对齐 DummyDll 中的 HNGODOCOCCF（字段名混淆，
  * 语义见 doc/abyss-challenge-extractor-plan.md §2.1/§7）。
  */
 export interface ChallengeMazeTierce {

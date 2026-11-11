@@ -1,7 +1,7 @@
 import type { AttackDamageType } from "./enum/AttackDamageType";
 
 /**
- * 对齐 DummyDll 中的 RPG.GameCore.ChallengeBossMazeTierceRow（字段名混淆，语义见
+ * 对齐 DummyDll 中的 PBICIFBPKHF（字段名混淆，语义见
  * doc/abyss-challenge-extractor-plan.md §2.3/§7）。
  */
 export interface ChallengeBossMazeTierce {

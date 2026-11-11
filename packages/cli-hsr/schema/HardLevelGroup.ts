@@ -5,7 +5,7 @@ export interface HardLevelGroup {
   AttackRatio: {
     Value: number;
   };
-  DefenceRatio: {
+  DefenceRatio?: {
     Value: number;
   };
   HPRatio: {

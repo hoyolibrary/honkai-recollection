@@ -1,4 +1,4 @@
-/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeBossGroupExtraRow。 */
+/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeBossGroupExtraConfigRow。 */
 export interface ChallengeBossGroupExtra {
   GroupID: number;
   /** 节点一可选 buff（→ MazeBuff），早期无星启期为空数组 */

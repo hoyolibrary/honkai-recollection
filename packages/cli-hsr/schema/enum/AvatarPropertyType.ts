@@ -134,4 +134,7 @@ export type AvatarPropertyType =
   | "ExtraAllDamageReduceConvert"
   | "ExtraTotalAllDamageReduce"
   | "ExtraAllDamageTypeAddedRatio5"
-  | "ExtraElationDamageAddedRatio1";
+  | "ExtraElationDamageAddedRatio1"
+  | "ExtraHeight"
+  | "ExtraComboRate"
+  | "ExtraAllDamageTypeTakenRatio";

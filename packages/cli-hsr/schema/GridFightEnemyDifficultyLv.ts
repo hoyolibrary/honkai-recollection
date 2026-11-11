@@ -16,5 +16,8 @@ export interface GridFightEnemyDifficultyLv {
   StanceRatio: {
     Value: number;
   };
+  AllDamageReduce: {
+    Value: number;
+  };
   EnemyDifficultyLevel?: number;
 }

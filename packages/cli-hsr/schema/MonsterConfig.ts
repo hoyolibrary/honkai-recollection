@@ -6,7 +6,7 @@ export interface MonsterConfig {
   MonsterName: {
     Hash: bigint;
   };
-  MonsterIntroduction: {
+  MonsterIntroduction?: {
     Hash: bigint;
   };
   MonsterStrategy: { Hash: bigint }[];

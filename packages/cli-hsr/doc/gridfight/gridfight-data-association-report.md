@@ -240,8 +240,10 @@ Augment：`Quality` 为 `Silver` / `Gold` / `Prismatic`；`ChapterLimitList` 限
 
 ```text
 output/<lang>/gridfight/
+  index.json           # 按实际 SeasonID 排序的赛季列表，每项含 id 和本地化 name
   roles/index.json     # HsrGridFightRoleSimple（stars 不含 skills/backSkills，无 ranks）
-  roles/<id>.json      # HsrGridFightRole 全量
+  roles/<id>.json      # HsrGridFightRole 全量，同一 ID 的最早赛季
+  roles/<seasonId>/<id>.json # 仅同一 ID 的后续版本，各自写一份
   equips.json
   traits.json
   divisions.json
@@ -253,9 +255,17 @@ output/<lang>/gridfight/
 
 Runner：`extract/quest/gridfight/index.ts`，主入口 `extractGridFightData`。
 
+赛季清单通过 `GridFightSeasonModule.ActivityModuleID` 关联 `ActivityConfig.ActivityModuleIDList`，再由 `ActivityPanelID` 读取活动面板的本地化名称。子赛季按 `SeasonID` 合并。历史模块下架后，可从保留的活动面板标签图标 `BtnGridFightS<n>.png` 恢复赛季编号。仅出现在装备或配方池中的赛季不会因此进入清单。
+
+有赛季归属的实体以 `(seasonId, id)` 标识。每行保留游戏原生 ID 和单个赛季编号。相同名称或相同属性的不同 ID 分别输出。同一 ID 被多个赛季收录时，每季各输出一行。缺少赛季归属的记录保留一行并省略 `seasonId`。
+
+4.7 的角色和羁绊使用独立赛季 ID，装备与投资策略仍有共用源记录。赛季筛选使用当前上游配置，同一源记录更新后会反映到所有收录该 ID 的赛季。版本对照与修复记录见 [4.7 赛季验证](4.7-season-validation.md)。
+
 ### 4.2 角色：对齐标准角色，完成技能替换
 
 身份与技能行映射复用 `extract/avatar/avatarMap.ts`（`mapAvatarSimple` / `mapAvatarSkill`），与标准角色、忆灵同一套组装。棋子在此之上补费用、前后台、星级技能替换。
+
+4.7 新增的活动角色身份同时读取 `ActivityAvatarConfig` 和 `ActivityItemConfigAvatar`，供 `IsFakeAvatar` 角色展示名称、图片与属性。常规及联动角色表中的同 ID 配置优先。
 
 `HsrGridFightRoleSimple` **extends `HsrGameAvatarSimple`**，只增补玩法字段，溢出 `promotions` / `skins` / `skillTrees` / `versions`。
 
@@ -269,6 +279,8 @@ Runner：`extract/quest/gridfight/index.ts`，主入口 `extractGridFightData`�
 | 增补 | 来源 |
 |------|------|
 | `avatarId` | `RoleBasicInfo.AvatarID` |
+| `seasonId` | `RoleBasicInfo.SeasonID`，4.7 原生角色记录已按不同 ID 区分赛季 |
+| `detailPath` | 同一 ID 的后续赛季详情路径，相对于 `gridfight/`。省略时从 `roles/<id>.json` 读取 |
 | `cost` | `RoleBasicInfo.Rarity` |
 | `frontBackType` | 缺省 `Both` |
 | `traitIds` / `chargeTypes` / `skillTag` / `displayTags` | BasicInfo + SkillDisplay |
@@ -287,15 +299,17 @@ Runner：`extract/quest/gridfight/index.ts`，主入口 `extractGridFightData`�
 
 ### 4.3 其它输出类型
 
-**`HsrGridFightEquip`**（`IMetadataEntity`）：`category` / `dressRule` / `equipFunc` + 参数、`properties`、`tags`、`craft.costIds`、`recommendRoleIds`。无分类时 `category=""`。星徽为 `category === "Emblem"`，加入的羁绊在 `equipFuncParams[0]`。
+**`HsrGridFightEquip`**（`IMetadataEntity`）：`category` / `dressRule` / `equipFunc` + 参数、`properties`、`tags`、`recommendRoleIds`。无分类时 `category=""`。星徽为 `category === "Emblem"`，加入的羁绊在 `equipFuncParams[0]`。装备 `seasonId` 来自 `GridFightSeasonItem`。`crafts[]` 保留同一成品在该赛季的全部配方与材料，各配方的 `seasonId` 来自 `GridFightSeasonCraft`。兼容字段 `craft` 保留本赛季最后一条配方。
 
 **`HsrGridFightTrait`**：`traitType`（省略补 `Origin`）、`layers[]`（`quality` 省略补 `Copper`）、`effects[]`（含分层 `params`）、`roleIds` 反查。
 
-**`HsrGridFightDivision`**：Info ⋈ Stage ⋈ LevelShow；`abbr` 来自 LevelShow；`difficultyByChapter` 按 `EnemyDifficultyLevel` 展开三位面；`binaryDiffAdds` 按规则 ID 展开。词条、阵营分文件，不嵌进职级。
+**`HsrGridFightDivision`** 通过 `Info.ID = Stage.DivisionID` 关联阶段，再通过 `SeasonID + DivisionLevel` 关联 LevelShow。`abbr` 来自 LevelShow。`difficultyByChapter` 按 `EnemyDifficultyLevel` 展开三位面，包含 4.7 新增的 `allDamageReduce`。`binaryDiffAdds` 按规则 ID 展开。`counterMulti` 和 `params` 分别来自 Stage 的 `LevelBaseCounterMultiRatio` 与 `EffectParamList`。词条和阵营独立输出。
+
+**`HsrGridFightCamp`** 通过 `Camp.ID = CampSeason.CampID` 展开赛季，各季 `monsterIds` 使用 `GridFightCampSeason.MonsterList`。
 
 **`HsrGridFightAffix`**：`params` ← `EffectParamList`，`mazeBuffIds` ← `RuleParamList`，`isInvasion` 标记贪饕污染词条 1006–1009。
 
-**`HsrGridFightPortal` / `HsrGridFightAugment`**：赛季 ID 列表、效果参数、羁绊引用；Portal 可嵌 `npcs`、`presents`。
+**`HsrGridFightPortal` / `HsrGridFightAugment`**：按各自赛季池展开，每行含单个 `seasonId`、效果参数和羁绊引用。Portal 可嵌 `npcs`、`presents`。
 
 属性统一为 `{ type, value? }`（`HsrGridFightProperty`），空 `Value` 的占位行丢弃。
 
@@ -305,7 +319,7 @@ Schema 按表一字镜像，目录 `packages/cli-hsr/schema/GridFight*.ts`。枚
 
 `GridFightPreset`、`GridFightRoleSkillTag`、`GridFightChargeType`、`GridFightEquipCategory`、`GridFightEquipDressType`、`GridFightEquipFuncType`、`GridFightTraitType`、`GridFightTraitEffectType`、`GridFightTrailLayerQuality`、`GridFightAugmentQuality`、`GridFightTraitActivationType`、`GridFightPropertyBindType`、`GridFightSkillModifyOp`。
 
-TextMap 标签：`gridfight_role` / `gridfight_equip` / `gridfight_trait` / `gridfight_division` / `gridfight_affix` / `gridfight_camp` / `gridfight_portal` / `gridfight_augment`；技能加 `skill`，装备加 `item`。
+TextMap 标签：`gridfight_season` / `gridfight_role` / `gridfight_equip` / `gridfight_trait` / `gridfight_division` / `gridfight_affix` / `gridfight_camp` / `gridfight_portal` / `gridfight_augment`；技能加 `skill`，装备加 `item`。
 
 图标：角色头像/立绘与标准角色相同；`SkillIcons/Avatar/**` 技能/命座走 `srtools`；路径落在 `GridFight/**` 的技能图标必须走 `cdn2.dicloud.work` 的 png（`getSkillIconUrl`），不能走 srtools，否则会变成 neonteam webp 下载不到。其它玩法资源 `GridFight/**.png` → `cdn2.../gridfight/`。
 

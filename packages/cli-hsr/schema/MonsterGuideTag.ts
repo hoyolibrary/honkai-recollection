@@ -1,5 +1,5 @@
 /**
- * 对齐 DummyDll 中的 RPG.GameCore.MonsterGuideTagRow。
+ * 对齐 DummyDll 中的 RPG.GameCore.MonsterGuideTagConfigRow。
  * 首领特性条目：名称 + 简介富文本（#N[i] 占位符由 ParameterList 插值）。
  */
 export interface MonsterGuideTag {

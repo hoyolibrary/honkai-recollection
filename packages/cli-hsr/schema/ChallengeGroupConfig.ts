@@ -14,6 +14,7 @@ export interface ChallengeGroupConfig {
   PreMissionID: number;
   /** 非空即分期更新的混沌回忆期；空为固定内容（回忆 100 / 活动变体 900），提取时按此过滤 */
   ScheduleDataID?: number;
+  GlobalScheduleID?: number;
   /** 期级 MazeBuff（记忆紊流，各期独立） */
   MazeBuffID?: number;
   MapEntranceID: number;

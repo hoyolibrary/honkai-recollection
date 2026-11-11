@@ -6,7 +6,6 @@ import type { GridFightRoleSkillTag } from "./enum/GridFightRoleSkillTag";
 export interface GridFightRoleBasicInfo {
   ID: number;
   AvatarID: number;
-  SeasonIDList: number[];
   FrontBackType?: GridFightPreset;
   Rarity: number;
   HealOrShieldDisplay: GridFightRoleSkillTag;
@@ -18,7 +17,7 @@ export interface GridFightRoleBasicInfo {
   BackendRankList: number[];
   SpecialAvatarID: number;
   SeasonID: number;
-  RoleSavedValueList: string[];
   EquipmentID?: number;
   IsExpert?: number;
+  IsFakeAvatar?: number;
 }

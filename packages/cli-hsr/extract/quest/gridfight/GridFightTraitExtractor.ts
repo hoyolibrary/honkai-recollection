@@ -37,12 +37,6 @@ export class GridFightTraitExtractor {
     const effectById = Object.fromEntries(this.effects.map(e => [e.ID, e]));
     const effectLayersById = _.groupBy(this.effectLayers, e => e.ID);
     const buffById = Object.fromEntries(this.buffs.filter(buff => buff.Lv === 1).map(buff => [buff.ID, buff]));
-    const membersByTrait: Record<number, number[]> = {};
-    for (const role of this.roles) {
-      for (const traitId of role.TraitList || []) {
-        (membersByTrait[traitId] ||= []).push(role.ID);
-      }
-    }
 
     const data = this.traits.map(d => {
       tag(this.lang, d.TraitName?.Hash, "GridFightTraitBasicInfo", "gridfight_trait", d.ID);
@@ -108,7 +102,8 @@ export class GridFightTraitExtractor {
         beIds: d.BEIDList?.length ? d.BEIDList : undefined,
         layers,
         effects,
-        roleIds: membersByTrait[d.ID] || [],
+        roleIds: this.roles.filter(row => row.SeasonID === d.SeasonID && row.TraitList?.includes(d.ID))
+          .map(row => row.ID),
       } as HsrGridFightTrait;
     });
 

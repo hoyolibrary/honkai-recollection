@@ -22,4 +22,5 @@ export type AvatarSkillTreeAnchorType =
   | "Point19"
   | "Point20"
   | "Point21"
-  | "Point22";
+  | "Point22"
+  | "Point23";

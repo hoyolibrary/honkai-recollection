@@ -228,7 +228,7 @@ export class AvatarExtractor {
         avatar.versions.push({
           id: version.id,
           isEnhanced: version.isEnhanced,
-          maxSp: item.SPNeed?.Value ?? null,
+          maxSp: version.SPNeed?.Value,
           ...skillInfo,
           ...rankInfo,
           ...skillTreeInfo,

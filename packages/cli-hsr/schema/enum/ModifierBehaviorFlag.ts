@@ -142,4 +142,7 @@ export type ModifierBehaviorFlag =
   | "CustomEvent_InfiniteDoSummon"
   | "CustomEvent_TargetStancePreshow"
   | "CustomEvent_RogueMagicDelayUnit"
-  | "AntiDebuffResist_CTRL";
+  | "AntiDebuffResist_CTRL"
+  | "SingleBlock"
+  | "MuteHitAdditive"
+  | "MechanicShield";

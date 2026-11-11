@@ -14,4 +14,6 @@ export interface MonsterGuideConfig {
   PhaseList: number[];
   DifficultyGuideList: number[];
   TextGuideList: number[];
+  /** DummyDll 字段，当前 JSON 数据未观测 */
+  BriefGuide?: { Hash: bigint };
 }

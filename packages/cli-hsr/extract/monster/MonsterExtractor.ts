@@ -44,7 +44,7 @@ export class MonsterExtractor {
         id: d.MonsterID,
         code: d.MonsterID + "",
         name: TextMap.getText(this.lang, d.MonsterName.Hash),
-        desc: TextMap.getText(this.lang, d.MonsterIntroduction.Hash),
+        desc: TextMap.getText(this.lang, d.MonsterIntroduction?.Hash),
         monsterTemplateId: d.MonsterTemplateID,
         eliteGroup: d.EliteGroup,
         hardLevelGroup: d.HardLevelGroup,
@@ -83,7 +83,7 @@ export class MonsterExtractor {
         },
         tags: ["monster"],
       });
-      TextMap.setTagInfo(this.lang, d.MonsterIntroduction.Hash, {
+      TextMap.setTagInfo(this.lang, d.MonsterIntroduction?.Hash, {
         category: {
           monster: d.MonsterID + "",
           type: "MonsterConfig",
@@ -117,8 +117,8 @@ export class MonsterExtractor {
       m.skills = monster.skills.map(s => {
         const skill: HsrMonsterSkill = {
           id: s.SkillID,
-          name: TextMap.getText(this.lang, s.SkillName.Hash),
-          desc: TextMap.getText(this.lang, s.SkillDesc.Hash),
+          name: TextMap.getText(this.lang, s.SkillName?.Hash),
+          desc: TextMap.getText(this.lang, s.SkillDesc?.Hash),
           attackType: s.AttackType,
           typeText: TextMap.getText(this.lang, s.SkillTypeDesc.Hash),
           triggerKey: s.SkillTriggerKey,
@@ -128,14 +128,14 @@ export class MonsterExtractor {
           phaseList: s.PhaseList,
         };
 
-        TextMap.setTagInfo(this.lang, s.SkillName.Hash, {
+        TextMap.setTagInfo(this.lang, s.SkillName?.Hash, {
           category: {
             monster: monster.MonsterID + "",
             type: "MonsterSkillConfig",
           },
           tags: ["skill", "monster"],
         });
-        TextMap.setTagInfo(this.lang, s.SkillDesc.Hash, {
+        TextMap.setTagInfo(this.lang, s.SkillDesc?.Hash, {
           category: {
             monster: monster.MonsterID + "",
             type: "MonsterSkillConfig",

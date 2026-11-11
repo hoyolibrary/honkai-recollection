@@ -1,4 +1,4 @@
-/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeStoryThemeRow。 */
+/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeStoryThemeConfigRow。 */
 export interface ChallengeStoryTheme {
   ThemeID: number;
   ThemePanelPrefabPath: string;

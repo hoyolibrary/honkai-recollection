@@ -9,4 +9,8 @@ export interface ChallengeTargetConfig {
   };
   RewardID: number;
   ChallengeTargetParam1?: number;
+  /** DummyDll 字段，当前 JSON 数据未观测 */
+  ChallengeTargetParam2?: number;
+  /** DummyDll 字段，当前 JSON 数据未观测 */
+  ChallengeTargetParam3?: number;
 }

@@ -1,6 +1,6 @@
 import type { ChallengeGroupType } from "./enum/ChallengeGroupType";
 
-/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeStoryGroupConfigRow。 */
+/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeGroupConfigRow。 */
 export interface ChallengeStoryGroupConfig {
   GroupID: number;
   GroupName: {

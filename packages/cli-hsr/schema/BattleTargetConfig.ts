@@ -21,5 +21,5 @@ export interface BattleTargetConfig {
   SkipWhenSuccessOnEnterBattle?: boolean;
   ShowInScoreCounter?: boolean;
   IsFixableHeight?: boolean;
-  IsShowProgress?: boolean;
+  IsShowProgress?: number;
 }

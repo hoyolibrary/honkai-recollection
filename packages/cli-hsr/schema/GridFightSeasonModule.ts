@@ -6,5 +6,4 @@ export interface GridFightSeasonModule {
   MaxRewardExp: number;
   OfferingID: number;
   ActivityQuestConfigID: number;
-  GirlHeroSpecialAvatarId: number;
 }

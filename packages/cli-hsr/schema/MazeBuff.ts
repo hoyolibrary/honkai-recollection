@@ -1,3 +1,5 @@
+import type { MazeBuffUseType } from "./enum/MazeBuffUseType";
+
 /** 对齐 DummyDll 中的 RPG.GameCore.MazeBuffRow。 */
 export interface MazeBuff {
   ID: number;
@@ -6,7 +8,7 @@ export interface MazeBuff {
   Lv: number;
   LvMax: number;
   ModifierName: string;
-  InBattleBindingType: string;
+  InBattleBindingType?: string;
   InBattleBindingKey: string;
   ParamList: {
     Value: number;
@@ -24,9 +26,13 @@ export interface MazeBuff {
   BuffEffect: string;
   MazeBuffType: string;
   MazeBuffIconType: string;
-  DisplayType: string;
-  IsDisplayEnvInLevel: boolean;
-  MazeBuffPool?: number[];
+  DisplayType?: string;
+  IsDisplayEnvInLevel?: boolean;
+  MazeBuffPool?: number;
+  /** DummyDll 字段，当前 JSON 数据未观测 */
+  BuffDescParamByAvatarSkillID?: number;
+  /** DummyDll 字段，当前 JSON 数据未观测 */
+  UseType?: MazeBuffUseType;
   BuffSimpleDesc?: {
     Hash: bigint;
   };

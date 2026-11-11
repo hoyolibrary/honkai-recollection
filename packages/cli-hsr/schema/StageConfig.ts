@@ -1,5 +1,5 @@
 /**
- * 对齐 DummyDll 中的 RPG.GameCore.StageConfigRow。
+ * 对齐 DummyDll 中的 RPG.GameCore.StageRow。
  * 仅镜像挑战提取所需字段子集（全表 29303 行，其余字段见原始 JSON）；
  * 非挑战类 Stage 行可能缺省 Level/分组字段，故标可选。
  */

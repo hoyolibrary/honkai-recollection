@@ -14,6 +14,12 @@ export function values(list?: { Value: number }[]): number[] {
   return (list ?? []).map(p => p.Value);
 }
 
+/** 每个赛季生成一条记录；无归属的原始记录保留一条。 */
+export function gridFightSeasonIds(ids: (number | undefined)[]): (number | undefined)[] {
+  const seasons = [...new Set(ids.filter((id): id is number => id != null))];
+  return seasons.length ? seasons : [undefined];
+}
+
 export function mapProperties(
   list?: GridFightPropertyValue[],
 ): HsrGridFightProperty[] | undefined {

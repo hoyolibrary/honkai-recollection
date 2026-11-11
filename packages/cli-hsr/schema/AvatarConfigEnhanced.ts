@@ -6,7 +6,7 @@ export interface AvatarConfigEnhanceableInfo {
   AvatarID: number;
   JsonPath: string;
   AIPath: string;
-  SPNeed: { Value: number };
+  SPNeed?: { Value: number };
   RankIDList: number[];
   SkillList: number[];
 }

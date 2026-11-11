@@ -100,15 +100,15 @@ export interface RoguePersonaStyle {
     Hash: bigint;
   };
   /** 特性 */
-  NMAHGFAPENI: {
+  NMAHGFAPENI?: {
     Hash: bigint;
   };
   /** 愿力获取 */
-  PJNNPOKJEFD: {
+  PJNNPOKJEFD?: {
     Hash: bigint;
   };
   /** 面具效果（技能） */
-  FBOICELIKNJ: {
+  FBOICELIKNJ?: {
     Hash: bigint;
   };
   /** params （{@link PJNNPOKJEFD}和{@link FBOICELIKNJ}共用） */
@@ -119,7 +119,7 @@ export interface RoguePersonaStyle {
   JJKLIJNFIBB?: number;
   JEHDKAKMCGC: number[];
   /** visible */
-  GIFCDPFAKKP: boolean;
+  GIFCDPFAKKP?: boolean;
   PILOLAAEAHB: number;
 
   /** DummyDll 字段，当前 JSON 数据未观测 */
@@ -132,7 +132,7 @@ export interface RoguePersonaStyle {
 export interface RogueTournUnlock {
   RogueUnlockID: number;
   UnlockFinishWay: number;
-  RogueUnlockDetail: {
+  RogueUnlockDetail?: {
     Hash: bigint;
   };
 }

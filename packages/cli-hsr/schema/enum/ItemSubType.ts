@@ -54,4 +54,8 @@ export type ItemSubType =
   | "Mission"
   | "RelicSetShowOnly"
   | "RelicRarityShowOnly"
-  | "NormalPet";
+  | "NormalPet"
+  | "Fiat"
+  | "Badge"
+  | "AvatarExRankMaterial"
+  | "BlindBoxPet";

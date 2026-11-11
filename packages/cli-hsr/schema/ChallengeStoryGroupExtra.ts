@@ -1,6 +1,6 @@
 import type { ChallengeStoryType } from "./enum/ChallengeStoryType";
 
-/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeStoryGroupExtraRow。 */
+/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeStoryGroupExtraConfigRow。 */
 export interface ChallengeStoryGroupExtra {
   GroupID: number;
   ThemeToastPicPath: string;

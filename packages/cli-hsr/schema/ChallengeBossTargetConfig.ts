@@ -1,6 +1,6 @@
 import type { ChallengeTargetType } from "./enum/ChallengeTargetType";
 
-/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeBossTargetConfigRow。 */
+/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeTargetConfigRow。 */
 export interface ChallengeBossTargetConfig {
   ID: number;
   ChallengeTargetType: ChallengeTargetType;

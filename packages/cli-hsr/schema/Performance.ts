@@ -84,7 +84,7 @@ export interface PerformanceReplayOverride {
   Desc?: { Hash: bigint };
 }
 
-/** 对齐 DummyDll 中的 RPG.GameCore.PerformanceSkipFlagC/D/E。（推断） */
+/** 对齐 DummyDll 中的 RPG.GameCore.PerformanceSkipCRow / PerformanceSkipDRow / PerformanceSkipERow 的公共字段。 */
 export interface PerformanceSkipFlag {
   PerformanceID: number;
   Skippable?: boolean;

@@ -28,6 +28,7 @@ export interface AvatarSkillConfig {
   };
   RatedSkillTreeID: number[];
   RatedRankID: number[];
+  RelatedExRankIDList: number[];
   ExtraEffectIDList: number[];
   SimpleExtraEffectIDList: number[];
   ShowStanceList: { Value: number }[];
@@ -84,6 +85,7 @@ export interface AvatarUltraSkillConfig {
   AvatarID: number;
   UltraSkillType?: AvatarSpecialUltraType;
   UltraSkillResourcePath: string;
+  SpecialSPSkills: string[];
   UltraSkillUse?: {
     Hash: bigint;
   };
@@ -92,7 +94,7 @@ export interface AvatarUltraSkillConfig {
 /** 对齐 DummyDll 中的 RPG.GameCore.ElationSkillRow。 */
 export interface ElationSkill {
   ElationSkillID: number;
-  PriorityValue: number;
+  PriorityValue?: number;
 }
 
 /** 对齐 DummyDll 中的 GHPFNOBNMAJ（混淆类型）。 */

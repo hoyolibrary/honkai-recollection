@@ -5,7 +5,7 @@ import type { GridFightPresentConfig } from "schema/GridFightPresentConfig";
 import type { GridFightSeasonPortal } from "schema/GridFightSeasonPortal";
 import type { HsrGridFightPortal } from "@game/games/hsr/quest/gridfight";
 import TextMap from "../../../text";
-import { gridFightUrl, readExcel, tag, values } from "./common";
+import { gridFightSeasonIds, gridFightUrl, readExcel, tag, values } from "./common";
 
 export class GridFightPortalExtractor {
   private lang: string;
@@ -42,7 +42,7 @@ export class GridFightPortalExtractor {
       };
     });
 
-    const data = this.portals.map(d => {
+    const data = this.portals.flatMap(d => {
       tag(this.lang, d.PortalBuffTitle?.Hash, "GridFightPortalBuff", "gridfight_portal", d.ID);
       tag(this.lang, d.PortalBuffDesc?.Hash, "GridFightPortalBuff", "gridfight_portal", d.ID);
 
@@ -63,7 +63,7 @@ export class GridFightPortalExtractor {
         })
         .filter((n): n is NonNullable<typeof n> => !!n);
 
-      return {
+      const portal: HsrGridFightPortal = {
         id: d.ID,
         code: d.ID + "",
         name: TextMap.getText(this.lang, d.PortalBuffTitle?.Hash),
@@ -76,12 +76,13 @@ export class GridFightPortalExtractor {
         showBonusId: d.ShowBonusID,
         showBonusIds: d.ShowBonusIDList?.length ? d.ShowBonusIDList : undefined,
         delayedShowBonus: d.DelayedShowBonus?.length ? d.DelayedShowBonus : undefined,
-        seasonIds: (seasonsByPortal[d.ID] || []).map(s => s.SeasonID),
         refTraitIds: d.PortalGameRefTrait?.length ? d.PortalGameRefTrait : undefined,
         presents: d.ID === 134 && presents.length ? presents : undefined,
-      } as HsrGridFightPortal;
+      };
+      return gridFightSeasonIds((seasonsByPortal[d.ID] ?? []).map(s => s.SeasonID))
+        .map(seasonId => ({ ...portal, seasonId }));
     });
 
-    return _.sortBy(data, "id");
+    return _.sortBy(data, ["id", "seasonId"]);
   }
 }

@@ -6,4 +6,5 @@ export type HealFormulaType =
   | "HealByTargetMaxHP"
   | "HealByTargetLostHP"
   | "HealByBaseValue"
-  | "HealByBaseValueWithBonus";
+  | "HealByBaseValueWithBonus"
+  | "HealByTargetMaxHPExceptDirtyHP";

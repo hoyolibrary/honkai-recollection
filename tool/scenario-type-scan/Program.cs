@@ -35,6 +35,9 @@ if (mode == "fields")
     return FieldsMode.Run(dllDir, matcher, outFile);
 }
 
+if (mode is not ("summary" or "carriers" or "structural" or "core-list" or "inventory-json"))
+    return UnknownMode(mode);
+
 var scan = StoryJsonScanner.Scan(dataRoot);
 using var index = AssemblyIndex.Load(dllDir);
 

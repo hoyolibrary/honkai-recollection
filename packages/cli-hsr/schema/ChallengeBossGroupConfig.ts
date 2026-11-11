@@ -1,4 +1,4 @@
-/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeBossGroupConfigRow。 */
+/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeGroupConfigRow。 */
 export interface ChallengeBossGroupConfig {
   GroupID: number;
   /** 未完整配置的预告期可缺省 */

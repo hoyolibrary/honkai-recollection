@@ -15,4 +15,5 @@ export type AttackType =
   | "Servant"
   | "TrueDamage"
   | "ElationDamage"
-  | "Assist";
+  | "Assist"
+  | "_Count";

@@ -1,2 +1,2 @@
-/** 对齐 DummyDll 中的 RPG.GameCore.GridFightTraitActivationType。 */
-export type GridFightTraitActivationType = "GreaterEqualThan";
+/** 对齐 DummyDll 中的 RPG.GameCore.GridFightActivationType。 */
+export type GridFightTraitActivationType = "GreaterEqualThan" | "GreaterThan" | "Equal";

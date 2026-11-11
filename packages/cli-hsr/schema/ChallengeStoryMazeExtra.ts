@@ -1,4 +1,4 @@
-/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeStoryMazeExtraRow。 */
+/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeStoryMazeExtraConfigRow。 */
 export interface ChallengeStoryMazeExtra {
   /** 层 ID，对应 ChallengeStoryMazeConfig.ID */
   ID: number;

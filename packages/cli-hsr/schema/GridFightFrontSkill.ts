@@ -3,7 +3,7 @@ import type { AttackType } from "./enum/AttackType";
 import type { SkillEffect } from "./enum/SkillEffect";
 import type { AvatarSkillShowDamage, AvatarSkillShowHeal } from "./AvatarSkillConfig";
 
-/** 对齐 DummyDll 中的 RPG.GameCore.GridFightFrontSkillConfigRow。结构镜像 AvatarSkillRow，主键 SkillID + Level。 */
+/** 对齐 DummyDll 中的 RPG.GameCore.AvatarSkillRow。货币战争前台技能表，主键 SkillID + Level。 */
 export interface GridFightFrontSkill {
   SkillID: number;
   SkillName?: {
@@ -29,6 +29,7 @@ export interface GridFightFrontSkill {
   };
   RatedSkillTreeID: number[];
   RatedRankID: number[];
+  RelatedExRankIDList: number[];
   ExtraEffectIDList: number[];
   SimpleExtraEffectIDList: number[];
   ShowStanceList: { Value: number }[];

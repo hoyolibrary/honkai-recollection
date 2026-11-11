@@ -6,7 +6,7 @@ export interface GridFightDivisionInfo {
   DivisionRewardQuest: number[];
   DivisionIcon: string;
   DivisionShowPic: string;
-  DivisionName: {
+  DivisionName?: {
     Hash: bigint;
   };
   DivisionLevel?: number;

@@ -6,9 +6,11 @@ import type { GridFightEquipment } from "schema/GridFightEquipment";
 import type { GridFightEquipRecommendRole } from "schema/GridFightEquipRecommendRole";
 import type { GridFightEquipTag } from "schema/GridFightEquipTag";
 import type { GridFightItems } from "schema/GridFightItems";
-import type { HsrGridFightEquip } from "@game/games/hsr/quest/gridfight";
+import type { GridFightSeasonItem } from "schema/GridFightSeasonItem";
+import type { GridFightSeasonCraft } from "schema/GridFightSeasonCraft";
+import type { HsrGridFightCraft, HsrGridFightEquip } from "@game/games/hsr/quest/gridfight";
 import TextMap from "../../../text";
-import { gridFightUrl, mapProperties, readExcel, tag, values } from "./common";
+import { gridFightSeasonIds, gridFightUrl, mapProperties, readExcel, tag, values } from "./common";
 
 export class GridFightEquipExtractor {
   private lang: string;
@@ -21,6 +23,8 @@ export class GridFightEquipExtractor {
   categories: GridFightEquipCategoryInfo[] = [];
   tags: GridFightEquipTag[] = [];
   crafts: GridFightCraftConfig[] = [];
+  seasonItems: GridFightSeasonItem[] = [];
+  seasonCrafts: GridFightSeasonCraft[] = [];
   elationEquips: GridFightElationEquip[] = [];
   recommendRoles: GridFightEquipRecommendRole[] = [];
 
@@ -30,6 +34,8 @@ export class GridFightEquipExtractor {
     this.categories = await readExcel("GridFightEquipCategoryInfo");
     this.tags = await readExcel("GridFightEquipTag");
     this.crafts = await readExcel("GridFightCraftConfig");
+    this.seasonItems = await readExcel("GridFightSeasonItem");
+    this.seasonCrafts = await readExcel("GridFightSeasonCraft");
     this.elationEquips = await readExcel("GridFightElationEquip");
     this.recommendRoles = await readExcel("GridFightEquipRecommendRole");
     await TextMap.loadMap(this.lang);
@@ -40,19 +46,30 @@ export class GridFightEquipExtractor {
     const equipById = Object.fromEntries(this.equips.map(e => [e.ID, e]));
     const catById = Object.fromEntries(this.categories.map(c => [c.EquipCategory, c]));
     const tagById = Object.fromEntries(this.tags.map(t => [t.TagID, t]));
-    const craftByDest = Object.fromEntries(this.crafts.map(c => [c.CraftEquipID, c]));
+    const craftsByDest = _.groupBy(this.crafts, c => c.CraftEquipID);
+    const seasonsByCraft = _.groupBy(this.seasonCrafts, s => s.CraftID);
     const elationById = Object.fromEntries(this.elationEquips.map(e => [e.ID, e]));
-    const recById = Object.fromEntries(this.recommendRoles.map(r => [r.EquipID, r]));
+    const recByKey = Object.fromEntries(this.recommendRoles.map(r => [`${r.Season}_${r.EquipID}`, r]));
 
     const ids = _.uniq([...this.items.map(i => i.ID), ...this.equips.map(e => e.ID)]);
+    const referencedConfigs = new Set(this.seasonItems.map(s => s.ConfigID));
+    const seasonalItemIds = new Set(this.seasonItems.map(s => s.ItemID));
+    const versions = [
+      ...this.seasonItems.map(s => ({ id: s.ItemID, configId: s.ConfigID, seasonId: s.SeasonID })),
+      ...ids.filter(id => !referencedConfigs.has(id) && !seasonalItemIds.has(id))
+        .map(id => ({ id, configId: id, seasonId: undefined })),
+    ];
 
-    const data = ids.map(id => {
-      const item = itemById[id];
-      const equip = equipById[id];
+    const data = versions.map(({ id, configId, seasonId }) => {
+      const item = itemById[configId];
+      const equip = equipById[configId];
       const cat = equip ? catById[equip.EquipCategory] : undefined;
-      const elation = elationById[id];
-      const craft = craftByDest[id];
-      const rec = recById[id];
+      const elation = elationById[configId];
+      const crafts: HsrGridFightCraft[] = (craftsByDest[id] ?? []).flatMap(c =>
+        gridFightSeasonIds((seasonsByCraft[c.CraftID] ?? []).map(s => s.SeasonID))
+          .map(seasonId => ({ id: c.CraftID, costIds: c.CostEquipList || [], seasonId })),
+      );
+      const rec = recByKey[`${seasonId}_${id}`];
 
       const elationDesc = TextMap.getText(this.lang, elation?.ElationEquipDesc?.Hash);
       const desc = TextMap.getText(this.lang, equip?.EquipDesc?.Hash) || undefined;
@@ -79,6 +96,7 @@ export class GridFightEquipExtractor {
         tag(this.lang, cat.CategoryName.Hash, "GridFightEquipCategoryInfo", "gridfight_equip", id, ["item"]);
       }
 
+      const seasonCrafts = crafts.filter(craft => craft.seasonId === seasonId);
       return {
         id,
         code: id + "",
@@ -99,16 +117,13 @@ export class GridFightEquipExtractor {
         params: equip?.ParamList?.length ? values(equip.ParamList) : undefined,
         effectParams: equip?.EffectParamList?.length ? values(equip.EffectParamList) : undefined,
         tags: tags.length ? tags : undefined,
-        craft: craft
-          ? {
-              id: craft.CraftID,
-              costIds: craft.CostEquipList || [],
-            }
-          : undefined,
         recommendRoleIds: rec?.RecommendRoleIDList?.length ? rec.RecommendRoleIDList : undefined,
+        seasonId,
+        crafts: seasonCrafts.length ? seasonCrafts : undefined,
+        craft: seasonCrafts.at(-1),
       } as HsrGridFightEquip;
     });
 
-    return _.sortBy(data, "id");
+    return _.sortBy(data, ["id", "seasonId"]);
   }
 }

@@ -30,4 +30,6 @@ export type ConditionType =
   | "OfferingLevel"
   | "LimaoCondition"
   | "AvatarPathUnlock"
-  | "ActivityInSchedule";
+  | "ActivityInSchedule"
+  | "ActivityMainPageUnlock"
+  | "AvatarEidolon";

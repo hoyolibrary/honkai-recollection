@@ -1,6 +1,6 @@
 import type { AttackDamageType } from "./enum/AttackDamageType";
 
-/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeBossMazeConfigRow。 */
+/** 对齐 DummyDll 中的 RPG.GameCore.ChallengeMazeConfigRow。 */
 export interface ChallengeBossMazeConfig {
   ID: number;
   /** 未完整配置的预告层可缺省 */

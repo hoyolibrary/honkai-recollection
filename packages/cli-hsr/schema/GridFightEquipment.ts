@@ -2,8 +2,10 @@ import type { GridFightEquipCategory } from "./enum/GridFightEquipCategory";
 import type { GridFightEquipDressType } from "./enum/GridFightEquipDressType";
 import type { GridFightEquipFuncType } from "./enum/GridFightEquipFuncType";
 import type { GridFightPropertyValue } from "./GridFightRoleStar";
+import type { GridFightEquipDisplaySpecialParamType } from "./enum/GridFightEquipDisplaySpecialParamType";
+import type { GridFightEquipType } from "./enum/GridFightEquipType";
 
-/** 对齐 DummyDll 中的 RPG.GameCore.GridFightEquipItemConfig。与 GridFightItems 等 ID。 */
+/** 对齐 DummyDll 中的 RPG.GameCore.GridFightEquipConfigRow。 */
 export interface GridFightEquipment {
   ID: number;
   DressRuleParamList: number[];
@@ -20,6 +22,7 @@ export interface GridFightEquipment {
     Hash: bigint;
   };
   EquipFunc?: GridFightEquipFuncType;
-  EquipType?: string;
+  EquipType?: GridFightEquipType;
   IsDisplaySpecialParam?: boolean;
+  DisplaySpecialParam?: GridFightEquipDisplaySpecialParamType;
 }

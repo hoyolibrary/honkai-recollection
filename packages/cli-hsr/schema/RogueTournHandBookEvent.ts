@@ -1,4 +1,6 @@
+/** 对齐 DummyDll 中的 AJMGAPOCNJK（混淆类型）。 */
 export interface RogueTournHandBookEventNPCProgress {
+  FIJLEDEKBJP?: number;
   /** 对应 RogueTournNPC.RogueNPCID，即图鉴解锁进度关联的 NPC 配置 ID。 */
   FDOELDMEBPE: number;
 }

@@ -1,16 +1,21 @@
 /** 对齐 DummyDll 中的 RPG.GameCore.GridFightEquipCategory。 */
 export type GridFightEquipCategory =
+  | "None"
   | "Basic"
   | "Craftable"
-  | "Radiant"
   | "Emblem"
-  | "TraitSpecial"
   | "Crown"
+  | "TraitSpecial"
   | "Artifacts"
+  | "Radiant"
   | "Support"
-  | "Hack"
-  | "FateEquip"
+  | "Other"
   | "Material"
   | "Trash"
   | "GoldTrash"
-  | "Other";
+  | "Hack"
+  | "FateEquip"
+  | "Intrinsic"
+  | "SpotLightEquip"
+  | "Food"
+  | "Trailblaze";

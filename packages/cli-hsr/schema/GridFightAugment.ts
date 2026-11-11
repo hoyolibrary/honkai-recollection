@@ -18,7 +18,6 @@ export interface GridFightAugment {
   IsOCEffective?: number;
   JsonPath: string;
   EffectParamList: { Value: number }[];
-  AugmentSavedValueList: string[];
   AugmentGameRefTrait: number[];
   AugmentGameRefScore: number[];
 }

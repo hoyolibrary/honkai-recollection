@@ -1,2 +1,2 @@
 /** 对齐 DummyDll 中的 RPG.GameCore.GridFightAugmentQuality。 */
-export type GridFightAugmentQuality = "Silver" | "Gold" | "Prismatic";
+export type GridFightAugmentQuality = "None" | "Silver" | "Gold" | "Prismatic";

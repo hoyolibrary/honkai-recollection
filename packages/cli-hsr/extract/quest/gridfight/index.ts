@@ -10,10 +10,14 @@ import { GridFightTraitExtractor } from "./GridFightTraitExtractor";
 import { GridFightDivisionExtractor } from "./GridFightDivisionExtractor";
 import { GridFightPortalExtractor } from "./GridFightPortalExtractor";
 import { GridFightAugmentExtractor } from "./GridFightAugmentExtractor";
+import { getGridFightSeasons } from "./seasons";
 
 export async function extractGridFightData(lang: string, rootPath: string) {
   const outpath = path.join(rootPath, `./${lang}/gridfight`);
   await fs.mkdir(outpath, { recursive: true });
+
+  const seasons = await getGridFightSeasons(lang);
+  await fs.writeFile(path.join(outpath, "index.json"), JSONBig.stringify(seasons, null, 2));
 
   const roleExtractor = new GridFightRoleExtractor(lang);
   console.log("加载货币战争角色数据");
@@ -26,8 +30,10 @@ export async function extractGridFightData(lang: string, rootPath: string) {
   const result = await forEachAsync(
     roles,
     async (role, _, signal) => {
+      const filepath = path.join(outpath, role.detailPath ?? `roles/${role.id}.json`);
+      if (role.detailPath) await fs.mkdir(path.dirname(filepath), { recursive: true });
       await fs.writeFile(
-        path.join(roleDir, role.id + ".json"),
+        filepath,
         JSONBig.stringify(role, null, 2),
         { signal },
       );
