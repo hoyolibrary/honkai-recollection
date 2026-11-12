@@ -1,11 +1,11 @@
-import type { IMetadataEntity } from "@game/common/IEntity";
+import type { HsrSeason } from "@game/games/hsr/HsrSeason";
 import type { ActivityConfig } from "schema/ActivityConfig";
 import type { ActivityPanel } from "schema/ActivityPanel";
 import type { GridFightSeasonModule } from "schema/GridFightSeasonModule";
 import TextMap from "../../../text";
 import { readExcel, tag } from "./common";
 
-export async function getGridFightSeasons(lang: string): Promise<IMetadataEntity<number>[]> {
+export async function getGridFightSeasons(lang: string): Promise<HsrSeason[]> {
   const [modules, activities, panels] = await Promise.all([
     readExcel<GridFightSeasonModule>("GridFightSeasonModule"),
     readExcel<ActivityConfig>("ActivityConfig"),
@@ -39,11 +39,17 @@ export async function getGridFightSeasons(lang: string): Promise<IMetadataEntity
     if (match && !seasons.get(Number(match[1]))) seasons.set(Number(match[1]), panel);
   }
 
-  return Array.from(seasons, ([id, panel]) => {
-    tag(lang, panel?.TabName?.Hash, "ActivityPanel", "gridfight_season", id);
-    tag(lang, panel?.TitleName?.Hash, "ActivityPanel", "gridfight_season", id);
+  return Array.from(seasons, ([season, panel]) => {
+    tag(lang, panel?.TabName?.Hash, "ActivityPanel", "gridfight_season", season);
+    tag(lang, panel?.TitleName?.Hash, "ActivityPanel", "gridfight_season", season);
     const name = TextMap.getText(lang, panel?.TabName?.Hash)
       || TextMap.getText(lang, panel?.TitleName?.Hash);
-    return { id, name };
-  }).sort((a, b) => a.id - b.id);
+    // 面板可能被多个赛季复用，货币战争以 season 生成唯一索引 id。
+    return {
+      id: season,
+      season,
+      name,
+      icon: `https://cdn2.dicloud.work/static/mihoyo-tools/hsr/ui/tabicon/gridfight/GridFightS${season}.png`,
+    };
+  }).sort((a, b) => a.season - b.season);
 }

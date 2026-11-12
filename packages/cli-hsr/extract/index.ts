@@ -4,6 +4,7 @@ import fs from "fs";
 import { extractLightconeData } from "./lightcone";
 import { extractDiceCombatData } from "./quest/dicecombat";
 import { extractGridFightData } from "./quest/gridfight";
+import { mergeGridFightPropertyTranslations, type GridFightPropertyTranslations } from "./quest/gridfight/properties";
 import { extractDictData } from "./dict";
 import { extractStatusData } from "./status";
 import { extractItemsData } from "./item";
@@ -68,6 +69,8 @@ const allDict = {
   statuses: [],
 } as Record<string, HsrDictItem<IMetadataEntity>[]>;
 
+const gridFightProperties = new Map<string, GridFightPropertyTranslations>();
+
 for (const lang of langs) {
   console.log(`—— ${lang} ——`);
 
@@ -104,7 +107,8 @@ for (const lang of langs) {
   await extractDiceCombatData(lang, outputRootDir);
 
   console.log("开始提取货币战争数据...");
-  await extractGridFightData(lang, outputRootDir);
+  const gridFight = await extractGridFightData(lang, outputRootDir);
+  mergeGridFightPropertyTranslations(gridFightProperties, gridFight.properties, lang);
 
   console.log("开始提取主线任务数据...");
   await extractMissionData(lang, outputRootDir);
@@ -159,3 +163,5 @@ fs.writeFileSync(
 fs.writeFileSync(path.join(outputRootDir, "properties.json"), JSON.stringify(allDict.properties, null, 2));
 fs.writeFileSync(path.join(outputRootDir, "relictypes.json"), JSON.stringify(allDict.relicTypes, null, 2));
 fs.writeFileSync(path.join(outputRootDir, "statuses.json"), JSON.stringify(allDict.statuses, null, 2));
+
+fs.writeFileSync(path.join(outputRootDir, "gridfight-properties.json"), JSON.stringify([...gridFightProperties.values()], null, 2));

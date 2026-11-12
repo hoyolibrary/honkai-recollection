@@ -11,6 +11,7 @@ import { GridFightDivisionExtractor } from "./GridFightDivisionExtractor";
 import { GridFightPortalExtractor } from "./GridFightPortalExtractor";
 import { GridFightAugmentExtractor } from "./GridFightAugmentExtractor";
 import { getGridFightSeasons } from "./seasons";
+import { getGridFightPropertyDictionary } from "./properties";
 
 export async function extractGridFightData(lang: string, rootPath: string) {
   const outpath = path.join(rootPath, `./${lang}/gridfight`);
@@ -18,6 +19,8 @@ export async function extractGridFightData(lang: string, rootPath: string) {
 
   const seasons = await getGridFightSeasons(lang);
   await fs.writeFile(path.join(outpath, "index.json"), JSONBig.stringify(seasons, null, 2));
+  const properties = await getGridFightPropertyDictionary(lang);
+  await fs.writeFile(path.join(outpath, "properties.json"), JSONBig.stringify(properties, null, 2));
 
   const roleExtractor = new GridFightRoleExtractor(lang);
   console.log("加载货币战争角色数据");
@@ -84,4 +87,5 @@ export async function extractGridFightData(lang: string, rootPath: string) {
   await augmentExtractor.init();
   const augments = augmentExtractor.getAugmentList();
   await fs.writeFile(path.join(outpath, "augments.json"), JSONBig.stringify(augments, null, 2));
+  return { properties };
 }

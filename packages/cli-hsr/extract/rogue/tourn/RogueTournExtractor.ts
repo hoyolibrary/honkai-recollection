@@ -1,3 +1,4 @@
+import type { HsrSeason } from "@game/games/hsr/HsrSeason";
 import fs from "fs/promises";
 import JSONBig from "json-bigint";
 import { HsrRogueMiracle, HsrRogueMiracleEffect } from "@game/games/hsr/rogue/tourn";
@@ -110,7 +111,7 @@ export class RogueTournExtractor {
     await TextMap.loadMap(this.lang);
   }
 
-  async getRogueTournSeasons() {
+  async getRogueTournSeasons(): Promise<HsrSeason[]> {
     // 由于每过一个赛季，上个赛季信息就会被清空，只能通过活动表来获得赛季名称，并且拼接图标路径（还有拼错的）
     const json = await fs.readFile(`./data/ExcelOutput/ActivityPanel.json`, "utf-8");
     const activityPanels: any[] = JSONBig.parse(json);

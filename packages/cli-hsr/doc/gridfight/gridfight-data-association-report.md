@@ -240,7 +240,8 @@ Augment：`Quality` 为 `Silver` / `Gold` / `Prismatic`；`ChapterLimitList` 限
 
 ```text
 output/<lang>/gridfight/
-  index.json           # 按实际 SeasonID 排序的赛季列表，每项含 id 和本地化 name
+  index.json           # HsrSeason（公共赛季类型），按 season 排序，含 id/season/name/icon，可选 desc
+  properties.json      # HsrGridFightPropertyMetadata[]，合并普通/特殊属性，以 id 查找，含 name/icon/miniIcon/panelName/visible/order/isPercent
   roles/index.json     # HsrGridFightRoleSimple（stars 不含 skills/backSkills，无 ranks）
   roles/<id>.json      # HsrGridFightRole 全量，同一 ID 的最早赛季
   roles/<seasonId>/<id>.json # 仅同一 ID 的后续版本，各自写一份
@@ -256,6 +257,8 @@ output/<lang>/gridfight/
 Runner：`extract/quest/gridfight/index.ts`，主入口 `extractGridFightData`。
 
 赛季清单通过 `GridFightSeasonModule.ActivityModuleID` 关联 `ActivityConfig.ActivityModuleIDList`，再由 `ActivityPanelID` 读取活动面板的本地化名称。子赛季按 `SeasonID` 合并。历史模块下架后，可从保留的活动面板标签图标 `BtnGridFightS<n>.png` 恢复赛季编号。仅出现在装备或配方池中的赛季不会因此进入清单。
+
+赛季索引与差分宇宙统一为 `{ id, season, name, icon, desc? }`。`season` 是实际赛季编号，供筛选、排序和展示使用；`id` 只是唯一且不透明的记录键，消费者不应从它推断赛季。货币战争当前以 `season` 作为 `id`，不能直接使用可能被不同赛季复用的 `ActivityPanel.PanelID`。图标为 `https://cdn2.dicloud.work/static/mihoyo-tools/hsr/ui/tabicon/gridfight/GridFightS${season}.png`。实体上的 `seasonId` 继续表示实际赛季编号，与索引中的 `season` 对应。
 
 有赛季归属的实体以 `(seasonId, id)` 标识。每行保留游戏原生 ID 和单个赛季编号。相同名称或相同属性的不同 ID 分别输出。同一 ID 被多个赛季收录时，每季各输出一行。缺少赛季归属的记录保留一行并省略 `seasonId`。
 
@@ -334,3 +337,11 @@ TextMap 标签：`gridfight_season` / `gridfight_role` / `gridfight_equip` / `gr
 忆灵：`GridFightServantStar` / `ServantSkill` / `BackServant`。  
 怪物个体：`GridFightMonster` / `EliteGroup`。  
 教程与联动：`GridFightTutorial*`、`FateEquip`、`GridFightProjection`。
+
+### 属性聚合字典
+
+`GridFightRolePropertyConfig.PropertyType` 与 `GridFightSpecialProperty.VariableName` 统一输出为属性 `id`，两个表合并为每种语言的 `gridfight/properties.json` 数组。出现重复键时提取报错，避免静默覆盖。`icon` 保留普通图标，`miniIcon` 保留富文本小图标，`panelName` 保留普通属性的面板名称；缺失的原始名称不补造。
+
+完整提取入口同时生成根级 `gridfight-properties.json`，沿用通用字典的 `nameCHS` / `nameEN` 等跨语言字段，并保留 `panelNameCHS` 等面板名称。跨语言合并以 `id` 对齐，不依赖数组顺序。该根级文件可由前端 `copy:hsr` 同步。
+
+`isPercent` 同时写入单语言和根级跨语言聚合字典。原始货币战争属性表不带此标志，由提取器集中按倍率、概率等属性键语义判定（包括幸运一击、连击率和伤害减免）；基础强度、能量、身高和召唤力等保留普通数值。前端直接消费布尔值，不维护第二套判定。
