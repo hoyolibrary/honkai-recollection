@@ -99,6 +99,7 @@ export class GridFightEquipExtractor {
       const seasonCrafts = crafts.filter(craft => craft.seasonId === seasonId);
       return {
         id,
+        configId,
         code: id + "",
         name: TextMap.getText(this.lang, item?.ItemName?.Hash),
         icon: gridFightUrl(item?.IconPath || ""),
@@ -116,6 +117,7 @@ export class GridFightEquipExtractor {
         properties: mapProperties(equip?.GeneralPropertyList),
         params: equip?.ParamList?.length ? values(equip.ParamList) : undefined,
         effectParams: equip?.EffectParamList?.length ? values(equip.EffectParamList) : undefined,
+        tagIds: equip ? [...equip.EquipmentTagList] : undefined,
         tags: tags.length ? tags : undefined,
         recommendRoleIds: rec?.RecommendRoleIDList?.length ? rec.RecommendRoleIDList : undefined,
         seasonId,

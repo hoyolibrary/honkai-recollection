@@ -10,4 +10,5 @@ node_modules
 /test/*
 !/test/xxhash.ts
 !/test/rogue-tourn-events.ts
+!/test/gridfight-properties.test.ts
 !/test/upload.test.ts

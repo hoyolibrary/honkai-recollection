@@ -121,6 +121,7 @@ export class ServantExtractor {
       const link = links[skill.id];
       if (link) {
         skill.picture = getUrl(link[0].TarotFigurePath, "dicloud")!;
+        skill.avatarId = link[0].LinkToAvatarID;
       }
     }
   }

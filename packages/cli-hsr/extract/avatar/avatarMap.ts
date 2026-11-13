@@ -25,6 +25,7 @@ export interface AvatarSkillLike {
   StanceDamageDisplay?: number;
   BPNeed?: { Value: number };
   SPNeed?: { Value: number };
+  RelatedExRankIDList?: number[];
 }
 
 export interface MapAvatarSimpleOptions {
@@ -151,6 +152,9 @@ export function mapAvatarSkill(
   }
 
   skill.toughness = d.StanceDamageDisplay;
+  if (d.RelatedExRankIDList?.length) {
+    skill.relatedExRankIds = [...d.RelatedExRankIDList];
+  }
 
   const bp = d.BPNeed?.Value;
   const sp = d.SPNeed?.Value;

@@ -4,6 +4,7 @@ import {
   HsrAvatarPromotion,
   HsrAvatarRank,
   HsrAvatarSkillTree,
+  HsrAvatarSeriesSkill,
   HsrGameAvatar,
   HsrGameAvatarEnhanceableInfo,
   HsrGameAvatarSkin,
@@ -26,7 +27,10 @@ import { ItemConfigAvatar } from "schema/AvatarConfig";
 import { AvatarSkin, ItemConfigAvatarSkin } from "schema/AvatarSkin";
 import { getRarity } from "extract/item";
 import { AvatarSkillTreeConfig } from "schema/AvatarSkillTreeConfig";
-import { mapAvatarSimple, mapAvatarSkillList } from "./avatarMap";
+import { mapAvatarSimple, mapAvatarSkill, mapAvatarSkillList, readExcel } from "./avatarMap";
+import { AvatarExRankExtractor } from "./AvatarExRankExtractor";
+import type { AvatarSeriesSkill } from "schema/AvatarSeriesSkill";
+import type { AvatarSkillLink } from "schema/AvatarSkillLink";
 
 export class AvatarExtractor {
   private lang: string;
@@ -38,6 +42,8 @@ export class AvatarExtractor {
 
   avatarConfigs: AvatarConfig[] = [];
   avatarSkills: AvatarSkillConfig[] = [];
+  avatarSeriesSkills: AvatarSeriesSkill[] = [];
+  avatarSkillLinks: AvatarSkillLink[] = [];
   avatarRanks: AvatarRankConfig[] = [];
   avatarPromotions: AvatarPromotionConfig[] = [];
   avatarSkillTrees: AvatarSkillTreeConfig[] = [];
@@ -53,6 +59,7 @@ export class AvatarExtractor {
   avatarEnhanceds: AvatarConfigEnhanced[] = [];
 
   avatarMap: Record<number, HsrGameAvatar> = {};
+  private exRankExtractor?: AvatarExRankExtractor;
   async init() {
     // 联动角色的表和普通的不放在一起
     const suffix = this.isCollaboration ? "LD" : "";
@@ -101,6 +108,11 @@ export class AvatarExtractor {
       // 欢愉命途欢愉技“参演编号”表
       const json11 = await fs.readFile(`./data/ExcelOutput/ElationSkill.json`, "utf-8");
       this.elationSkills = JSONBig.parse(json11);
+
+      this.exRankExtractor = new AvatarExRankExtractor(this.lang);
+      await this.exRankExtractor.init();
+      this.avatarSeriesSkills = await readExcel<AvatarSeriesSkill>("AvatarSeriesSkill");
+      this.avatarSkillLinks = await readExcel<AvatarSkillLink>("AvatarSkillLink");
     }
 
 
@@ -191,6 +203,9 @@ export class AvatarExtractor {
     this.fillAllUltraSkillMap();
     this.fillAllElationSkillMap();
     this.fillAllSkinMap();
+    const exRanksByAvatarId = _.groupBy(
+      this.exRankExtractor?.getExRankList() ?? [], rank => rank.avatarId,
+    );
 
     //#endregion
 
@@ -211,6 +226,8 @@ export class AvatarExtractor {
 
 
       avatar.skins = this.getSkinInfo(avatar);
+      const exRanks = exRanksByAvatarId[avatar.id];
+      if (exRanks?.length) avatar.exRanks = exRanks;
       //#endregion
 
 
@@ -244,7 +261,7 @@ export class AvatarExtractor {
     item: AvatarConfigEnhanceableInfo & {
       skills: AvatarSkillConfig[];
     },
-  ): Pick<HsrGameAvatarEnhanceableInfo, "skills"> {
+  ): Pick<HsrGameAvatarEnhanceableInfo, "skills" | "seriesSkills"> {
     const skills = mapAvatarSkillList(this.lang, item.skills, item.SkillList, {
       ownerId: item.AvatarID,
       configType: "AvatarSkillConfig",
@@ -254,9 +271,88 @@ export class AvatarExtractor {
       if (skill.type == "ElationDamage") {
         skill.elationPriority = this.elationSkillMap[skill.id]?.PriorityValue;
       }
+      const links = this.avatarSkillLinks.filter(row => row.SkillID === skill.id);
+      if (links.length > 1) throw new Error(`AvatarSkillLink: duplicate SkillID ${skill.id}`);
+      const link = links[0];
+      if (link) {
+        for (const id of [...link.LinkToAvatarIDList, ...link.LinkToAvatarIDSimplifiedList]) {
+          if (!this.avatarConfigs.some(row => row.AvatarID === id)) {
+            throw new Error(`AvatarSkillLink ${skill.id}: missing AvatarConfig ${id}`);
+          }
+        }
+        skill.linkToAvatarIds = [...link.LinkToAvatarIDList];
+        skill.linkToAvatarIdsSimplified = [...link.LinkToAvatarIDSimplifiedList];
+      }
     }
 
-    return { skills };
+    const seriesSkills = this.getSeriesSkills(item);
+    return { skills, ...(seriesSkills.length ? { seriesSkills } : {}) };
+  }
+
+  /** 按系列表的角色关联收集技能，复用标准技能结构，不建立跨机制聚合对象。 */
+  getSeriesSkills(avatar: AvatarConfigEnhanceableInfo): HsrAvatarSeriesSkill[] {
+    const ownSeries = this.avatarSeriesSkills.filter(row =>
+      row.AvatarID === avatar.AvatarID && avatar.SkillList.includes(row.SkillID));
+    const related = new Map<string, AvatarSeriesSkill>();
+    for (const source of ownSeries) {
+      for (const avatarId of source.RelateAvatarIDList) {
+        const matches = this.avatarSeriesSkills.filter(row =>
+          row.AvatarID === avatarId && row.Level === source.Level &&
+          row.UnlockCondition.Type === source.UnlockCondition.Type &&
+          row.UnlockCondition.Param === source.UnlockCondition.Param);
+        if (!matches.length) {
+          throw new Error(`AvatarSeriesSkill ${source.SkillID}/${source.Level}: missing related avatar ${avatarId}`);
+        }
+        for (const row of matches) related.set(`${row.SkillID}:${row.Level}`, row);
+      }
+    }
+    // Map 保留显式关联中的技能顺序，不按 SkillID 重新排列。
+    const groups = new Map<number, AvatarSeriesSkill[]>();
+    for (const row of related.values()) {
+      const rows = groups.get(row.SkillID) ?? [];
+      rows.push(row);
+      groups.set(row.SkillID, rows);
+    }
+    return [...groups.values()].map(rows => {
+      rows.sort((a, b) => a.Level - b.Level);
+      const first = rows[0];
+      const owner = this.avatarConfigs.find(row => row.AvatarID === first.AvatarID);
+      if (!owner?.SkillList.includes(first.SkillID)) {
+        throw new Error(`AvatarSeriesSkill ${first.SkillID}: missing owning avatar or SkillList entry`);
+      }
+      const rawSkills = rows.map(row => {
+        const matches = this.avatarSkills.filter(skill => skill.SkillID === row.SkillID && skill.Level === row.Level);
+        if (matches.length !== 1) {
+          throw new Error(`AvatarSeriesSkill ${row.SkillID}/${row.Level}: expected one AvatarSkillConfig row, got ${matches.length}`);
+        }
+        return matches[0];
+      });
+      const skill = mapAvatarSkill(this.lang, rawSkills, {
+        ownerId: first.AvatarID,
+        configType: "AvatarSkillConfig",
+      })!;
+      return {
+        ...skill,
+        avatarId: first.AvatarID,
+        framePrefab: first.FramePrefab,
+        specialTagPrefab: first.SpecialTagPrefab,
+        relatedAvatarIds: [...first.RelateAvatarIDList],
+        levels: skill.levels.map((level, index) => {
+          const row = rows[index];
+          if (row.SpecialTag) {
+            TextMap.setTagInfo(this.lang, row.SpecialTag.Hash, {
+              category: { avatar: String(row.AvatarID), avatar_series_skill: String(row.SkillID), type: "AvatarSeriesSkill" },
+              tags: ["avatar", "avatar_series_skill", "skill"],
+            });
+          }
+          return {
+            ...level,
+            unlockCondition: { type: row.UnlockCondition.Type, param: row.UnlockCondition.Param },
+            specialTag: row.SpecialTag ? TextMap.getText(this.lang, row.SpecialTag.Hash) : undefined,
+          };
+        }),
+      };
+    });
   }
 
   getRankInfo(

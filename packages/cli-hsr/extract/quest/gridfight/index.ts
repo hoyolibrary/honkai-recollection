@@ -10,6 +10,8 @@ import { GridFightTraitExtractor } from "./GridFightTraitExtractor";
 import { GridFightDivisionExtractor } from "./GridFightDivisionExtractor";
 import { GridFightPortalExtractor } from "./GridFightPortalExtractor";
 import { GridFightAugmentExtractor } from "./GridFightAugmentExtractor";
+import { GridFightPetPalExtractor } from "./GridFightPetPalExtractor";
+import { GridFightSpotLightExtractor } from "./GridFightSpotLightExtractor";
 import { getGridFightSeasons } from "./seasons";
 import { getGridFightPropertyDictionary } from "./properties";
 
@@ -87,5 +89,21 @@ export async function extractGridFightData(lang: string, rootPath: string) {
   await augmentExtractor.init();
   const augments = augmentExtractor.getAugmentList();
   await fs.writeFile(path.join(outpath, "augments.json"), JSONBig.stringify(augments, null, 2));
+
+  const petPalExtractor = new GridFightPetPalExtractor(lang);
+  console.log("加载货币战争奇遇伙伴数据");
+  await petPalExtractor.init();
+  await fs.writeFile(path.join(outpath, "petpals.json"), JSONBig.stringify(petPalExtractor.getPetPalList(), null, 2));
+  // 新文件写入成功后移除旧名称，避免重复发布同一份数据。
+  await fs.rm(path.join(outpath, "pet-pals.json"), { force: true });
+
+  const spotLightExtractor = new GridFightSpotLightExtractor(lang);
+  console.log("加载货币战争主角光环数据");
+  await spotLightExtractor.init();
+  await fs.writeFile(path.join(outpath, "spotlights.json"), JSONBig.stringify(spotLightExtractor.getSpotLightList(), null, 2));
+  await fs.writeFile(path.join(outpath, "spotlight-tags.json"), JSONBig.stringify(spotLightExtractor.getTagList(), null, 2));
+  await fs.writeFile(path.join(outpath, "spotlight-recommendations.json"), JSONBig.stringify(spotLightExtractor.getRoleRecommendationList(), null, 2));
+  await fs.writeFile(path.join(outpath, "spotlight-mazebuffs.json"), JSONBig.stringify(spotLightExtractor.getMazeBuffList(), null, 2));
+  await fs.rm(path.join(outpath, "spotlight-maze-buffs.json"), { force: true });
   return { properties };
 }

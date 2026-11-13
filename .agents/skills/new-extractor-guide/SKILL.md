@@ -191,6 +191,13 @@ TextMap.setTagInfo(this.lang, hash, {
 
 ## 第 4 步：处理表关联 （如果有）
 
+### 输出聚合与字段保留
+
+- 如果一个表唯一的作用是给另一个已提取实体提供关联或描述信息，直接内嵌到该实体；允许逐层嵌套，形成数据域主表（聚合根）。多对一、多对多关联表可以保持独立，结合复用和数据体积判断，不强制展开。
+- 仅提供名称、颜色等展示信息且使用不多的字典，可以在使用处内联这些字段。内嵌不意味着必须删除独立字典；已有字典是否保留按输出契约和任务范围决定。
+- **已经组装导航属性的源外键必须同时保留**，包括单 ID、ID 数组及子记录指向父记录的外键。不得以嵌套对象已有 ID、可以反查或字段重复为由删除，也不得用解析成功的导航对象反向重建、裁剪源 ID 数组。
+- 暂时未用、后续可能使用的字段继续保留。明确仅用于游戏内部行为、对前端展示无意义的表及行为配置引用无需新增提取或者深入解析外键关联。
+
 ### 模式 A：`mutateGroupJoin` — 父表存子表 ID 数组
 
 父表通过一个字段（如 `SkillList: number[]`）存放子表 ID 列表，子表每条记录有唯一 ID。使用 `mutateGroupJoin` 将子表记录按父表的 ID 数组原地挂载到父对象上：
@@ -241,6 +248,14 @@ const merged = mutateGroupJoin2(this.parentConfigs, {
 **签名约定**：`async (lang: string, rootPath: string)`，`rootPath` 即 `output/` 目录。
 **输出格式**：必须用 `JSONBig.stringify`。
 **参考**：`extract/lightcone/index.ts`（中等，mutateGroupJoin）、`extract/avatar/index.ts`（复杂，多子表嵌套 join 含 mutateGroupJoin2）
+
+### 输出文件与目录命名
+
+- 游戏自创术语和代码标识按一个词处理，不按词形猜拆，例如 `submission`、`petpal`、`mazebuff`、`gridfight`。
+- 独立列表文件使用 **kebab-case + 复数名称**，例如 `dicecombat/avatars.json`。
+- **包含主列表和明细数据时，将单文件列表名转换为同名复数目录，列表入口固定为 `index.json`**：`xxxs.json` → `xxxs/index.json`，明细为 `xxxs/<id>.json`。例如 `avatars/index.json` 与 `avatars/<id>.json`。复数规则落实在外层目录，`index.json` 是符合规则的固定入口，不属于违规命名或历史豁免。
+- **玩法目录的 `index.json` 存放赛季信息，作为玩法主入口**，例如 `gridfight/index.json`；不为复数命名将其改成 `seasons.json`。没有赛季信息无需生成。
+- 文件名规则不改变源表名、schema 文件名或 JSON 字段的既有命名规则。命名审查仅处理用户指定范围，不顺带迁移历史输出。
 
 ### 输出模式：明细数据拆分（用户明确要求时）
 
@@ -315,7 +330,7 @@ Hash 值为 XXHash64 超过 JS 安全整数范围，所有读写必须用 `JSONB
 - cwd 固定为 `packages/cli-hsr/`
 - Extractor 内读文件：`./data/ExcelOutput/XxxConfig.json`
 - Runner 内写文件：`path.join(rootPath, lang, "subdir")`
-- 输出文件名：列表用 `index.json`
+- 输出文件名：独立列表用复数 kebab-case 文件名；主列表加明细用同名复数目录下的 `index.json`，玩法赛季入口用玩法目录下的 `index.json`（见第 5 步）
 - tsconfig paths：`@game/*` → `gacha-game-types/src/*`
 
 ### 混淆字段名

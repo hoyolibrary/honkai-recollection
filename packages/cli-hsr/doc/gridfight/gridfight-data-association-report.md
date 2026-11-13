@@ -1,347 +1,110 @@
 # 货币战争（GridFight）数据关联与提取
 
-> 内部代号 **GridFight**。基线：`ExcelOutput/GridFight*` + DummyDll `RPG.GameCore.GridFight*ConfigRow`。Excel 字段名已解混淆，与 C# 一致。
->
-> 提取器：`packages/cli-hsr/extract/quest/gridfight/`  
-> 输出类型：`packages/gacha-game-types/src/games/hsr/quest/gridfight.ts`  
-> 产物：`output/<lang>/gridfight/`
->
-> 客户端 `Config/Level/GridFight/**` 未随仓库导出，效果以 Excel 描述 + `ParamList` 为准。`*_Index_*` 索引表、空表可跳过。
-
----
-
-## 1. 实体与主表
-
-| 玩法概念 | 主表 | DummyDll | 输出 |
-|----------|------|----------|------|
-| 棋子 Role | `GridFightRoleBasicInfo` + `GridFightRoleStar` | `GridFightRoleConfigRow` / `GridFightRoleStarConfigRow` | `HsrGridFightRole` |
-| 装备 | `GridFightItems` ⋈ `GridFightEquipment` | `GridFightEquipItemConfig` | `HsrGridFightEquip` |
-| 羁绊 Trait | `GridFightTraitBasicInfo` + `GridFightTraitLayer` | `GridFightTraitBaseConfigRow` / `GridFightTraitLayerConfigRow` | `HsrGridFightTrait` |
-| 职级 | `GridFightDivisionInfo` ⋈ `GridFightDivisionStage` | `GridFightDivisionStageConfig` | `HsrGridFightDivision` |
-| 词条 | `GridFightAffixConfig` | `GridFightAffixConfigRow` | `HsrGridFightAffix` |
-| 阵营 | `GridFightCamp` | `GridFightCampConfigRow` | `HsrGridFightCamp` |
-| 投资环境 | `GridFightPortalBuff` | `GridFightPortalBuffConfigRow` | `HsrGridFightPortal` |
-| 投资策略 | `GridFightAugment` | `GridFightAugmentConfigRow` | `HsrGridFightAugment` |
-
-赛季入口 `GridFightSeasonModule`（`SeasonID` / `SubSeasonID` / `ActivityModuleID`）。角色、装备、羁绊、Portal、Augment 均挂 `SeasonID` 或赛季池表。
-
-`{ Value: number }` 为 `FixPoint`。文本为 `{ Hash }`（`TextID`）。环境文案键（`GridFight_EnvironmentDesc_*`）走 `getHashedText`。
-
----
-
-## 2. 总关联图
-
-```text
-SeasonModule.SeasonID
-  ├─ RoleBasicInfo.SeasonID ── AvatarConfig.AvatarID（姓名/立绘/元素/命途）
-  │     ├─ TraitList[] ──────── TraitBasicInfo.ID
-  │     ├─ BackendRankList[] ── BackRoleRank.RankID
-  │     ├─ FrontBackType ────── GridFightPreset = Both|Front|Back（JSON 省略 = Both）
-  │     └─ RoleStar (ID, Star) ─┬─ FrontShowSkillIDList[] ── FrontSkill.SkillID
-  │                             ├─ BackShowSkillIDList[] ─── BackBESkillConfig.SkillID
-  │                             ├─ SkillOverrideSrc/Dest ─── AvatarSkill → 玩法技能
-  │                             └─ BEID ──────────────────── BackBEConfig.BattleEventID
-  │
-  ├─ Items.ID = Equipment.ID
-  │     ├─ EquipCategory ────── EquipCategoryInfo
-  │     ├─ EquipmentTagList[] ─ EquipTag.TagID
-  │     ├─ CraftConfig.CraftEquipID / CostEquipList[]
-  │     ├─ EquipRecommendRole.EquipID → RecommendRoleIDList[]
-  │     ├─ RoleRecommendEquip.RoleID + FrontBackType → 推荐列表
-  │     ├─ Emblem.EquipFuncParamList[0] = TraitID
-  │     └─ TraitSpecial.DressRuleParamList[0] = TraitID
-  │
-  ├─ TraitBasicInfo
-  │     ├─ TraitEffectList[] ── TraitEffect.ID + TraitEffectLayerPa (ID, Layer)
-  │     ├─ TraitLayer (TraitID, Layer) → MazebuffID / 属性
-  │     └─ RoleBasicInfo.TraitList 反查成员
-  │
-  ├─ DivisionInfo.ID = DivisionStage.DivisionID
-  │     ├─ DivisionLevel ────── DivisionLevelShow
-  │     ├─ EnemyDifficultyLevel ─ EnemyDifficultyLv (Level, ChapterID)
-  │     ├─ AffixChooseNumList[] ─ 每位面抽词条数
-  │     └─ AffixConfig.RuleParamList[] = AffixMazebuff.ID
-  │
-  ├─ Camp.MonsterList[] ────── GridFightMonster.MonsterID ── EliteGroup
-  │
-  ├─ PortalBuff ──── SeasonPortal (PortalID, SeasonID)
-  └─ Augment ────── SeasonAugment (AugmentID, SeasonID)
-```
-
-玩法属性走 `AvatarPropertyType` 的 `Extra*` 槽，展示名在 `GridFightRolePropertyConfig`：
-
-| PropertyType | 含义 |
-|--------------|------|
-| `ExtraFrontPowerBase` / `ExtraFrontPowerAddedRatio1` | 前台强度 |
-| `ExtraBackPowerBase` / `ExtraBackPowerAddedRatio1` | 后台强度 |
-| `ExtraSpeedAddedRatio1` | 速度增幅 |
-| `StanceBreakAddedRatio` | 击破效率 |
-| `ExtraLuckChance` / `ExtraLuckDamage` | 幸运一击率 / 幸运伤害 |
-| `ExtraHealBase` / `ExtraShieldBase` | 治疗 / 护盾基底 |
-| `ExtraInitSP` / `ExtraHPAddedRatio*` | 初始能量 / 生命 |
-
----
-
-## 3. 源表关系
-
-### 3.1 角色与技能
-
-`GridFightRoleBasicInfo` 主键 `ID`。姓名、头像、元素、命途、角色稀有度走 `AvatarConfig` / `ItemConfigAvatar`（含 `AvatarConfigLD`），按 `AvatarID` 关联。
-
-`ID` 可以不等于 `AvatarID`：同一角色的费用/形态变体各占一行，提取为独立棋子，用 `avatarId` 回指本体。没有把变体合成一条。
-
-银狼 LV.999 没有 `ID=1506` 行，三条共用 `AvatarID=1506`：
-
-| 棋子 ID | 费用 | 星级 |
-|---------|------|------|
-| `15061` | 3 | 1–3 |
-| `15062` | 4 | 1–3 |
-| `15063` | 5 | 1–3 |
-
-`GridFight_InitialExceptRoleIdList` 排除 `15062`、`15063`（以及景元变体 `12041`、`12042`）的开局投放；升费通过独立强化选项换成对应棋子 ID。同类还有布洛妮娅 `11011`/`11012`、景元 `1204`/`12041`/`12042`。
-
-| 字段 | 含义 |
-|------|------|
-| `FrontBackType` | `Front` / `Back` / 缺省 `Both` |
-| `Rarity` | **费用**（1–5），不是角色星级 |
-| `HealOrShieldDisplay` | `GridFightRoleSkillTag`：`DPS` / `Healer` / `Shield` / `Assist` |
-| `ChargeType[]` | `Speed` / `EnergyBar` / `MaxSP` / `MaxHP` |
-| `TraitList[]` | 羁绊 ID |
-| `BackendRankList[]` | 后台命座 `BackRoleRank.RankID`，形如 `{RoleID}{01..06}` |
-| `SpecialAvatarID` | 战斗用特殊角色（`370{AvatarID}`） |
-| `EquipmentID` | 常规光锥 `EquipmentConfig`，不是玩法装备 |
-| `IsInPool` / `IsInBook` / `IsExpert` | 商店池 / 图鉴 / 专家 |
+本文记录货币战争的公共数据结构、静态表关联，以及 4.7 新赛季对既有提取器的兼容适配。奇遇伙伴、主角光环等独立新增机制见 [S2 新增内容](s2-new-content.md)。效果以原表描述和参数为准，不推断战斗执行逻辑。
 
-星级在 `GridFightRoleStar`，复合主键 `(ID, Star)`。游戏内「仅 1 费可升 4 星」与表不完全一致，提取器按表全量输出：
+实现入口：[GridFight Runner](../../extract/quest/gridfight/index.ts)；输出类型：[gridfight.ts](../../../gacha-game-types/src/games/hsr/quest/gridfight.ts)。以下文件名表示发布数据契约，不依赖本地提取产物。
 
-| 费用 | 棋子数 | 4 星行 |
-|------|--------|--------|
-| 1 | 21 | 20 条有；景元变体 `12041` 只有 1–3 星 |
-| 2 | 15 | 全部有 4 星（含强度和技能 Dest） |
-| 3–5 | 41 | 最高 3 星，表内没有 4 星行 |
+## 1. 输出入口
 
-| 字段 | 含义 |
-|------|------|
-| `FrontPowerBase` / `BackPowerBase` | 前/后台强度基底 |
-| `LuckChance` / `LuckDamage` | 幸运一击 |
-| `ExtraHealBase` / `ExtraShieldBase` | 治疗/护盾基底 |
-| `GeneralPropertyModifyList[]` | 星级属性；`ExtraInitSP` 为初始能量 |
-| `BackMaxSP` / `BackInitialSP` / `BackEnergyBar` | 后台能量 |
-| `FrontOneWordDesc` / `BackOneWordDesc` | 前/后台一句话 |
-| `SkillOverrideSrc[]` / `SkillOverrideDest[]` | 原 `AvatarSkillConfig.SkillID` → 玩法技能；`Src=0` 为新增 |
-| `FrontShowSkillIDList[]` | 前台展示，指向 `GridFightFrontSkill.SkillID` |
-| `BackShowSkillIDList[]` | 后台展示，指向 `GridFightBackBESkillConfig.SkillID` |
-| `BEID` | 后台 BattleEvent |
+每种语言的 `gridfight/` 数据域包含以下公共输出文件。带明细的列表使用复数目录下的 `index.json`；玩法本身的 `index.json` 存放赛季信息。
 
-Dest 末两位是星级：`15020301` = 原技能 `150203` 的 1 星行。`FrontShowSkillIDList` 与 Dest 对齐，提取时直接取展示列表（已是替换结果），再用 Src/Dest 标 `isModified` / `overrideSrc`（`Src ≠ 0`）。
+| 文件 | 当前条数 | 内容与来源 |
+|---|---:|---|
+| `index.json` | 2 | 公共 `HsrSeason` 赛季清单 |
+| `roles/index.json` | 140 | 棋子列表，省略星级技能、后台星魂及推荐装备明细 |
+| `roles/<id>.json` | 140 | 完整棋子数据；同 ID 后续赛季通过 `detailPath` 指向 `roles/<seasonId>/<id>.json` |
+| `equips.json` | 340 | 赛季物品、装备配置、标签、配方与推荐角色 |
+| `traits.json` | 67 | 羁绊、层级、效果和成员 |
+| `divisions.json` | 168 | 职级、阶段、位面难度和环境说明 |
+| `affixes.json` | 53 | 词条及增益引用 |
+| `camps.json` | 53 | 按赛季展开的阵营和怪物 ID |
+| `portals.json` | 157 | 投资环境 |
+| `augments.json` | 632 | 投资策略 |
+| `properties.json` | 58 | 普通与特殊属性展示字典 |
 
-**前台** `GridFightFrontSkill`：结构镜像 `AvatarSkillConfig`，主键 `SkillID + Level`（Level 1–15 为技能等级，不是棋子星级）。`SPNeed` 为终结技能量。
+全量入口还生成根级跨语言属性字典 `gridfight-properties.json`。S2 新增文件清单及关联结构见 [S2 新增内容](s2-new-content.md)。
 
-**后台** `GridFightBackBESkillConfig`：无 Level，一条技能一行。`GridFightBackSkillExtraDesc` 按 `SkillID` 补行动条件句。
+## 2. 赛季与实体身份
 
-**展示** `GridFightRoleSkillDisplay`：`(RoleID, FrontBackType)` → `CategoryTagList`（与 `HealOrShieldDisplay` 独立）。
+赛季入口由 `GridFightSeasonModule.ActivityModuleID` 关联 `ActivityConfig.ActivityModuleIDList`，再通过 `ActivityPanelID` 取得面板名称。相同 `SeasonID` 的子赛季合并；历史模块下架时，保留的活动面板标签图标 `BtnGridFightS<n>.png` 可恢复赛季编号。仅出现在装备或配方池中的编号不会自行成为赛季入口。
 
-**命座** `GridFightBackRoleRank`：`DescParamList` 填描述 `#n`；`Param` 为战斗参数。`OwnerGeneralPropertyList` / `AllMemberGeneralPropertyList` 为自身/全队属性。`ModifySkillList[]` 指向被改写的玩法技能。
+赛季项使用 `{ id, season, name, icon, desc? }`。`season` 是实际赛季编号；`id` 是不透明的唯一记录键，当前 GridFight 以赛季编号生成，不能改用可能跨季复用的面板 ID。实体 `seasonId` 与入口的 `season` 对应。
 
-未纳入初版：`GridFightSkillDescMod`、`GridFightRankSkillModify`（命座改描述/改参数）、忆灵 `GridFightServant*`、`GridFightFrontSpecialSP`。
+有赛季归属的实体以 **`(seasonId, id)`** 标识。原生 ID、名称或数值相同都不能合并不同赛季的实体；无归属的记录保留一行并省略 `seasonId`。关联和反查在同季范围内进行。
 
-### 3.2 装备
+| 数据 | 第 1 季 | 第 2 季 | 共用源 ID 数 |
+|---|---:|---:|---:|
+| 棋子 | 77 | 63 | 0 |
+| 羁绊 | 33 | 34 | 0 |
+| 装备及物品 | 166 | 174 | 71 |
+| 配方 | 57 | 57 | 23 |
+| 投资策略 | 334 | 298 | 221 |
+| 投资环境 | 84 | 73 | 37 |
+| 阵营 | 25 | 28 | 25 |
 
-`GridFightItems`（名、图标、优先级）与 `GridFightEquipment`（规则、属性、标签）等 ID 外连接。仅有 Items、没有 Equipment 行的是特殊道具（武器箱/角色箱/`350101–350108` 等），`category` 输出空字符串 `""`。星徽用 `category === "Emblem"` 判断，不另设字段。
+4.7 的棋子、羁绊已用独立原生 ID 区分赛季，例如瓦尔特为 `1004` 与 `100402`。装备、策略等仍共用源记录；上游更新共用配置后，所有收录该记录的赛季都会使用当前值，赛季筛选不等同于历史版本快照。
 
-| Equipment 字段 | 含义 |
-|----------------|------|
-| `EquipCategory` | 见分类表 |
-| `EquipDesc` | 特殊效果文案 |
-| `GeneralPropertyList[]` | 面板属性 |
-| `ParamList` / `EffectParamList` | 描述 `#n` |
-| `EquipmentTagList[]` | → `EquipTag.TagID` |
-| `DressRule` / `DressRuleParamList[]` | 穿戴规则；`TraitOnly` 时参数为 TraitID |
-| `EquipFunc` / `EquipFuncParamList[]` | 星徽时参数为 TraitID |
+角色详情默认使用 `roles/<id>.json`。同 ID 多季时，最早赛季保留默认路径，后续记录输出独立文件并填写相对于玩法数据域的 `detailPath`。当前 140 个棋子 ID 全局唯一，无需额外分季详情文件。
 
-`GridFightEquipCategory`：
+## 3. 棋子、技能与后台星魂
 
-| 枚举 | 含义 | EquipCount |
-|------|------|------------|
-| `Basic` | 简易 | 1 |
-| `Craftable` | 进阶 | 2 |
-| `Radiant` | 特权 | 2 |
-| `Emblem` | **星徽** | 2 |
-| `TraitSpecial` | 羁绊专武 | 2 |
-| `Crown` / `Artifacts` / `Support` | 宝钻 / 神器 / 辅助 | 2 |
-| `Hack` / `FateEquip` | 骇客 / 命运 | |
-| `Material` / `Trash` / `GoldTrash` / `Other` | 材料 / 垃圾 | |
+`GridFightRoleBasicInfo.ID` 是棋子身份，`AvatarID` 回指常规角色。费用或形态变体各自保留，例如银狼 LV.999 的 `15061/15062/15063` 共用 `AvatarID=1506`。原表 `Rarity` 表示费用，输出为 `cost`；输出 `rarity` 仍是角色本体的星级。
 
-ID 段：`3502xx` 简易，`3503xxxx` 进阶，`3504xxxx` 特权，`3505xxxx` 星徽，`3510xxxx` 羁绊专武。
+身份映射复用 [avatarMap.ts](../../extract/avatar/avatarMap.ts)。常规、联动角色配置优先，活动角色表 `ActivityAvatarConfig` / `ActivityItemConfigAvatar` 补充缺失身份。S2 棋子 `604202` 通过 `AvatarID=6042`、`IsFakeAvatar=1` 获得「帕姆王」的名称、图片、元素和命途。
 
-合成 `GridFightCraftConfig`：`CraftEquipID` = 产物，`CostEquipList` 长度 2。`GridFightForge` 是 4 件同级炉，不是 2 件配方。
+| 表或字段 | 关联与输出 |
+|---|---|
+| `RoleBasicInfo.FrontBackType` | 前台／后台；缺省按既有规则为 `Both` |
+| `TraitList` / `BackendRankList` | 羁绊 ID／后台星魂 ID |
+| `HealOrShieldDisplay` / `ChargeType` | 定位标签／充能类型；与展示分类标签独立 |
+| `GridFightRoleStar (ID, Star)` | 棋子各星级，生成 `stars[]`；按源表保留全部星级 |
+| `FrontShowSkillIDList` → `GridFightFrontSkill.SkillID` | `stars[].skills`；每个技能按 `Level` 聚合 `levels[]` |
+| `BackShowSkillIDList` → `GridFightBackBESkillConfig.SkillID` | `stars[].backSkills`；单级技能 |
+| `SkillOverrideSrc/SkillOverrideDest` | 原技能到玩法技能的对应；非零 Src 生成 `isModified/overrideSrc` |
+| `GridFightBackSkillExtraDesc.SkillID` | 补后台技能 `conditionDesc` |
+| `GridFightRoleSkillDisplay (RoleID, FrontBackType)` | 前后台 `displayTags` |
+| `GridFightBackRoleRank.RankID` | `ranks[]`；描述参数、战斗参数、自身／全队属性、修改技能列表分别保留 |
+| `GridFightRoleRecommendEquip (RoleID, FrontBackType)` | `recommendEquips[]`，前后台分别保存 |
 
-星徽：`EquipCategory=Emblem`，`EquipFunc=OriginEmblem|ClassEmblem`，`EquipFuncParamList[0]=TraitID`，`DressRule=DressRuleUniqueAndExclusiveTrait`，把装备者加入指定羁绊。
+前台技能的 `Level` 是技能等级，不是棋子星级。展示列表已经给出替换后的技能，不再按编号重建列表。`HsrGridFightSkill` 复用标准角色技能类型，补充替换标记及 `triggerKey`；`RelatedExRankIDList` 沿共享映射输出 `relatedExRankIds`。
 
-羁绊专武：`EquipCategory=TraitSpecial`，`DressRule=DressRuleTraitOnly`，`DressRuleParamList[0]=TraitID`。
+星级还保留前后台强度、幸运一击、治疗／护盾基底、属性及一句话说明；`maxSp` 优先取前台终结技 `SPNeed`，否则使用后台 `BackMaxSP`。`SpecialAvatarID` 是战斗身份，`EquipmentID` 指向常规光锥，不能当成玩法装备。
 
-`GridFightElationEquip` 为阿哈侧文案；Hash 空时回退 `EquipDesc`。推荐双向：`EquipRecommendRole`、`RoleRecommendEquip`（分前/后台）。
+## 4. 装备、配方与推荐
 
-### 3.3 羁绊
+`GridFightSeasonItem` 提供 `(SeasonID, ItemID, ConfigID)`。输出 `id=ItemID`，通过 `ConfigID` 读取 `GridFightItems` 和 `GridFightEquipment`，并保留 `configId`；不把配置 ID 当成实体 ID。无赛季记录的配置沿用同 ID 定位。当前 340 条赛季记录恰好满足 `ConfigID=ItemID`，两者不同的分季配置由测试夹具覆盖。
 
-`GridFightTraitBasicInfo`：`TraitType` 为 `Origin`（JSON 常省略）/ `Class` / `Unique`。`TraitEffectList[]` → `TraitEffect`。成员由 `RoleBasicInfo.TraitList` 反查。
+`GridFightItems` 提供名称、图标和优先级，`GridFightEquipment` 提供描述、属性、分类、穿戴规则和功能参数。只有物品配置的箱子等记录仍输出，`category=""`。主要关联如下：
 
-`GridFightTraitLayer` 复合主键 `(TraitID, Layer)`。`Layer` 是激活人数阈值。`Quality` 省略视为 `Copper`。`PropertyBindType`：`SpecificScope` 成员 / `AllCharacter` 全队。`MazebuffID` 不在主 `MazeBuff` 表，展示用层属性。
+| 关系 | 最终处理 |
+|---|---|
+| `EquipCategory` → `GridFightEquipCategoryInfo` | 内联 `categoryName`、`slotCount` |
+| `EquipmentTagList` → `GridFightEquipTag.TagID` | 同时保留源 `tagIds` 和内嵌 `tags` |
+| `GridFightElationEquip.ID` | 独立 `elationDesc`；常规描述缺失时用于回退 |
+| `GridFightCraftConfig.CraftEquipID` | 以产物 ID 找配方；`CostEquipList` 保留材料 ID |
+| `GridFightSeasonCraft.CraftID` | 按季筛选 `crafts[]`；兼容字段 `craft` 为该季最后一条配方 |
+| `GridFightEquipRecommendRole (Season, EquipID)` | 同季 `recommendRoleIds`，不借用其他赛季推荐 |
 
-分级机制说明由 `MazebuffID` 关联 `GridFightTraitMazebuff.ID`，原样输出为 `layers[].mazeBuffDesc/mazeBuffSimpleDesc/mazeBuffParams`；层属性说明仍独立保存在 `desc/params`，不拼接原文或调整占位符索引。文本中的 `<property>` 标签保留原样，由消费端按属性语义渲染。
+`tagIds` 保留原顺序、重复和未知 ID；导航 `tags` 沿用现有未命中对象过滤，两者不互相重建。真实装备的空标签列表输出 `[]`，没有装备配置时省略 `tagIds`。
 
-`GridFightTraitEffect` + `TraitEffectLayerPa (ID, Layer)`：层效果参数。`TempEquip` 的 `EffectParamList` 可为装备池占位 ID（如 `35100000`），真实物品在 `35100001` 一段。
+星徽使用 `category=Emblem`，`equipFuncParams[0]` 指向加入的羁绊；羁绊专武使用 `category=TraitSpecial`，`dressRuleParams[0]` 指向穿戴所需羁绊。规则与参数保留原值，不从其中反向生成其他限制列表。双向装备推荐是两张独立表，角色推荐装备与装备推荐角色不能互相求逆。
 
-其它：`TraitBonus`、`TraitMazebuff`/`Plus`、`SubTraitBasicInfo`、`TraitEquipRelation`（行很少，专武主要靠 DressRule）。
+## 5. 羁绊、职级、阵营和投资
 
-### 3.4 职级、难度、词条、贪饕
+| 数据域 | 关联与最终处理 |
+|---|---|
+| 羁绊 | `GridFightTraitBasicInfo` 按 `SeasonID` 输出，成员由同季棋子 `TraitList` 反查为 `roleIds`。类型含 `Origin/Class/Unique/Spotlight` |
+| 羁绊层级 | `GridFightTraitLayer (TraitID, Layer)`；`Layer` 为人数阈值。`quality` 缺省按既有规则为 `Copper`，属性保留作用范围 |
+| 羁绊机制说明 | `MazebuffID` → `GridFightTraitMazebuff.ID`；输出 `layers[].mazeBuffDesc/mazeBuffSimpleDesc/mazeBuffParams`，与层属性 `desc/params` 分离 |
+| 羁绊效果 | `TraitEffectList` → `GridFightTraitEffect` → `GridFightTraitEffectLayerPa (ID, Layer)`；效果及分层参数内嵌 |
+| 职级 | `GridFightDivisionInfo.ID` → `GridFightDivisionStage.DivisionID`，不再依赖阶段表的赛季字段；`SeasonID + DivisionLevel` 关联展示名与简称 |
+| 难度 | `GridFightEnemyDifficultyLv (EnemyDifficultyLevel, ChapterID)` → `difficultyByChapter`；保留 `allDamageReduce`。节点加难度由 `GridFightBinaryDiffAddRule` 展开 |
+| 职级阶段参数 | `LevelBaseCounterMultiRatio` → `counterMulti`；非空 `EffectParamList` → `params` |
+| 词条 | `GridFightAffixConfig` 的 `EffectParamList` → `params`、`RuleParamList` → `mazeBuffIds`；污染词条 `1006–1009` 输出 `isInvasion` |
+| 阵营 | `GridFightCamp.ID` → `GridFightCampSeason.CampID`；各季 `monsterIds` 来自该季 `MonsterList`，不使用全局怪物清单覆盖 |
+| 投资环境 | `GridFightPortalBuff` 经 `GridFightSeasonPortal` 分季；保留描述、参数，可内嵌 NPC 和礼物展示数据 |
+| 投资策略 | `GridFightAugment` 经 `GridFightSeasonAugment` 分季；保留品质、位面限制、羁绊引用及效果参数 |
 
-`GridFightDivisionLevelShow` 按 `DivisionLevel + SeasonID`：
+职级 `DivisionLevel=1–9` 对应 `A0–A8`。贪饕展示取 GridFight 词条及增益描述，不使用常规 `StageInvasionConfig` 或挑战增益解析器代替。环境说明按原 TextMap 键查询；描述中的 `<property>`、`<gridfightinfo>` 保持原样交给消费端渲染。
 
-| DivisionLevel | DivisionAbbr |
-|---------------|--------------|
-| （空） | 新手关 |
-| 1–9 | A0–**A8** |
-
-A8 对应 `DivisionLevel=9`。`DivisionInfo.ID` 编码 `1{Season}{Level:02}{Progress:02}`。
-
-`DivisionStage` 与 Info 等键：`EnemyDifficultyLevel`、`AffixChooseNumList`（各位面抽条数）、`LevelBaseHPMultiRatio` / `Attack`、`BinaryNodeDiffAddRule`。`EnvironmentDescList` / `UniqueEnvironmentDescList` 是 TextMap 键名。
-
-`GridFightEnemyDifficultyLv` 复合主键 `(EnemyDifficultyLevel, ChapterID)`，Chapter 1/2/3 为三位面倍率。`GridFightBinaryDiffAddRule`：`(ID, Quality)` → 节点品质加难度。
-
-阵营 `GridFightCamp.MonsterList[]` → `GridFightMonster` → `GridFightEliteGroup`（怪物个体初版未展开）。
-
-**贪饕不走 `StageInvasionConfig`。** 输出词条用 `isInvasion` 标记。挂载点：
-
-1. 词条 `1006–1009`（侵蚀·\*）。`RuleParamList[0]` → `GridFightAffixMazebuff`。1007–1009 与非侵蚀 1003–1005 共用 Mazebuff 与参数；1006 文案对齐 1002，Buff ID 与 1001 相同（导出如此）。
-2. `GridFightConstCommon`：`GridFight_TanTao_Level=3`；`GridFight_TanTao_AffixList` 的 Map 键在 JSON 中被压扁，按 1001–1005 → 1006–1009 理解；另有 `ProgressValueList` / `HPProgressValueList`。
-3. 未导出的 Affix JSON 负责「有概率」与贪饕能力注入。
-
-展示用 Affix 文案，不要用 `parseChallengeBuff` / `MazeBuff 3034001–3`。
-
-### 3.5 投资环境与投资策略
-
-| 概念 | 表 | 文本字段 |
-|------|----|----------|
-| 投资环境 | `GridFightPortalBuff` | `PortalBuffTitle` / `PortalBuffDesc` |
-| 投资策略 | `GridFightAugment` | `HexName` / `HexDesc`（可含 `<gridfightinfo type=item\|role id=n>`） |
-
-Portal 可改写本局 Augment 品质（`Quality=Prismatic`）。赛季池：`SeasonPortal`、`SeasonAugment`。
-
-Portal：`ShowNpcIDList` → `GridFightNpcConfig`；`ShowBonusID*` / `DelayedShowBonus` 走 Bonus 池；命运礼物类关联 `GridFightPresentConfig`（`ShortenType=Perfect|Lose`）。
-
-Augment：`Quality` 为 `Silver` / `Gold` / `Prismatic`；`ChapterLimitList` 限制位面；`AugmentGameRefTrait[]` 引用羁绊。节点掉落在 `BonusPoolV2` 等，不是开局三选。
-
----
-
-## 4. 提取器
-
-### 4.1 产物
-
-```text
-output/<lang>/gridfight/
-  index.json           # HsrSeason（公共赛季类型），按 season 排序，含 id/season/name/icon，可选 desc
-  properties.json      # HsrGridFightPropertyMetadata[]，合并普通/特殊属性，以 id 查找，含 name/icon/miniIcon/panelName/visible/order/isPercent
-  roles/index.json     # HsrGridFightRoleSimple（stars 不含 skills/backSkills，无 ranks）
-  roles/<id>.json      # HsrGridFightRole 全量，同一 ID 的最早赛季
-  roles/<seasonId>/<id>.json # 仅同一 ID 的后续版本，各自写一份
-  equips.json
-  traits.json
-  divisions.json
-  affixes.json
-  camps.json
-  portals.json
-  augments.json
-```
-
-Runner：`extract/quest/gridfight/index.ts`，主入口 `extractGridFightData`。
-
-赛季清单通过 `GridFightSeasonModule.ActivityModuleID` 关联 `ActivityConfig.ActivityModuleIDList`，再由 `ActivityPanelID` 读取活动面板的本地化名称。子赛季按 `SeasonID` 合并。历史模块下架后，可从保留的活动面板标签图标 `BtnGridFightS<n>.png` 恢复赛季编号。仅出现在装备或配方池中的赛季不会因此进入清单。
-
-赛季索引与差分宇宙统一为 `{ id, season, name, icon, desc? }`。`season` 是实际赛季编号，供筛选、排序和展示使用；`id` 只是唯一且不透明的记录键，消费者不应从它推断赛季。货币战争当前以 `season` 作为 `id`，不能直接使用可能被不同赛季复用的 `ActivityPanel.PanelID`。图标为 `https://cdn2.dicloud.work/static/mihoyo-tools/hsr/ui/tabicon/gridfight/GridFightS${season}.png`。实体上的 `seasonId` 继续表示实际赛季编号，与索引中的 `season` 对应。
-
-有赛季归属的实体以 `(seasonId, id)` 标识。每行保留游戏原生 ID 和单个赛季编号。相同名称或相同属性的不同 ID 分别输出。同一 ID 被多个赛季收录时，每季各输出一行。缺少赛季归属的记录保留一行并省略 `seasonId`。
-
-4.7 的角色和羁绊使用独立赛季 ID，装备与投资策略仍有共用源记录。赛季筛选使用当前上游配置，同一源记录更新后会反映到所有收录该 ID 的赛季。版本对照与修复记录见 [4.7 赛季验证](4.7-season-validation.md)。
-
-### 4.2 角色：对齐标准角色，完成技能替换
-
-身份与技能行映射复用 `extract/avatar/avatarMap.ts`（`mapAvatarSimple` / `mapAvatarSkill`），与标准角色、忆灵同一套组装。棋子在此之上补费用、前后台、星级技能替换。
-
-4.7 新增的活动角色身份同时读取 `ActivityAvatarConfig` 和 `ActivityItemConfigAvatar`，供 `IsFakeAvatar` 角色展示名称、图片与属性。常规及联动角色表中的同 ID 配置优先。
-
-`HsrGridFightRoleSimple` **extends `HsrGameAvatarSimple`**，只增补玩法字段，溢出 `promotions` / `skins` / `skillTrees` / `versions`。
-
-| 标准字段 | 来源 |
-|----------|------|
-| `id` / `code` / `name` / `icon` / `roundIcon` / `portrait` | `AvatarConfig` + `ItemConfigAvatar`，映射与标准角色相同 |
-| `rarity` | `AvatarConfig.Rarity`（4/5 星） |
-| `element` / `path` / `desc` | 标准角色 |
-| `isCollaboration` | 是否在 `AvatarConfigLD` |
-
-| 增补 | 来源 |
-|------|------|
-| `avatarId` | `RoleBasicInfo.AvatarID` |
-| `seasonId` | `RoleBasicInfo.SeasonID`，4.7 原生角色记录已按不同 ID 区分赛季 |
-| `detailPath` | 同一 ID 的后续赛季详情路径，相对于 `gridfight/`。省略时从 `roles/<id>.json` 读取 |
-| `cost` | `RoleBasicInfo.Rarity` |
-| `frontBackType` | 缺省 `Both` |
-| `traitIds` / `chargeTypes` / `skillTag` / `displayTags` | BasicInfo + SkillDisplay |
-| `stars[]` | `RoleStar`；明细含已替换技能 |
-| `ranks[]` | `BackRoleRank`（后台命座，结构对齐 `HsrAvatarRank`） |
-| `recommendEquips[]` | 分 Front/Back 两套 |
-
-`HsrGridFightSkill` **extends `HsrAvatarSkill`**：
-
-- 前台：`FrontShowSkillIDList` → `FrontSkill`，按 `Level` 组成 `levels[]`（与标准技能相同）
-- 后台：`BackShowSkillIDList` → `BackBESkill`，`maxLevel=1`，并挂 `conditionDesc`
-- `isModified` / `overrideSrc`：对应 `SkillOverrideSrc ≠ 0`
-- 增补 `triggerKey`
-
-`HsrGridFightRoleStar` 挂强度、幸运、一句话、`properties`、`skills`、`backSkills`。`maxSp` 取前台终结技 `SPNeed`，否则后台 `BackMaxSP`。
-
-### 4.3 其它输出类型
-
-**`HsrGridFightEquip`**（`IMetadataEntity`）：`category` / `dressRule` / `equipFunc` + 参数、`properties`、`tags`、`recommendRoleIds`。无分类时 `category=""`。星徽为 `category === "Emblem"`，加入的羁绊在 `equipFuncParams[0]`。装备 `seasonId` 来自 `GridFightSeasonItem`。`crafts[]` 保留同一成品在该赛季的全部配方与材料，各配方的 `seasonId` 来自 `GridFightSeasonCraft`。兼容字段 `craft` 保留本赛季最后一条配方。
-
-**`HsrGridFightTrait`**：`traitType`（省略补 `Origin`）、`layers[]`（`quality` 省略补 `Copper`）、`effects[]`（含分层 `params`）、`roleIds` 反查。
-
-**`HsrGridFightDivision`** 通过 `Info.ID = Stage.DivisionID` 关联阶段，再通过 `SeasonID + DivisionLevel` 关联 LevelShow。`abbr` 来自 LevelShow。`difficultyByChapter` 按 `EnemyDifficultyLevel` 展开三位面，包含 4.7 新增的 `allDamageReduce`。`binaryDiffAdds` 按规则 ID 展开。`counterMulti` 和 `params` 分别来自 Stage 的 `LevelBaseCounterMultiRatio` 与 `EffectParamList`。词条和阵营独立输出。
-
-**`HsrGridFightCamp`** 通过 `Camp.ID = CampSeason.CampID` 展开赛季，各季 `monsterIds` 使用 `GridFightCampSeason.MonsterList`。
-
-**`HsrGridFightAffix`**：`params` ← `EffectParamList`，`mazeBuffIds` ← `RuleParamList`，`isInvasion` 标记贪饕污染词条 1006–1009。
-
-**`HsrGridFightPortal` / `HsrGridFightAugment`**：按各自赛季池展开，每行含单个 `seasonId`、效果参数和羁绊引用。Portal 可嵌 `npcs`、`presents`。
-
-属性统一为 `{ type, value? }`（`HsrGridFightProperty`），空 `Value` 的占位行丢弃。
-
-### 4.4 Schema 与枚举
-
-Schema 按表一字镜像，目录 `packages/cli-hsr/schema/GridFight*.ts`。枚举单文件：
-
-`GridFightPreset`、`GridFightRoleSkillTag`、`GridFightChargeType`、`GridFightEquipCategory`、`GridFightEquipDressType`、`GridFightEquipFuncType`、`GridFightTraitType`、`GridFightTraitEffectType`、`GridFightTrailLayerQuality`、`GridFightAugmentQuality`、`GridFightTraitActivationType`、`GridFightPropertyBindType`、`GridFightSkillModifyOp`。
-
-TextMap 标签：`gridfight_season` / `gridfight_role` / `gridfight_equip` / `gridfight_trait` / `gridfight_division` / `gridfight_affix` / `gridfight_camp` / `gridfight_portal` / `gridfight_augment`；技能加 `skill`，装备加 `item`。
-
-图标：角色头像/立绘与标准角色相同；`SkillIcons/Avatar/**` 技能/命座走 `srtools`；路径落在 `GridFight/**` 的技能图标必须走 `cdn2.dicloud.work` 的 png（`getSkillIconUrl`），不能走 srtools，否则会变成 neonteam webp 下载不到。其它玩法资源 `GridFight/**.png` → `cdn2.../gridfight/`。
-
----
-
-## 5. 初版未纳入
-
-地图与节点：`GridFightNodeTemplate`、`GridFightStageRoute`、`GridFightStage`。  
-养成树：`GridFightSeasonTalent`、`GridFightTalent`。  
-商店/掉落：`BonusPoolV2`、`ShopPrice`、`Orb`、`Consumables`。  
-命座改写回填：`SkillDescMod`、`RankSkillModify`。  
-忆灵：`GridFightServantStar` / `ServantSkill` / `BackServant`。  
-怪物个体：`GridFightMonster` / `EliteGroup`。  
-教程与联动：`GridFightTutorial*`、`FateEquip`、`GridFightProjection`。
-
-### 属性聚合字典
-
-`GridFightRolePropertyConfig.PropertyType` 与 `GridFightSpecialProperty.VariableName` 统一输出为属性 `id`，两个表合并为每种语言的 `gridfight/properties.json` 数组。出现重复键时提取报错，避免静默覆盖。`icon` 保留普通图标，`miniIcon` 保留富文本小图标，`panelName` 保留普通属性的面板名称；缺失的原始名称不补造。
-
-完整提取入口同时生成根级 `gridfight-properties.json`，沿用通用字典的 `nameCHS` / `nameEN` 等跨语言字段，并保留 `panelNameCHS` 等面板名称。跨语言合并以 `id` 对齐，不依赖数组顺序。该根级文件可由前端 `copy:hsr` 同步。
-
-`isPercent` 同时写入单语言和根级跨语言聚合字典。原始货币战争属性表不带此标志，由提取器集中按倍率、概率等属性键语义判定（包括幸运一击、连击率和伤害减免）；基础强度、能量、身高和召唤力等保留普通数值。前端直接消费布尔值，不维护第二套判定。
+属性由 `GridFightRolePropertyConfig.PropertyType` 和 `GridFightSpecialProperty.VariableName` 合并为 `id`，共 57 个普通属性与 1 个特殊属性。字典保留 `name/icon/miniIcon/panelName/visible/order/isPercent`；跨语言版本按 `id` 聚合 `nameCHS/nameEN`、`panelNameCHS` 等字段。原表无百分比标志，`isPercent` 在提取器中按属性键语义集中判定；重复属性键报错。属性数值输出 `{ type, value? }`，空 `Value` 行沿用现有过滤。

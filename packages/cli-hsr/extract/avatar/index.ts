@@ -34,7 +34,7 @@ export async function extractAvatarData(lang: string, rootPath: string) {
     allAvatars = allAvatars.concat(
       _.sortBy(Object.values(extractor.avatarMap), d => d.id)
         .map(d => ({
-          ..._.omit(d, ["promotions", "versions"]),
+          ..._.omit(d, ["promotions", "versions", "exRanks"]),
           hasEnhancement: d.versions.length > 1,
           hasSkin: d.skins.length > 1,
         }) as any),
