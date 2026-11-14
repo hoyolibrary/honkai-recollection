@@ -36,6 +36,7 @@ export async function extractAvatarData(lang: string, rootPath: string) {
         .map(d => ({
           ..._.omit(d, ["promotions", "versions", "exRanks"]),
           hasEnhancement: d.versions.length > 1,
+          hasExRank: Boolean(d.exRanks?.length),
           hasSkin: d.skins.length > 1,
         }) as any),
     );
